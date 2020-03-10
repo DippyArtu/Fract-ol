@@ -6,14 +6,18 @@
 #    By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 17:45:47 by jsalome           #+#    #+#              #
-#    Updated: 2020/03/07 18:33:14 by Artur            ###   ########.fr        #
+#    Updated: 2020/03/10 21:32:36 by Artur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 SRC_DIR = ./srcs/
-SRC = 	fractol.c
+SRC = 	fractol.c\
+		draw_image.c\
+		init.c\
+		calculate_fractal.c\
+		formulas.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
