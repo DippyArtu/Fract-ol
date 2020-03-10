@@ -7,8 +7,8 @@
 
 # include <stdio.h>
 
-# define WIDTH 100
-# define HEIGHT 100
+# define WIDTH 1600
+# define HEIGHT 900
 
 # define K_MAX 100 //maximum amount of iterations
 

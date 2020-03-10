@@ -9,10 +9,10 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract)
 	int 	iter;
 
 	row = 0;
-	col = 0;
-	while (row <= HEIGHT)
+	while (row < HEIGHT)
 	{
-		while (col <= WIDTH)
+		col = 0;
+		while (col < WIDTH)
 		{
 			map_to_zero(row, col, mandel);
 			mandel->x = 0;
@@ -26,12 +26,12 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract)
 			if (iter < K_MAX)
 			{
 				put_pixel(fract, col, row, WHITE); // P_k is not in the set
-				printf("WHITE @ %d, %d\n", col, row);
+				//printf("WHITE @ %d, %d\n", col, row);
 			}
 			else
 			{
 				put_pixel(fract, col, row, BLACK); // P_k is in the set
-				printf("BLACK @ %d, %d\n", col, row);
+				//printf("BLACK @ %d, %d\n", col, row);
 			}
 			col++;
 		}
