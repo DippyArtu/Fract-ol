@@ -6,7 +6,7 @@
 #    By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 17:45:47 by jsalome           #+#    #+#              #
-#    Updated: 2020/03/10 21:32:36 by Artur            ###   ########.fr        #
+#    Updated: 2020/03/11 18:07:19 by Artur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,11 @@ SRC = 	fractol.c\
 		draw_image.c\
 		init.c\
 		calculate_fractal.c\
-		formulas.c
+		formulas.c\
+		color_managment.c\
+		errors.c\
+		menu.c\
+		view_control.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
@@ -40,7 +44,7 @@ MLX_LIB_DIR = ./minilibx_macos/
 MLX_LIB = ./minilibx_macos/libmlx.a
 
 LIBRARIES = -framework OpenGL -framework AppKit
-
+#-lpthread
 FLAGS = -g -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIB_INC_DIR) -I$(MLX_LIB_DIR)
 
 all: $(NAME)

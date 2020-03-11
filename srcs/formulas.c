@@ -17,8 +17,10 @@ void		map_to_zero(int row, int col, t_mandel *mandel)
 {
 	mandel->c_re = (col - WIDTH / 2.0) * (4.0 / WIDTH);
 	mandel->c_im = (row - HEIGHT / 2.0) * (4.0 / WIDTH);
-//	mandel->c_re -= WIDTH / 2;
-//	mandel->c_im -= HEIGHT / 2;
+	mandel->c_re *= mandel->pos->zoom;
+	mandel->c_im *= mandel->pos->zoom;
+	mandel->c_re += mandel->pos->shift_x;
+	mandel->c_im += mandel->pos->shift_y;
 }
 
 int			sum_of_sqrs(t_mandel *mandel)
