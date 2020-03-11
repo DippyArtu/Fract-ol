@@ -23,7 +23,7 @@ void		map_to_zero(int row, int col, t_mandel *mandel)
 	mandel->c_im += mandel->pos->shift_y;
 }
 
-int			sum_of_sqrs(t_mandel *mandel)
+int			sqr_mod(t_mandel *mandel)
 {
 	return(mandel->x * mandel->x + mandel->y * mandel->y);
 }
@@ -32,7 +32,7 @@ int			sum_of_sqrs(t_mandel *mandel)
  * This formula finds a value of P_k
  * to check if it lies within the Mandlebrot set.
  *
- * P_k+1 = Z(^2) + c | where C is a complex number
+ * P_k+1 = Z(^2) + C -> where C is a complex number
  *
  *           __                             __
  *          | X_k+1 = X(^2)_k - Y(^2)_k + X_0 |

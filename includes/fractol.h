@@ -59,7 +59,7 @@ t_fract			*init_fractol_struct(int type);
 void			draw(t_fract *fract, int type);
 void			mandelbrot(t_mandel *mandel, t_fract *fract);
 void			map_to_zero(int row, int col, t_mandel *mandel);
-int				sum_of_sqrs(t_mandel *mandel);
+int				sqr_mod(t_mandel *mandel);
 void			find_p(t_mandel *mandel);
 void			put_pixel(t_fract *fractal, int x, int y, int color);
 int				color(int iter);
