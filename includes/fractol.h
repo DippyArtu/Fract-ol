@@ -9,7 +9,7 @@
 # include <stdio.h>
 # include <time.h>
 
-# define WIDTH 500
+# define WIDTH 700
 # define HEIGHT 500
 
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
@@ -17,12 +17,21 @@
 # define INVALID "Invalid type given as an argument\n" TYPES
 
 //maximum amount of iterations
-# define K_MAX 1000
+# define K_MAX 5000
 
 # define BLACK 0x000000
 # define WHITE 0xffffff
 # define START_COLOR 0xBE04FF
 # define END_COLOR 0x89FF04
+
+typedef struct	s_mouse
+{
+	int		press;
+	int		x;
+	int		y;
+	int		prev_x;
+	int		prev_y;
+}				t_mouse;
 
 typedef struct 		s_position
 {
@@ -37,7 +46,6 @@ typedef struct 		s_mandelbrot
 	float  		c_im;
 	float 		x;
 	float  		y;
-	float  		x_new;
 	int 		max_iter;
 	t_pos		*pos;
 }					t_mandel;
@@ -52,7 +60,9 @@ typedef struct		s_fract
 	int			size_line;
 	int			endian;
 	int 		type;
+	int 		itter_c;
 	t_mandel	*mandel;
+	t_mouse		*mouse;
 }					t_fract;
 
 t_fract			*init_fractol_struct(int type);
@@ -68,5 +78,8 @@ void			print_menu(t_fract *fract);
 void			zoom_control(int key, t_fract *fract);
 void			shift_control(int key, t_fract *fract);
 void			fill_background(t_fract *fract);
+t_mouse			*init_mouse(void);
+int				mouse_press(int key, int x, int y, void *p);
+int				mouse_release(int key, int x, int y, void *p);
 
 #endif

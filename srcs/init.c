@@ -1,5 +1,18 @@
 #include "fractol.h"
 
+t_mouse		*init_mouse(void)
+{
+	t_mouse		*mouse;
+
+	mouse = (t_mouse *)malloc(sizeof(t_mouse));
+	mouse->press = 0;
+	mouse->x = 0;
+	mouse->y = 0;
+	mouse->prev_x = 0;
+	mouse->prev_y = 0;
+	return (mouse);
+}
+
 static	t_pos		*init_position(void)
 {
 	t_pos	*pos;
@@ -20,7 +33,6 @@ static t_mandel		*init_mandelbrot(void)
 	man->c_im = 0;
 	man->c_re = 0;
 	man->x = 0;
-	man->x_new = 0;
 	man->y = 0;
 	man->max_iter = 20;
 	return (man);
@@ -36,6 +48,8 @@ t_fract				*init_fractol_struct(int type)
 		fractol->mandel = init_mandelbrot();
 		fractol->type = 1;
 	}
+	fractol->itter_c = 0;
+	fractol->mouse = init_mouse();
 	fractol->mlx_ptr = mlx_init();
 	fractol->win_ptr = mlx_new_window(fractol->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
 	fractol->image = mlx_new_image(fractol->mlx_ptr, WIDTH, HEIGHT);

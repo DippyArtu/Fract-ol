@@ -6,7 +6,7 @@
 #    By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 17:45:47 by jsalome           #+#    #+#              #
-#    Updated: 2020/03/11 18:07:19 by Artur            ###   ########.fr        #
+#    Updated: 2020/03/11 18:09:15 by Artur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC = 	fractol.c\
 		color_managment.c\
 		errors.c\
 		menu.c\
-		view_control.c
+		view_control.c\
+		mouse_control.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 

@@ -46,6 +46,8 @@ int 		main(int argc, char **argv)
 		//------------------
 
 		mlx_hook(fractol->win_ptr, 2, 0, key_press, fractol);
+		mlx_hook(fractol->win_ptr, 4, 0, mouse_press, fractol);
+		mlx_hook(fractol->win_ptr, 5, 0, mouse_release, fractol);
 		mlx_loop(fractol->mlx_ptr);
 	}
 	else if(!type)

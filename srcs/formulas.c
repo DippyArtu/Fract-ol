@@ -15,12 +15,10 @@
 
 void		map_to_zero(int row, int col, t_mandel *mandel)
 {
-	mandel->c_re = (col - WIDTH / 2.0) * (4.0 / WIDTH);
-	mandel->c_im = (row - HEIGHT / 2.0) * (4.0 / WIDTH);
-	mandel->c_re *= mandel->pos->zoom;
-	mandel->c_im *= mandel->pos->zoom;
-	mandel->c_re += mandel->pos->shift_x;
-	mandel->c_im += mandel->pos->shift_y;
+	mandel->c_re = 1.5 * (col - WIDTH / 2) / (0.5 * mandel->pos->zoom * WIDTH) \
+		+ mandel->pos->shift_x;
+	mandel->c_im = (row - HEIGHT / 2) / (0.5 * mandel->pos->zoom * HEIGHT) \
+		+ mandel->pos->shift_y;
 }
 
 int			sqr_mod(t_mandel *mandel)
@@ -52,7 +50,6 @@ void		find_p(t_mandel *mandel)
 	x_sqr = mandel->x * mandel->x;
 	y_sqr = mandel->y * mandel->y;
 	xy = mandel->x * mandel->y;
-	mandel->x_new = x_sqr - y_sqr + mandel->c_re;
+	mandel->x = x_sqr - y_sqr + mandel->c_re;
 	mandel->y = 2 * xy + mandel->c_im;
-	mandel->x = mandel->x_new;
 }

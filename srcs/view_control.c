@@ -2,28 +2,34 @@
 
 void		zoom_control(int key, t_fract *fract)
 {
-	if (key == 27)
+	if (key == 24 || key == 5)
 	{
-		fract->mandel->pos->zoom /= 1.0 / 1.05;
-		if (fract->mandel->max_iter > 20)
-			fract->mandel->max_iter--;
-	}
-	else if (key == 24)
-	{
-		fract->mandel->pos->zoom *= 1.0 / 1.05;
-		if (fract->mandel->max_iter <= K_MAX)
+		fract->mandel->pos->zoom /= 1.0 / 1.03;
+		if (fract->itter_c++ == 5)
+		{
 			fract->mandel->max_iter++;
+			fract->itter_c = 0;
+		}
+	}
+	else if (key == 27 || key == 4)
+	{
+		fract->mandel->pos->zoom *= 1.0 / 1.03;
+		if (fract->itter_c++ == 5)
+		{
+			fract->mandel->max_iter--;
+			fract->itter_c = 0;
+		}
 	}
 }
 
 void		shift_control(int key, t_fract *fract)
 {
-	if (key == 126)
-		fract->mandel->pos->shift_y -= 0.005;
-	else if (key == 125)
-		fract->mandel->pos->shift_y += 0.005;
+	if (key == 124)
+		fract->mandel->pos->shift_x += 0.004;
 	else if (key == 123)
-		fract->mandel->pos->shift_x -= 0.005;
-	else if (key == 124)
-		fract->mandel->pos->shift_x += 0.005;
+		fract->mandel->pos->shift_x -= 0.004;
+	else if (key == 125)
+		fract->mandel->pos->shift_y += 0.004;
+	else if (key == 126)
+		fract->mandel->pos->shift_y -= 0.004;
 }
