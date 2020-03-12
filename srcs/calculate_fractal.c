@@ -39,8 +39,8 @@
 
 void		mandelbrot(t_mandel *mandel, t_fract *fract)
 {
-	int 		row;  // y coordinate
-	int 		col;  // x coordinate
+	int 		row;  // y pixel coordinate
+	int 		col;  // x pixel coordinate
 	int 		iter;
 
 	row = 0;
@@ -53,15 +53,13 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract)
 			mandel->y = 0;
 			map_to_zero(row, col, mandel);
 			iter = 0;
-			while ((sqr_mod(mandel) <= (4 / mandel->pos->zoom)) && iter < mandel->max_iter)
+			while (sqr_mod(mandel) <= 4 && iter < mandel->max_iter)
 			{
 				find_p(mandel);
 				iter++;
 			}
 			if (iter < mandel->max_iter)
 				put_pixel(fract, col, row, color(iter)); // Z is not in the set
-			else
-				put_pixel(fract, col, row, BLACK); // Z is in the set
 			col++;
 		}
 		row++;

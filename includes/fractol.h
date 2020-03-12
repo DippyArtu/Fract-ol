@@ -67,5 +67,6 @@ void			error(int type);
 void			print_menu(t_fract *fract);
 void			zoom_control(int key, t_fract *fract);
 void			shift_control(int key, t_fract *fract);
+void			fill_background(t_fract *fract);
 
 #endif
