@@ -8,12 +8,8 @@ t_mouse		*init_mouse(void)
 	mouse->press = 0;
 	mouse->x = 0;
 	mouse->y = 0;
-
-	mouse->Re = (mouse->x - WIDTH / 2.0) * 4.0 / WIDTH;
-	mouse->Im = (mouse->y - HEIGHT / 2.0) * 4.0 / WIDTH;
-
-//	mouse->Re = 1.5 * (mouse->x - WIDTH / 2) / (0.5 * WIDTH);
-//	mouse->Im = (mouse->y - HEIGHT / 2) / (0.5 * HEIGHT);
+	mouse->Re = 0;
+	mouse->Im = 0;
 	return (mouse);
 }
 
@@ -38,8 +34,6 @@ static t_mandel		*init_mandelbrot(void)
 	man->c_re = 0;
 	man->x = 0;
 	man->y = 0;
-//	man->pix_width = (Re_MAX - Re_MIN) / WIDTH;
-//	man->pix_hight = (Im_MAX - Im_Min) / HEIGHT;
 	return (man);
 }
 

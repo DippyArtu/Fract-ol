@@ -1,5 +1,10 @@
 #include "fractol.h"
 
+double interpolate(double start, double end, double interpolation)
+{
+	return (start + (end - start) / interpolation);
+}
+
 /*
  *  Mandelbrot set lies within a circle of radius 2,
  *  therefore, the width of the image should be 4
@@ -13,12 +18,11 @@
  *  length of the Mandelbrot set (4)
  */
 
-void		position(int row, int col, t_mandel *mandel)
+void		position(int x, int y, t_mandel *mandel, t_fract *fract)
 {
-
-	mandel->c_re = (col - WIDTH / 2.0) * 4.0 / (WIDTH * mandel->pos->zoom) + mandel->pos->shift_x;
-	mandel->c_im = (row - HEIGHT / 2.0) * 4.0 / (WIDTH * mandel->pos->zoom) + mandel->pos->shift_y;
-	//printf("%f     %f\n", mandel->c_re, mandel->c_im);
+	mandel->c_re = (interpolate(((x - WIDTH / 1.5) * 4.0 / WIDTH), fract->mouse->Re, 10)) * mandel->pos->zoom;
+	mandel->c_im = (interpolate(((y - HEIGHT / 2) * 4.0 / WIDTH), fract->mouse->Im, 10)) * mandel->pos->zoom;
+//	printf("%f     %f\n", mandel->c_re, mandel->c_im);
 }
 
 int			sqr_mod(t_mandel *mandel)

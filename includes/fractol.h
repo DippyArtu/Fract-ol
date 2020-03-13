@@ -72,7 +72,7 @@ typedef struct		s_fract
 t_fract			*init_fractol_struct(int type);
 void			draw(t_fract *fract, int type);
 void			mandelbrot(t_mandel *mandel, t_fract *fract);
-void			position(int row, int col, t_mandel *mandel);
+void			position(int x, int y, t_mandel *mandel, t_fract *fract);
 int				sqr_mod(t_mandel *mandel);
 void			find_p(t_mandel *mandel);
 void			put_pixel(t_fract *fractal, int x, int y, int color);
@@ -87,6 +87,5 @@ int				mouse_press(int key, int x, int y, void *p);
 int				mouse_release(int key, int x, int y, void *p);
 int 			mouse_move(int re, int im, void *p);
 double			interpolate(double start, double end, double interpolation);
-//void			restart(t_fract *fract);
 
 #endif
