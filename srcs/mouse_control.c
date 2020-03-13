@@ -1,14 +1,14 @@
 #include "fractol.h"
 
-void				restart(t_fract *fract)
-{
-	mlx_destroy_image(fract->mlx_ptr, fract->image);
-	fract->image = mlx_new_image(fract->mlx_ptr, WIDTH, HEIGHT);
-	fract->data_addr = mlx_get_data_addr(fract->image, &(fract->bpp),
-										&(fract->size_line), &(fract->endian));
-	fill_background(fract);
-	draw(fract, fract->type);
-}
+//void				restart(t_fract *fract)
+//{
+//	mlx_destroy_image(fract->mlx_ptr, fract->image);
+//	fract->image = mlx_new_image(fract->mlx_ptr, WIDTH, HEIGHT);
+//	fract->data_addr = mlx_get_data_addr(fract->image, &(fract->bpp),
+//										&(fract->size_line), &(fract->endian));
+//	fill_background(fract);
+//	draw(fract, fract->type);
+//}
 
 double interpolate(double start, double end, double interpolation)
 {
@@ -67,7 +67,7 @@ int 					mouse_move(int re, int im, void *p)
 		fract->mandel->c_re = interpolate(re, fract->mandel->c_re, interpolation);
 		fract->mandel->c_im = interpolate(im, fract->mandel->c_im, interpolation);
 		//printf("%f     %f\n", fract->mandel->c_re, fract->mandel->c_im);
-		restart(fract);
+		//restart(fract);
 	}
 	return (0);
 }

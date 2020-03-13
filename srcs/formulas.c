@@ -13,13 +13,12 @@
  *  length of the Mandelbrot set (4)
  */
 
-void		map_to_zero(int row, int col, t_mandel *mandel)
+void		position(int row, int col, t_mandel *mandel)
 {
-	mandel->c_re = 1.5 * (col - WIDTH / 2) / (0.5 * mandel->pos->zoom * WIDTH) \
-		+ mandel->pos->shift_x;
-	mandel->c_im = (row - HEIGHT / 2) / (0.5 * mandel->pos->zoom * HEIGHT) \
-		+ mandel->pos->shift_y;
-	printf("%f     %f\n", mandel->c_re, mandel->c_im);
+
+	mandel->c_re = (col - WIDTH / 2.0) * 4.0 / (WIDTH * mandel->pos->zoom) + mandel->pos->shift_x;
+	mandel->c_im = (row - HEIGHT / 2.0) * 4.0 / (WIDTH * mandel->pos->zoom) + mandel->pos->shift_y;
+	//printf("%f     %f\n", mandel->c_re, mandel->c_im);
 }
 
 int			sqr_mod(t_mandel *mandel)

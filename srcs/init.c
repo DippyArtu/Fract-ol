@@ -8,8 +8,12 @@ t_mouse		*init_mouse(void)
 	mouse->press = 0;
 	mouse->x = 0;
 	mouse->y = 0;
-	mouse->Re = 1.5 * (mouse->x - WIDTH / 2) / (0.5 * WIDTH);
-	mouse->Im = (mouse->y - HEIGHT / 2) / (0.5 * HEIGHT);
+
+	mouse->Re = (mouse->x - WIDTH / 2.0) * 4.0 / WIDTH;
+	mouse->Im = (mouse->y - HEIGHT / 2.0) * 4.0 / WIDTH;
+
+//	mouse->Re = 1.5 * (mouse->x - WIDTH / 2) / (0.5 * WIDTH);
+//	mouse->Im = (mouse->y - HEIGHT / 2) / (0.5 * HEIGHT);
 	return (mouse);
 }
 
