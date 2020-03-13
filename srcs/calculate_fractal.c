@@ -1,3 +1,5 @@
+//TODO c_re & c_im isn't updating after mouse interpolation
+
 #include "fractol.h"
 
 /*
@@ -39,9 +41,9 @@
 
 void		mandelbrot(t_mandel *mandel, t_fract *fract)
 {
-	int 		y;  // y pixel coordinate
-	int 		x;  // x pixel coordinate
-	int 		iter;
+	int 			y;  // y pixel coordinate
+	int 			x;  // x pixel coordinate
+	unsigned int	iter;
 
 	y = 0;
 	while (y < HEIGHT)
@@ -53,12 +55,12 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract)
 			mandel->y = 0;
 			map_to_zero(y, x, mandel);
 			iter = 0;
-			while (sqr_mod(mandel) <= 4 && iter < mandel->max_iter)
+			while (sqr_mod(mandel) <= 4 && iter < fract->max_iter)
 			{
 				find_p(mandel);
 				iter++;
 			}
-			if (iter < mandel->max_iter)
+			if (iter < fract->max_iter)
 				put_pixel(fract, x, y, color(iter)); // Z is not in the set
 			x++;
 		}

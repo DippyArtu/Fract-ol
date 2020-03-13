@@ -17,7 +17,11 @@
 # define INVALID "Invalid type given as an argument\n" TYPES
 
 //maximum amount of iterations
-# define K_MAX 5000
+# define K_MAX 4294967295
+# define Re_MIN -2.00
+# define Re_MAX 2.00
+# define Im_MIN -2.00
+# define Im_MAX 2.00
 
 # define BLACK 0x000000
 # define WHITE 0xffffff
@@ -26,43 +30,43 @@
 
 typedef struct	s_mouse
 {
-	int		press;
-	int		x;
-	int		y;
-	int		prev_x;
-	int		prev_y;
+	int			press;
+	double		x;
+	double		y;
+	double 		Re;
+	double 		Im;
 }				t_mouse;
 
 typedef struct 		s_position
 {
-	float  		zoom;
-	float  		shift_x;
-	float  		shift_y;
+	float  			zoom;
+	float  			shift_x;
+	float  			shift_y;
 }					t_pos;
 
 typedef struct 		s_mandelbrot
 {
-	float 		c_re;
-	float  		c_im;
-	float 		x;
-	float  		y;
-	int 		max_iter;
-	t_pos		*pos;
+	float 			c_re;
+	float  			c_im;
+	float 			x;
+	float  			y;
+	t_pos			*pos;
 }					t_mandel;
 
 typedef struct		s_fract
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	void		*image;
-	char		*data_addr;
-	int			bpp;
-	int			size_line;
-	int			endian;
-	int 		type;
-	int 		itter_c;
-	t_mandel	*mandel;
-	t_mouse		*mouse;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	void			*image;
+	char			*data_addr;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	int 			type;
+	int 			itter_c;
+	unsigned int 	max_iter;
+	t_mandel		*mandel;
+	t_mouse			*mouse;
 }					t_fract;
 
 t_fract			*init_fractol_struct(int type);
@@ -81,5 +85,8 @@ void			fill_background(t_fract *fract);
 t_mouse			*init_mouse(void);
 int				mouse_press(int key, int x, int y, void *p);
 int				mouse_release(int key, int x, int y, void *p);
+int 			mouse_move(int re, int im, void *p);
+double			interpolate(double start, double end, double interpolation);
+void			restart(t_fract *fract);
 
 #endif

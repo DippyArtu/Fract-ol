@@ -8,8 +8,8 @@ t_mouse		*init_mouse(void)
 	mouse->press = 0;
 	mouse->x = 0;
 	mouse->y = 0;
-	mouse->prev_x = 0;
-	mouse->prev_y = 0;
+	mouse->Re = 1.5 * (mouse->x - WIDTH / 2) / (0.5 * WIDTH);
+	mouse->Im = (mouse->y - HEIGHT / 2) / (0.5 * HEIGHT);
 	return (mouse);
 }
 
@@ -34,7 +34,8 @@ static t_mandel		*init_mandelbrot(void)
 	man->c_re = 0;
 	man->x = 0;
 	man->y = 0;
-	man->max_iter = 20;
+//	man->pix_width = (Re_MAX - Re_MIN) / WIDTH;
+//	man->pix_hight = (Im_MAX - Im_Min) / HEIGHT;
 	return (man);
 }
 
@@ -49,6 +50,7 @@ t_fract				*init_fractol_struct(int type)
 		fractol->type = 1;
 	}
 	fractol->itter_c = 0;
+	fractol->max_iter = 20;
 	fractol->mouse = init_mouse();
 	fractol->mlx_ptr = mlx_init();
 	fractol->win_ptr = mlx_new_window(fractol->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");

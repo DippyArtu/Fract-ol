@@ -19,6 +19,7 @@ void		map_to_zero(int row, int col, t_mandel *mandel)
 		+ mandel->pos->shift_x;
 	mandel->c_im = (row - HEIGHT / 2) / (0.5 * mandel->pos->zoom * HEIGHT) \
 		+ mandel->pos->shift_y;
+	printf("%f     %f\n", mandel->c_re, mandel->c_im);
 }
 
 int			sqr_mod(t_mandel *mandel)
