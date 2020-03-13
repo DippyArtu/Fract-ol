@@ -17,14 +17,9 @@
 # define INVALID "Invalid type given as an argument\n" TYPES
 
 //maximum amount of iterations
-# define K_MAX 4294967295
-# define Re_MIN -2.00
-# define Re_MAX 2.00
-# define Im_MIN -2.00
-# define Im_MAX 2.00
+# define K_MAX 2147483647
 
 # define BLACK 0x000000
-# define WHITE 0xffffff
 # define START_COLOR 0xBE04FF
 # define END_COLOR 0x89FF04
 
@@ -64,7 +59,7 @@ typedef struct		s_fract
 	int				endian;
 	int 			type;
 	int 			itter_c;
-	unsigned int 	max_iter;
+	int 			max_iter;
 	t_mandel		*mandel;
 	t_mouse			*mouse;
 }					t_fract;

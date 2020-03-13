@@ -1,4 +1,4 @@
-//TODO mouse function applies only to 1 pixel
+//TODO mouse is always relative to 0,0
 
 #include "fractol.h"
 
@@ -43,7 +43,7 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract)
 {
 	int 			y;  // y pixel coordinate
 	int 			x;  // x pixel coordinate
-	unsigned int	iter;
+	int				iter;
 
 	y = 0;
 	while (y < HEIGHT)
