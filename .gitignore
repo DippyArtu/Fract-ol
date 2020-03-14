@@ -17,10 +17,10 @@
 *.pch
 
 # Libraries
-*.lib
-*.a
-*.la
-*.lo
+#*.lib
+#*.a
+#*.la
+#*.lo
 
 # Shared objects (inc. Windows DLLs)
 *.dll
@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+#Stuff
+.idea
+.DS_Store
+cmake*
+CMake*
