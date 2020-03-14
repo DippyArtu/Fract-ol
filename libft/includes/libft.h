@@ -6,7 +6,7 @@
 /*   By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 12:03:39 by jsalome           #+#    #+#             */
-/*   Updated: 2020/03/06 19:38:43 by Artur            ###   ########.fr       */
+/*   Updated: 2020/03/14 20:30:15 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_swap(int *a, int *b);
 int					ft_wordcounter(char *str);
+char				*ft_strcharcpy(char const *str1, char const *str2, char c);
+char				*ft_skipnchars(char *arr, size_t n);
 
 #endif
