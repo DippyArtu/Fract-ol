@@ -95,7 +95,8 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_swap(int *a, int *b);
 int					ft_wordcounter(char *str);
-char				*ft_strcharcpy(char const *str1, char const *str2, char c);
+char				*ft_strcpy_till_char(char const *str1, char const *str2, char c);
 char				*ft_skipnchars(char *arr, size_t n);
+char				*ft_strsubptr(char const *str, char const *ptr);
 
 #endif

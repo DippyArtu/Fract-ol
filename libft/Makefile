@@ -78,8 +78,9 @@ SRC =       ft_arrnew.c\
             ft_swap.c\
             get_next_line.c\
             ft_wordcounter.c\
-            ft_strcharcpy.c\
-            ft_skipnchars.c
+            ft_strcpy_till_char.c\
+            ft_skipnchars.c\
+            ft_strsubptr.c
 
 OBJ = $(SRC:.c=.o)
 OBJ_DIR = ./obj/

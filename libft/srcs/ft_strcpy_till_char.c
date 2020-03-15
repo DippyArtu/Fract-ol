@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcharcpy.c                                    :+:      :+:    :+:   */
+/*   ft_strcpy_till_char.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 14:35:50 by jsalome           #+#    #+#             */
-/*   Updated: 2020/03/14 21:07:59 by Artur            ###   ########.fr       */
+/*   Updated: 2020/03/15 14:43:30 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*ft_strcharcpy(char const *str1, char const *str2, char c)
+char			*ft_strcpy_till_char(char const *str1, char const *str2, char c)
 {
 	char		*str3;
 	char		*tmp;
