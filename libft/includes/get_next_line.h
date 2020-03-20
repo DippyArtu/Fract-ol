@@ -6,7 +6,7 @@
 /*   By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:49:25 by jsalome           #+#    #+#             */
-/*   Updated: 2020/03/06 19:38:43 by Artur            ###   ########.fr       */
+/*   Updated: 2020/03/19 19:11:30 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include <limits.h>
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 5
 
 int					get_next_line(int const fd, char **line);
 

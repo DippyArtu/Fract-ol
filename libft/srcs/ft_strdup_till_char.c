@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit_arrc.c                                 :+:      :+:    :+:   */
+/*   ft_strdup_till_char.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 14:37:07 by jsalome           #+#    #+#             */
-/*   Updated: 2020/03/19 19:11:30 by Artur            ###   ########.fr       */
+/*   Created: 2019/09/25 14:35:50 by jsalome           #+#    #+#             */
+/*   Updated: 2020/03/20 00:15:19 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strsplit_arrc(const char *s, char c)
+char			*ft_strdup_till_char(char const *str, char c)
 {
-	size_t i;
+	char		*new;
+	char		*tmp;
+	size_t		str_c;
 
-	i = 1;
-	while (*s)
-	{
-		s++;
-		if (*s == c)
-		{
-			i++;
-			while (*s == c)
-				s++;
-		}
-	}
-	return (i);
+	str_c = 0;
+	if (!str || !c)
+		return (NULL);
+	while (str[str_c] != c)
+		str_c += 1;
+	if (!(new = (char *)malloc(sizeof(char) * (str_c + 1))))
+		return (NULL);
+	tmp = new;
+	while (*str != c)
+		*tmp++ = *str++;
+	*tmp = '\0';
+	return (new);
 }

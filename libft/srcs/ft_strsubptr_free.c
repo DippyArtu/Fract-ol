@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_strsubptr_free.c           		                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 14:36:37 by jsalome           #+#    #+#             */
-/*   Updated: 2020/03/19 19:11:30 by Artur            ###   ########.fr       */
+/*   Created: 2019/09/25 14:35:50 by jsalome           #+#    #+#             */
+/*   Updated: 2020/03/19 23:10:47 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strnew(size_t size)
+char			*ft_strsubptr_free(char *str, char const *ptr)
 {
-	char	*ptr;
+	char		*new;
+	size_t		str_c;
+	size_t		ptr_c;
+	size_t 		copy_c;
 
-	if (size > (size + 1))
+	str_c = 0;
+	ptr_c = 0;
+	if (!str)
 		return (NULL);
-	ptr = malloc(sizeof(char) * (size + 1));
-	if (ptr == NULL)
+	else if (!ptr)
+		return ((char *)str);
+	while (str[str_c])
+		str_c += 1;
+	while (ptr[ptr_c])
+		ptr_c += 1;
+	copy_c = str_c - ptr_c;
+	if (!(new = (char *)malloc(sizeof(char) * ((copy_c) + 1))))
 		return (NULL);
-	ft_bzero(ptr, size + 1);
-	return (ptr);
+	while (copy_c)
+	{
+		*new++ = *str++;
+		copy_c--;
+	}
+	*new = '\0';
+	ft_strdel(&str);
+	return (new);
 }
