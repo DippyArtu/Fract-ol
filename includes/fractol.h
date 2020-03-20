@@ -9,13 +9,10 @@
 # include <stdio.h>
 # include <time.h>
 
-# define WIDTH 700
-# define HEIGHT 500
+// 1400 * 900
 
-# define ReMin -2.0
-# define ReMax 2.0
-# define ImMin -1.428571
-# define ImMax 1.428571
+# define WIDTH 800
+# define HEIGHT 500
 
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
 # define TYPES "Available types:\n Mandelbrot\n"
@@ -50,6 +47,10 @@ typedef struct 		s_mandelbrot
 	float  			c_im;
 	float 			x;
 	float  			y;
+	double 			re_min;
+	double 			re_max;
+	double 			im_min;
+	double 			im_max;
 	t_pos			*pos;
 }					t_mandel;
 
@@ -72,7 +73,7 @@ typedef struct		s_fract
 t_fract			*init_fractol_struct(int type);
 void			draw(t_fract *fract, int type);
 void			mandelbrot(t_mandel *mandel, t_fract *fract);
-void			position(int x, int y, t_mandel *mandel, t_fract *fract);
+void			position(int x, int y, t_mandel *mandel);
 int				sqr_mod(t_mandel *mandel);
 void			find_p(t_mandel *mandel);
 void			put_pixel(t_fract *fractal, int x, int y, int color);
@@ -86,6 +87,6 @@ t_mouse			*init_mouse(void);
 int				mouse_press(int key, int x, int y, void *p);
 int				mouse_release(int key, int x, int y, void *p);
 int 			mouse_move(int x, int y, void *p);
-double			interpolate(double start, double end, double interpolation);
+double			interpolate(double start, double end, double inter);
 
 #endif

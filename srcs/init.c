@@ -34,6 +34,10 @@ static t_mandel		*init_mandelbrot(void)
 	man->c_re = 0;
 	man->x = 0;
 	man->y = 0;
+	man->re_max = 2.0;
+	man->re_min = -2.0;
+	man->im_max = 2.0;
+	man->im_min = -2.0;
 	return (man);
 }
 

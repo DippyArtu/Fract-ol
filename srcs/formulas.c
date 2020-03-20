@@ -1,8 +1,8 @@
 #include "fractol.h"
 
-double interpolate(double start, double end, double interpolation)
+double		interpolate(double start, double end, double inter)
 {
-	return (start + (end - start) / interpolation);
+	return start + ((end - start) * inter);
 }
 
 /*
@@ -18,11 +18,10 @@ double interpolate(double start, double end, double interpolation)
  *  length of the Mandelbrot set (4)
  */
 
-void		position(int x, int y, t_mandel *mandel, t_fract *fract)
+void		position(int x, int y, t_mandel *man)
 {
-	mandel->c_re = (interpolate(((x - WIDTH / 1.5) * 4.0 / WIDTH), fract->mouse->Re, 10)) * mandel->pos->zoom;
-	mandel->c_im = (interpolate(((y - HEIGHT / 2) * 4.0 / WIDTH), fract->mouse->Im, 10)) * mandel->pos->zoom;
-	//printf("%f     %f\n", mandel->c_re, mandel->c_im);
+	man->c_re = (x / (WIDTH / (man->re_max - man->re_min)) + man->re_min) - 0.5;
+	man->c_im = (y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min) * 0.7;
 }
 
 int			sqr_mod(t_mandel *mandel)

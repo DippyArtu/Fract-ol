@@ -53,7 +53,7 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract)
 		{
 			mandel->x = 0;
 			mandel->y = 0;
-			position(x, y, mandel, fract);
+			position(x, y, mandel);
 			iter = 0;
 			while (sqr_mod(mandel) <= 4 && iter < fract->max_iter)
 			{

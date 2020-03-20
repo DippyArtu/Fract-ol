@@ -31,19 +31,21 @@ int					mouse_release(int key, int x, int y, void *p)
 int 					mouse_move(int x, int y, void *p)
 {
 	t_fract			*fract;
+	t_mandel		*man;
 
 	fract = (t_fract *)p;
-	fract->mouse->Re = (x - WIDTH / 2.0) * 4.0 / WIDTH;
+	man = fract->mandel;
+	fract->mouse->Re = x / (WIDTH / (man->re_max - man->re_min)) + man->re_min;
 	if (x > WIDTH)
-		fract->mouse->Re = ReMax;
+		fract->mouse->Re = man->re_max;
 	else if (x < 0)
-		fract->mouse->Re = ReMin;
-	fract->mouse->Im = (y - HEIGHT / 2.0) * 4.0 / WIDTH;
+		fract->mouse->Re = man->re_min;
+	fract->mouse->Im = y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min;
 	if (y > HEIGHT)
-		fract->mouse->Im = ImMax;
+		fract->mouse->Im = man->im_max;
 	else if (y < 0)
-		fract->mouse->Im = ImMin;
+		fract->mouse->Im = man->im_min;
 
-	printf("%f     %f    |     %i     %i\n", fract->mouse->Re, fract->mouse->Im, x, y);
+	//printf("%f     %f    |     %i     %i\n", fract->mouse->Re, fract->mouse->Im, x, y);
 	return (0);
 }
