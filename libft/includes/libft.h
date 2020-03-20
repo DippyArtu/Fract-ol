@@ -98,7 +98,6 @@ int					ft_wordcounter(char *str);
 char				*ft_strdup_till_char(char const *str, char c);
 char				*ft_skipnchars(char *arr, size_t n);
 char				*ft_strsubptr(char const *str, char const *ptr);
-char				*ft_strsubptr_free(char *str, char const *ptr);
 char				*ft_strjoinf(char *str1, char *str2);
 
 #endif

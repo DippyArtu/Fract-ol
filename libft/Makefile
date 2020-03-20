@@ -80,7 +80,6 @@ SRC =       ft_arrnew.c\
             ft_wordcounter.c\
             ft_strdup_till_char.c\
             ft_skipnchars.c\
-            ft_strsubptr_free.c\
             ft_strsubptr.c\
             ft_strjoinf.c
 
