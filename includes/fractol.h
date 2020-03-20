@@ -12,6 +12,11 @@
 # define WIDTH 700
 # define HEIGHT 500
 
+# define ReMin -2.0
+# define ReMax 2.0
+# define ImMin -1.428571
+# define ImMax 1.428571
+
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
 # define TYPES "Available types:\n Mandelbrot\n"
 # define INVALID "Invalid type given as an argument\n" TYPES
@@ -80,7 +85,7 @@ void			fill_background(t_fract *fract);
 t_mouse			*init_mouse(void);
 int				mouse_press(int key, int x, int y, void *p);
 int				mouse_release(int key, int x, int y, void *p);
-int 			mouse_move(int re, int im, void *p);
+int 			mouse_move(int x, int y, void *p);
 double			interpolate(double start, double end, double interpolation);
 
 #endif

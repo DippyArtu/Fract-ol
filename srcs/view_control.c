@@ -2,7 +2,7 @@
 
 void		zoom_control(int key, t_fract *fract)
 {
-	if (key == 24 || key == 5)
+	if (key == 5)
 	{
 		fract->mandel->pos->zoom *= 1.0 / 1.03;
 		if (fract->itter_c++ == 3 && fract->max_iter != K_MAX)
@@ -11,7 +11,7 @@ void		zoom_control(int key, t_fract *fract)
 			fract->itter_c = 0;
 		}
 	}
-	else if (key == 27 || key == 4)
+	else if (key == 4)
 	{
 		fract->mandel->pos->zoom /= 1.0 / 1.03;
 		if (fract->itter_c++ == 3 && fract->max_iter > 0)

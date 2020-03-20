@@ -22,7 +22,7 @@ void		position(int x, int y, t_mandel *mandel, t_fract *fract)
 {
 	mandel->c_re = (interpolate(((x - WIDTH / 1.5) * 4.0 / WIDTH), fract->mouse->Re, 10)) * mandel->pos->zoom;
 	mandel->c_im = (interpolate(((y - HEIGHT / 2) * 4.0 / WIDTH), fract->mouse->Im, 10)) * mandel->pos->zoom;
-//	printf("%f     %f\n", mandel->c_re, mandel->c_im);
+	//printf("%f     %f\n", mandel->c_re, mandel->c_im);
 }
 
 int			sqr_mod(t_mandel *mandel)

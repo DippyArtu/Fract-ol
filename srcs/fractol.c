@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-// time with single thread -> 0.119811
+// time with single thread -> 0.119811 - 0.192184
 
 static int			key_press(int key, t_fract *fract)
 {
@@ -9,10 +9,8 @@ static int			key_press(int key, t_fract *fract)
 
 	if (key == 53)
 		exit(0);
-	else if (key == 24 || key == 27)
-		zoom_control(key, fract);
-	else if (key >= 123 && key <= 126)
-		shift_control(key, fract);
+//	else if (key >= 123 && key <= 126)
+//		shift_control(key, fract);
 	fill_background(fract);
 	draw(fract, fract->type);
 	return (0);
