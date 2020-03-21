@@ -36,15 +36,15 @@ int 					mouse_move(int x, int y, void *p)
 	fract = (t_fract *)p;
 	man = fract->mandel;
 	fract->mouse->Re = x / (WIDTH / (man->re_max - man->re_min)) + man->re_min;
-	if (x > WIDTH)
-		fract->mouse->Re = man->re_max;
-	else if (x < 0)
-		fract->mouse->Re = man->re_min;
+//	if (x > WIDTH)
+//		fract->mouse->Re = man->re_max;
+//	else if (x < 0)
+//		fract->mouse->Re = man->re_min;
 	fract->mouse->Im = y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min;
-	if (y > HEIGHT)
-		fract->mouse->Im = man->im_max;
-	else if (y < 0)
-		fract->mouse->Im = man->im_min;
+//	if (y > HEIGHT)
+//		fract->mouse->Im = man->im_max;
+//	else if (y < 0)
+//		fract->mouse->Im = man->im_min;
 
 	//printf("%f     %f    |     %i     %i\n", fract->mouse->Re, fract->mouse->Im, x, y);
 	return (0);

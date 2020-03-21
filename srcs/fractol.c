@@ -9,8 +9,8 @@ static int			key_press(int key, t_fract *fract)
 
 	if (key == 53)
 		exit(0);
-//	else if (key >= 123 && key <= 126)
-//		shift_control(key, fract);
+	else if (key >= 123 && key <= 126)
+		shift_control(key, fract);
 	fill_background(fract);
 	draw(fract, fract->type);
 	return (0);

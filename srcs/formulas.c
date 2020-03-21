@@ -25,10 +25,12 @@ double		interpolate(double start, double end, double interp)
  *
  */
 
+//TODO fractal distorts when trying to zoom
+
 void		position(int x, int y, t_mandel *man)
 {
-	man->c_re = (x / (WIDTH / (man->re_max - man->re_min)) + man->re_min) - 0.5;
-	man->c_im = (y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min) * 0.8;
+	man->c_re = (x / (WIDTH / (man->re_max - man->re_min)) + man->re_min) - 0.5 + man->pos->shift_x;
+	man->c_im = (y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min) * 0.8 + man->pos->shift_y;
 }
 
 int			sqr_mod(t_mandel *mandel)

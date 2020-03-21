@@ -34,14 +34,16 @@ void		apply_zoom(t_mandel *man, double m_re, double m_im, double interp)
 	man->im_max = interpolate(m_im, man->im_max, interp);
 }
 
+//TODO move has to be proportional to the zoom factor
+
 void		shift_control(int key, t_fract *fract)
 {
 	if (key == 124)
-		fract->mandel->pos->shift_x += 0.004;
+		fract->mandel->pos->shift_x += (1.0 / 1.03) / fract->mandel->pos->z_factor;
 	else if (key == 123)
-		fract->mandel->pos->shift_x -= 0.004;
+		fract->mandel->pos->shift_x -= (1.0 / 1.03) / fract->mandel->pos->z_factor;
 	else if (key == 125)
-		fract->mandel->pos->shift_y += 0.004;
+		fract->mandel->pos->shift_y += (1.0 / 1.03) / fract->mandel->pos->z_factor;
 	else if (key == 126)
-		fract->mandel->pos->shift_y -= 0.004;
+		fract->mandel->pos->shift_y -= (1.0 / 1.03) / fract->mandel->pos->z_factor;
 }
