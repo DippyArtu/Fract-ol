@@ -14,6 +14,8 @@
 # define WIDTH 800
 # define HEIGHT 600
 
+# define Z_FACTOR 1.03
+
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
 # define TYPES "Available types:\n Mandelbrot\n"
 # define INVALID "Invalid type given as an argument\n" TYPES
@@ -36,17 +38,17 @@ typedef struct	s_mouse
 
 typedef struct 		s_position
 {
-	float  			z_factor;
-	float  			shift_x;
-	float  			shift_y;
+	double 			interp;
+	double  		shift_x;
+	double  		shift_y;
 }					t_pos;
 
 typedef struct 		s_mandelbrot
 {
-	float 			c_re;
-	float  			c_im;
-	float 			x;
-	float  			y;
+	double 			c_re;
+	double  		c_im;
+	double 			x;
+	double 			y;
 	double 			re_min;
 	double 			re_max;
 	double 			im_min;
@@ -74,7 +76,7 @@ t_fract			*init_fractol_struct(int type);
 void			draw(t_fract *fract, int type);
 void			mandelbrot(t_mandel *mandel, t_fract *fract);
 void			position(int x, int y, t_mandel *mandel);
-int				sqr_mod(t_mandel *mandel);
+double			sqr_mod(t_mandel *mandel);
 void			find_p(t_mandel *mandel);
 void			put_pixel(t_fract *fractal, int x, int y, int color);
 int				color(int iter);

@@ -29,11 +29,17 @@ double		interpolate(double start, double end, double interp)
 
 void		position(int x, int y, t_mandel *man)
 {
-	man->c_re = (x / (WIDTH / (man->re_max - man->re_min)) + man->re_min) - 0.5 + man->pos->shift_x;
-	man->c_im = (y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min) * 0.8 + man->pos->shift_y;
+	double	*s_x;
+	double 	*s_y;
+
+	s_x = &man->pos->shift_x;
+	s_y = &man->pos->shift_y;
+	man->c_re = (x / (WIDTH / (man->re_max - man->re_min)) + man->re_min) + *s_x;
+	man->c_im =(y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min) + *s_y;
+	man->c_im *= 0.8;
 }
 
-int			sqr_mod(t_mandel *mandel)
+double			sqr_mod(t_mandel *mandel)
 {
 	return(mandel->x * mandel->x + mandel->y * mandel->y);
 }
