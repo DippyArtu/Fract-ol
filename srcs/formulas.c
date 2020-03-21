@@ -27,8 +27,8 @@ double		interpolate(double start, double end, double interp)
 
 void		position(int x, int y, t_mandel *man)
 {
-	man->c_re = (x / (WIDTH / (man->re_max - man->re_min)) + man->re_min);
-	man->c_im = (y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min);
+	man->c_re = (x / (WIDTH / (man->re_max - man->re_min)) + man->re_min) - 0.5;
+	man->c_im = (y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min) * 0.8;
 }
 
 int			sqr_mod(t_mandel *mandel)

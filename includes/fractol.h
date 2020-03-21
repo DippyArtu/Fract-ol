@@ -12,7 +12,7 @@
 // 1400 * 900 desired resolution
 
 # define WIDTH 800
-# define HEIGHT 500
+# define HEIGHT 600
 
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
 # define TYPES "Available types:\n Mandelbrot\n"
