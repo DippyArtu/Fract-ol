@@ -1,27 +1,34 @@
 #include "fractol.h"
 
-double		interpolate(double start, double end, double inter)
+double		interpolate(double start, double end, double interp)
 {
-	return start + ((end - start) * inter);
+	return (start + ((end - start) * interp));
 }
 
 /*
- *  Mandelbrot set lies within a circle of radius 2,
- *  therefore, the width of the image should be 4
+ *  Mandelbrot set lies within a circle of radius 2.
  *
- *  To map the center of the image to (0,0),
- *  given a pixel, we subtract half of the image height
- *  from the vertical coordinate (imaginary component) and
- *  half of the width from horizontal coordinate (real component).
+ *  The visible area then lies within a rectangle defined
+ *  by RE_MIN, RE_MAX, IM_MIN, IM_MAX, where RE is a
+ *  real part of a complex number (x coordinate) and IM
+ *  is an imaginary part (y coordinate).
  *
- *  Then, scale the result so that the image lies within the
- *  length of the Mandelbrot set (4)
+ *  To map this area to the center of the screen, the
+ *  "position" function is used, which outputs given
+ *  coordinates relative to (0,0).
+ *
+ *  Real part (x) is shifted left by 0.5 so that the fractal
+ *  lies central in the picture.
+ *
+ *  Imaginary part is stretched by a factor of 0.7 to compensate
+ *  the distortion created by the screen ratio.
+ *
  */
 
 void		position(int x, int y, t_mandel *man)
 {
-	man->c_re = (x / (WIDTH / (man->re_max - man->re_min)) + man->re_min) - 0.5;
-	man->c_im = (y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min) * 0.7;
+	man->c_re = (x / (WIDTH / (man->re_max - man->re_min)) + man->re_min);
+	man->c_im = (y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min);
 }
 
 int			sqr_mod(t_mandel *mandel)

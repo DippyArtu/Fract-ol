@@ -9,7 +9,7 @@
 # include <stdio.h>
 # include <time.h>
 
-// 1400 * 900
+// 1400 * 900 desired resolution
 
 # define WIDTH 800
 # define HEIGHT 500
@@ -36,7 +36,7 @@ typedef struct	s_mouse
 
 typedef struct 		s_position
 {
-	float  			zoom;
+	float  			z_factor;
 	float  			shift_x;
 	float  			shift_y;
 }					t_pos;
@@ -81,12 +81,13 @@ int				color(int iter);
 void			error(int type);
 void			print_menu(t_fract *fract);
 void			zoom_control(int key, t_fract *fract);
-void			shift_control(int key, t_fract *fract);
+//void			shift_control(int key, t_fract *fract);
 void			fill_background(t_fract *fract);
 t_mouse			*init_mouse(void);
 int				mouse_press(int key, int x, int y, void *p);
 int				mouse_release(int key, int x, int y, void *p);
 int 			mouse_move(int x, int y, void *p);
-double			interpolate(double start, double end, double inter);
+double			interpolate(double start, double end, double interp);
+void			apply_zoom(t_mandel *man, double m_re, double m_im, double interp);
 
 #endif

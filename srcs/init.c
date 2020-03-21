@@ -18,7 +18,7 @@ static	t_pos		*init_position(void)
 	t_pos	*pos;
 
 	pos = (t_pos *)malloc(sizeof(t_pos));
-	pos->zoom = 1;
+	pos->z_factor = 1.03;
 	pos->shift_x = 0;
 	pos->shift_y = 0;
 	return (pos);

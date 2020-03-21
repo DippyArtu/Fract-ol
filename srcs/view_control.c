@@ -2,9 +2,12 @@
 
 void		zoom_control(int key, t_fract *fract)
 {
+	double		interp;
+
 	if (key == 5)
 	{
-		fract->mandel->pos->zoom *= 1.0 / 1.03;
+		interp = 1.0 / fract->mandel->pos->z_factor;
+		apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
 		if (fract->itter_c++ == 3 && fract->max_iter != K_MAX)
 		{
 			fract->max_iter++;
@@ -13,13 +16,22 @@ void		zoom_control(int key, t_fract *fract)
 	}
 	else if (key == 4)
 	{
-		fract->mandel->pos->zoom /= 1.0 / 1.03;
+		interp = 1.0 * fract->mandel->pos->z_factor;
+		apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
 		if (fract->itter_c++ == 3 && fract->max_iter > 0)
 		{
 			fract->max_iter--;
 			fract->itter_c = 0;
 		}
 	}
+}
+
+void		apply_zoom(t_mandel *man, double m_re, double m_im, double interp)
+{
+	man->re_min = interpolate(m_re, man->re_min, interp);
+	man->im_min = interpolate(m_im, man->im_min, interp);
+	man->re_max = interpolate(m_re, man->re_max, interp);
+	man->im_max = interpolate(m_im, man->im_max, interp);
 }
 
 void		shift_control(int key, t_fract *fract)

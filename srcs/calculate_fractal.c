@@ -1,5 +1,3 @@
-//TODO mouse is always relative to 0,0
-
 #include "fractol.h"
 
 /*
