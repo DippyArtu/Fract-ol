@@ -28,7 +28,7 @@ int					mouse_release(int key, int x, int y, void *p)
 	return (0);
 }
 
-//TODO y axis isn't being taken into account
+//TODO unproportional scaling
 
 int 					mouse_move(int x, int y, void *p)
 {
@@ -38,8 +38,9 @@ int 					mouse_move(int x, int y, void *p)
 	fract = (t_fract *)p;
 	man = fract->mandel;
 	fract->mouse->Re = x / (WIDTH / (man->re_max - man->re_min)) + man->re_min;
-	fract->mouse->Im = x / (WIDTH / (man->re_max - man->re_min)) + man->re_min;
-	y = x;
+	fract->mouse->Im = y / (HEIGHT / (man->re_max - man->re_min)) + man->re_min;
+//	fract->mouse->Im = y / (HEIGHT / (man->im_max - man->im_min)) + man->im_min;
+//	y = x;
 
 	//printf("%f     %f    |     %i     %i\n", fract->mouse->Re, fract->mouse->Im, x, y);
 	return (0);

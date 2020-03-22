@@ -15,6 +15,7 @@
 # define HEIGHT 600
 
 # define Z_FACTOR 1.03
+# define SCALE_FACTOR 0.354309107797121
 
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
 # define TYPES "Available types:\n Mandelbrot\n"

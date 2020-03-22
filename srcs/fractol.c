@@ -7,12 +7,12 @@ static int			key_press(int key, t_fract *fract)
 
 	//printf("%d\n", key);
 
-	if (key == 53)
-		exit(0);
-	else if (key >= 123 && key <= 126)
+	if (key >= 123 && key <= 126)
 		shift_control(key, fract);
 	fill_background(fract);
 	draw(fract, fract->type);
+	if (key == 53)
+		exit(0);
 	return (0);
 }
 
