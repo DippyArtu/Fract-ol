@@ -28,6 +28,8 @@ int					mouse_release(int key, int x, int y, void *p)
 	return (0);
 }
 
+//TODO y axis isn't being taken into account
+
 int 					mouse_move(int x, int y, void *p)
 {
 	t_fract			*fract;
@@ -36,7 +38,8 @@ int 					mouse_move(int x, int y, void *p)
 	fract = (t_fract *)p;
 	man = fract->mandel;
 	fract->mouse->Re = x / (WIDTH / (man->re_max - man->re_min)) + man->re_min;
-	fract->mouse->Im = y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min;
+	fract->mouse->Im = x / (WIDTH / (man->re_max - man->re_min)) + man->re_min;
+	y = x;
 
 	//printf("%f     %f    |     %i     %i\n", fract->mouse->Re, fract->mouse->Im, x, y);
 	return (0);
