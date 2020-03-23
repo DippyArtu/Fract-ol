@@ -1,10 +1,5 @@
 #include "fractol.h"
 
-double		interpolate(double start, double end, double interp)
-{
-	return (start + ((end - start) * interp));
-}
-
 /*
  *  Mandelbrot set lies within a circle of radius 2.
  *
@@ -24,8 +19,6 @@ double		interpolate(double start, double end, double interp)
  *  the distortion created by the screen ratio.
  *
  */
-
-//TODO fractal distorts when trying to zoom
 
 void		position(int x, int y, t_mandel *man)
 {

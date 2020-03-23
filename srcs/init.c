@@ -20,7 +20,6 @@ static	t_pos		*init_position(void)
 	pos = (t_pos *)malloc(sizeof(t_pos));
 	pos->shift_x = -0.496;
 	pos->shift_y = 0.004;
-	pos->interp = 1.0;
 	return (pos);
 }
 

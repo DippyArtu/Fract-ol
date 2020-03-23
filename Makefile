@@ -45,7 +45,7 @@ MLX_LIB_DIR = ./minilibx_macos/
 MLX_LIB = ./minilibx_macos/libmlx.a
 
 LIBRARIES = -framework OpenGL -framework AppKit
-#-lpthread
+
 FLAGS = -g -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIB_INC_DIR) -I$(MLX_LIB_DIR)
 
 all: $(NAME)

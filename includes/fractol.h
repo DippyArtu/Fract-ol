@@ -4,7 +4,6 @@
 # include "libft.h"
 # include "mlx.h"
 # include <math.h>
-# include <pthread.h>
 
 # include <stdio.h>
 # include <time.h>
@@ -15,7 +14,6 @@
 # define HEIGHT 600
 
 # define Z_FACTOR 1.03
-# define SCALE_FACTOR 0.354309107797121
 
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
 # define TYPES "Available types:\n Mandelbrot\n"
@@ -39,7 +37,6 @@ typedef struct	s_mouse
 
 typedef struct 		s_position
 {
-	double 			interp;
 	double  		shift_x;
 	double  		shift_y;
 }					t_pos;

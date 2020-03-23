@@ -64,4 +64,5 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract)
 		}
 		y++;
 	}
+	printf("%f   %f   %f   %f\n", mandel->re_max, mandel->re_min, mandel->im_max, mandel->im_min);
 }

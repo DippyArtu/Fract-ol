@@ -2,7 +2,7 @@
 
 static int		gradient(int start, int end, int iter)
 {
-	return ((iter) * start + (iter) * end);
+	return (iter * start + iter * end);
 }
 
 int				color(int iter)
