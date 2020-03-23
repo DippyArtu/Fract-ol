@@ -23,6 +23,11 @@ void		apply_zoom(t_mandel *man, double m_re, double m_im, double interp)
 
 	man->re_min = interpolate(m_re, man->re_min, interp);
 	man->re_max = interpolate(m_re, man->re_max, interp);
+	man->im_min = interpolate(m_re, man->im_min, interp);
+	man->im_max = interpolate(m_re, man->im_max, interp);
+
+	man->re_min = interpolate(m_im, man->re_min, interp);
+	man->re_max = interpolate(m_im, man->re_max, interp);
 	man->im_min = interpolate(m_im, man->im_min, interp);
 	man->im_max = interpolate(m_im, man->im_max, interp);
 }
