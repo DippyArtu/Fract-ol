@@ -28,26 +28,18 @@ int					mouse_release(int key, int x, int y, void *p)
 	return (0);
 }
 
-//TODO unproportional scaling
-//TODO fractal distorts when trying to zoom
-//TODO why the fuck sending only x or only y works perfectly, but both doesn't
-
 int 					mouse_move(int x, int y, void *p)
 {
 	t_fract			*fract;
 	t_mandel		*man;
+	double 			re_factor;
+	double 			im_factor;
 
 	fract = (t_fract *)p;
 	man = fract->mandel;
-	fract->mouse->Re = x / (WIDTH / (man->re_max - man->re_min)) + man->re_min;
-	fract->mouse->Im = y / (HEIGHT / (man->im_max - man->im_min)) + man->im_min;
-
-//	fract->mouse->Re = x;
-//	fract->mouse->Im = y;
-
-//	fract->mouse->Im = x / (WIDTH / (man->re_max - man->re_min)) + man->re_min;
-//	y = x;
-
-	//printf("%f     %f    |     %i     %i\n", fract->mouse->Re, fract->mouse->Im, x, y);
+	re_factor = (man->re_max - man->re_min) / (WIDTH - 1);
+	im_factor = (man->im_max - man->im_min) / (HEIGHT - 1);
+	fract->mouse->Re = man->re_min + x * re_factor;
+	fract->mouse->Im = man->im_max - y * im_factor;
 	return (0);
 }

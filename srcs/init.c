@@ -19,7 +19,7 @@ static	t_pos		*init_position(void)
 
 	pos = (t_pos *)malloc(sizeof(t_pos));
 	pos->shift_x = -0.496;
-	pos->shift_y = 0.004;
+	pos->shift_y = 0.496;
 	return (pos);
 }
 
@@ -35,8 +35,8 @@ static t_mandel		*init_mandelbrot(void)
 	man->y = 0;
 	man->re_max = 2.0;
 	man->re_min = -2.0;
-	man->im_max = 2.0;
 	man->im_min = -2.0;
+	man->im_max = man->im_min + (man->re_max - man->re_min) * HEIGHT / WIDTH;
 	return (man);
 }
 

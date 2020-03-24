@@ -59,10 +59,9 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract)
 				iter++;
 			}
 			if (iter < fract->max_iter)
-				put_pixel(fract, x, y, color(iter)); // Z is not in the set
+				put_pixel(fract, x, y, color(iter, fract->max_iter)); // Z is not in the set
 			x++;
 		}
 		y++;
 	}
-	printf("%f   %f   %f   %f\n", mandel->re_max, mandel->re_min, mandel->im_max, mandel->im_min);
 }

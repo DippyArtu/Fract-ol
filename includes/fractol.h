@@ -77,7 +77,7 @@ void			position(int x, int y, t_mandel *mandel);
 double			sqr_mod(t_mandel *mandel);
 void			find_p(t_mandel *mandel);
 void			put_pixel(t_fract *fractal, int x, int y, int color);
-int				color(int iter);
+int				color(int iter, int max_iter);
 void			error(int type);
 void			print_menu(t_fract *fract);
 void			zoom_control(int key, t_fract *fract);

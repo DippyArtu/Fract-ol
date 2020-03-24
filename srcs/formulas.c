@@ -11,26 +11,21 @@
  *  To map this area to the center of the screen, the
  *  "position" function is used, which outputs given
  *  coordinates relative to (0,0).
- *
- *  Real part (x) is shifted left by 0.5 so that the fractal
- *  lies central in the picture.
- *
- *  Imaginary part is stretched by a factor of 0.7 to compensate
- *  the distortion created by the screen ratio.
- *
  */
 
 void		position(int x, int y, t_mandel *man)
 {
 	double	*s_x;
 	double 	*s_y;
+	double 	re_factor;
+	double 	im_factor;
 
 	s_x = &man->pos->shift_x;
 	s_y = &man->pos->shift_y;
-	man->c_re = (x / (WIDTH / (man->re_max - man->re_min)) + man->re_min) + *s_x;
-	man->c_im =(y / (HEIGHT / (man->im_max - man->re_min)) + man->im_min) + *s_y;
-	man->c_im *= 0.8;
-	//printf("%f   %f\n", man->c_re, man->c_im);
+	re_factor = (man->re_max - man->re_min) / (WIDTH - 1);
+	im_factor = (man->im_max - man->im_min) / (HEIGHT - 1);
+	man->c_re = man->re_min + x * re_factor + *s_x;
+	man->c_im = man->im_max - y * im_factor + *s_y;
 }
 
 double			sqr_mod(t_mandel *mandel)
