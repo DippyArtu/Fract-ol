@@ -30,7 +30,9 @@ void		position(int x, int y, t_mandel *man)
 
 double			sqr_mod(t_mandel *mandel)
 {
-	return(mandel->x * mandel->x + mandel->y * mandel->y);
+	mandel->x_sqr = mandel->x * mandel->x;
+	mandel->y_sqr = mandel->y * mandel->y;
+	return(mandel->x_sqr + mandel->y_sqr);
 }
 
 /*
@@ -50,13 +52,10 @@ double			sqr_mod(t_mandel *mandel)
 
 void		find_p(t_mandel *mandel)
 {
-	double 	x_sqr;
-	double 	y_sqr;
-	double	xy;
+	double	xy_d;
 
-	x_sqr = mandel->x * mandel->x;
-	y_sqr = mandel->y * mandel->y;
-	xy = mandel->x * mandel->y;
-	mandel->x = x_sqr - y_sqr + mandel->c_re;
-	mandel->y = 2 * xy + mandel->c_im;
+	xy_d = mandel->x + mandel->y;
+	xy_d *= xy_d;
+	mandel->x = mandel->x_sqr - mandel->y_sqr + mandel->c_re;
+	mandel->y = xy_d - mandel->x_sqr - mandel->y_sqr + mandel->c_im;
 }

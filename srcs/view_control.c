@@ -21,6 +21,8 @@ void		apply_zoom(t_mandel *man, double m_re, double m_im, double interp)
 		man->im_min = -2.0;
 }
 
+//TODO num of itteration doesn't increase if zoom in after zoom out
+
 void		zoom_control(int key, t_fract *fract)
 {
 	double	*zoom;

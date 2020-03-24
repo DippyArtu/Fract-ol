@@ -19,7 +19,7 @@
 # define TYPES "Available types:\n Mandelbrot\n"
 # define INVALID "Invalid type given as an argument\n" TYPES
 
-//maximum amount of iterations
+//maximum  & initial amount of iterations
 # define K_MAX 2147483647
 # define K_START 20
 
@@ -49,6 +49,8 @@ typedef struct 		s_mandelbrot
 	double  		c_im;
 	double 			x;
 	double 			y;
+	double 			x_sqr;
+	double 			y_sqr;
 	double 			re_min;
 	double 			re_max;
 	double 			im_min;

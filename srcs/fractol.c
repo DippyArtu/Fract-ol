@@ -1,3 +1,5 @@
+//TODO now do OpenGL and multithread
+
 #include "fractol.h"
 
 // time with single thread -> 0.119811 - 0.192184
