@@ -20,6 +20,7 @@ static	t_pos		*init_position(void)
 	pos = (t_pos *)malloc(sizeof(t_pos));
 	pos->shift_x = -0.496;
 	pos->shift_y = 0.496;
+	pos->zoom = 1.0;
 	return (pos);
 }
 
@@ -37,6 +38,7 @@ static t_mandel		*init_mandelbrot(void)
 	man->re_min = -2.0;
 	man->im_min = -2.0;
 	man->im_max = man->im_min + (man->re_max - man->re_min) * HEIGHT / WIDTH;
+	man->im_max_start = man->im_max;
 	return (man);
 }
 
@@ -51,7 +53,7 @@ t_fract				*init_fractol_struct(int type)
 		fractol->type = 1;
 	}
 	fractol->itter_c = 0;
-	fractol->max_iter = 20;
+	fractol->max_iter = K_START;
 	fractol->mouse = init_mouse();
 	fractol->mlx_ptr = mlx_init();
 	fractol->win_ptr = mlx_new_window(fractol->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");

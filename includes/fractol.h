@@ -21,6 +21,7 @@
 
 //maximum amount of iterations
 # define K_MAX 2147483647
+# define K_START 20
 
 # define BLACK 0x000000
 # define START_COLOR 0xBE04FF
@@ -39,6 +40,7 @@ typedef struct 		s_position
 {
 	double  		shift_x;
 	double  		shift_y;
+	double 			zoom;
 }					t_pos;
 
 typedef struct 		s_mandelbrot
@@ -51,6 +53,7 @@ typedef struct 		s_mandelbrot
 	double 			re_max;
 	double 			im_min;
 	double 			im_max;
+	double 			im_max_start;
 	t_pos			*pos;
 }					t_mandel;
 
