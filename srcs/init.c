@@ -52,7 +52,7 @@ t_fract				*init_fractol_struct(int type)
 		fractol->mandel = init_mandelbrot();
 		fractol->type = 1;
 	}
-	fractol->itter_c = 0;
+	fractol->iter_c = 0;
 	fractol->max_iter = K_START;
 	fractol->mouse = init_mouse();
 	fractol->mlx_ptr = mlx_init();

@@ -28,6 +28,15 @@ void		position(int x, int y, t_mandel *man)
 	man->c_im = man->im_max - y * im_factor + *s_y;
 }
 
+/*
+ *  Before returning sum of squares,
+ *  this function will write the
+ *  x squared and y squared values into
+ *  the structure, so that the time-costly
+ *  operation of squaring is performed only
+ *  once per iteration.
+ */
+
 double			sqr_mod(t_mandel *mandel)
 {
 	mandel->x_sqr = mandel->x * mandel->x;

@@ -21,35 +21,41 @@ void		apply_zoom(t_mandel *man, double m_re, double m_im, double interp)
 		man->im_min = -2.0;
 }
 
-//TODO num of itteration doesn't increase if zoom in after zoom out
-
-void		zoom_control(int key, t_fract *fract)
+void		zoom_in(t_fract *fract)
 {
 	double	*zoom;
 	double 	interp;
 
 	zoom = &fract->mandel->pos->zoom;
-	if (key == 5)
+	*zoom /= Z_FACTOR;
+	interp = 1.0 / Z_FACTOR;
+	apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
+	if (fract->iter_c++ == 3)
 	{
-		*zoom /= Z_FACTOR;
-		interp = 1.0 / Z_FACTOR;
-		apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
-		if (fract->itter_c++ == 3 && fract->max_iter != K_MAX)
-		{
+		if (fract->max_iter == K_MAX)
+			fract->iter_c = 0;
+		else
 			fract->max_iter++;
-			fract->itter_c = 0;
-		}
+		fract->iter_c = 0;
 	}
-	else if (key == 4)
+}
+
+void		zoom_out(t_fract *fract)
+{
+	double	*zoom;
+	double 	interp;
+
+	zoom = &fract->mandel->pos->zoom;
+	*zoom *= Z_FACTOR;
+	interp = 1.0 * Z_FACTOR;
+	apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
+	if (fract->iter_c++ == 3)
 	{
-		*zoom *= Z_FACTOR;
-		interp = 1.0 * Z_FACTOR;
-		apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
-		if (fract->itter_c++ == 3 && fract->max_iter > K_START)
-		{
+		if (fract->max_iter == K_START)
+			fract->iter_c = 0;
+		else
 			fract->max_iter--;
-			fract->itter_c = 0;
-		}
+		fract->iter_c = 0;
 	}
 }
 

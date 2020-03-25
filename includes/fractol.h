@@ -69,7 +69,7 @@ typedef struct		s_fract
 	int				size_line;
 	int				endian;
 	int 			type;
-	int 			itter_c;
+	int 			iter_c;
 	int 			max_iter;
 	t_mandel		*mandel;
 	t_mouse			*mouse;
@@ -94,5 +94,7 @@ int				mouse_release(int key, int x, int y, void *p);
 int 			mouse_move(int x, int y, void *p);
 double			interpolate(double start, double end, double interp);
 void			apply_zoom(t_mandel *man, double m_re, double m_im, double interp);
+void			zoom_in(t_fract *fract);
+void			zoom_out(t_fract *fract);
 
 #endif

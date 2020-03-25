@@ -7,8 +7,10 @@ int					mouse_press(int key, int x, int y, void *p)
 	(void)x;
 	(void)y;
 	fract = (t_fract *)p;
-	if (key == 4 || key == 5)
-		zoom_control(key, fract);
+	if (key == 5)
+		zoom_in(fract);
+	else if (key == 4)
+		zoom_out(fract);
 	fill_background(fract);
 	draw(fract, fract->type);
 	if (key == 1)
