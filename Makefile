@@ -6,7 +6,7 @@
 #    By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 17:45:47 by jsalome           #+#    #+#              #
-#    Updated: 2020/03/11 18:09:15 by Artur            ###   ########.fr        #
+#    Updated: 2020/03/26 21:50:03 by Artur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,11 @@ OBJ = $(SRC:.c=.o)
 OBJ_DIR = ./obj/
 OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
 
-INC = fractol.h
 INC_DIR = ./includes/
+INC = 	fractol.h\
+		fract_structs.h\
+		fract_defines.h
+
 INCS = $(addprefix $(INC_DIR), $(INC))
 
 LIB_OBJ = *.o
@@ -44,7 +47,7 @@ LIB_INCS = $(addprefix $(LIB_INC_DIR), $(LIB_INC))
 MLX_LIB_DIR = ./minilibx_macos/
 MLX_LIB = ./minilibx_macos/libmlx.a
 
-LIBRARIES = -framework OpenGL -framework AppKit
+LIBRARIES = -framework OpenGL -framework AppKit -framework OpenCL
 
 FLAGS = -g -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIB_INC_DIR) -I$(MLX_LIB_DIR)
 
