@@ -46,7 +46,7 @@ t_fract				*init_fractol_struct(int type)
 {
 	t_fract 	*fractol;
 
-	fractol = (t_fract *) malloc(sizeof(t_fract));
+	fractol = (t_fract *)malloc(sizeof(t_fract));
 	if (type == 1)
 	{
 		fractol->mandel = init_mandelbrot();

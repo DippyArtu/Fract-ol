@@ -1,12 +1,17 @@
 #ifndef _FRACTOL_H
 # define _FRACTOL_H
 
-# include "fract_defines.h"
-# include "fract_structs.h"
-# include "libft.h"
+
+# ifndef LIBFT_H
+#  include "libft.h"
+# endif
+
+# include "libcl.h"
 # include "mlx.h"
 # include <math.h>
-# include <OpenCL/opencl.h>
+
+# include "fract_defines.h"
+# include "fract_structs.h"
 
 # include <stdio.h>
 # include <time.h>

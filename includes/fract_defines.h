@@ -1,8 +1,6 @@
 #ifndef _FRACT_DEFINES_H
 # define _FRACT_DEFINES_H
 
-# define MAX_SOURCE_SIZE (0x100000)
-
 // 1400 * 800 desired resolution
 # define WIDTH 800
 # define HEIGHT 600

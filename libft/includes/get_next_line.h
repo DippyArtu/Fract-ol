@@ -13,7 +13,9 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include "libft.h"
+# ifndef LIBFT_H
+#  include "libft.h"
+# endif
 # include <limits.h>
 
 # define BUFF_SIZE 5
