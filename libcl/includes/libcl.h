@@ -6,6 +6,7 @@
 # endif
 
 # include "cl_structs.h"
+# include "cl_errors.h"
 
 # define MAX_SOURCE_SIZE (0x100000)
 

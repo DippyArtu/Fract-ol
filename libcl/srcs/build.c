@@ -5,7 +5,7 @@ void 		load_kernel_src_code(char *kernel, t_cl *cl)
 	cl->kernel_src->fd = open(kernel, O_RDONLY);
 	if (cl->kernel_src->fd <= 0)
 	{
-		ft_putstr("Failed to load kernel\n");
+		ft_putstr(KERNEL_LOAD_ERR);
 		exit(1);
 	}
 	cl->kernel_src->source_size = read(cl->kernel_src->fd, cl->kernel_src->source_str,\

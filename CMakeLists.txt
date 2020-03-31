@@ -117,4 +117,4 @@ add_executable(fract_ol
         srcs/menu.c
         srcs/mouse_control.c
         srcs/view_control.c
-        Makefile)
+        Makefile libcl/includes/cl_errors.h)
