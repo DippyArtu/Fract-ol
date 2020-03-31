@@ -18,30 +18,30 @@ void 		cl_clean_mem_objs(t_cl *cl)
 
 void 		cl_clean_structs(t_cl *cl, t_elems *elems)
 {
-//	free(&cl->kernel_src->source_str);
-//	cl->kernel_src->source_str = NULL;
-//	free(&cl->kernel_src);
-//	cl->kernel_src = NULL;
-//	free(&cl->dev_info);
-//	cl->dev_info = NULL;
-	free(&cl->context);
+	free(cl->kernel_src->source_str);
+	cl->kernel_src->source_str = NULL;
+	free(cl->kernel_src);
+	cl->kernel_src = NULL;
+	free(cl->dev_info);
+	cl->dev_info = NULL;
+	free(cl->context);
 	cl->context = NULL;
 
 	//-------------------------------------------------------------------
 	//Clean up your structures below
 
-//	free(&cl->items);
-//	cl->items = NULL;
-	free(&elems->a);
+	free(cl->items);
+	cl->items = NULL;
+	free(elems->a);
 	elems->a = NULL;
-//	free(&elems->b);
-//	elems->b = NULL;
-//	free(&elems);
-//	elems = NULL;
+	free(elems->b);
+	elems->b = NULL;
+	free(elems);
+	elems = NULL;
 	//-------------------------------------------------------------------
 
-//	free(&cl);
-//	cl = NULL;
+	free(cl);
+	cl = NULL;
 }
 
 void 		cl_clean_up(t_cl *cl)

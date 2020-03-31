@@ -4,6 +4,7 @@
 //----------------------------------------------------------------
 // This file contains structures containing objects for OpenCL to work with
 // i.e. items for your actual function manipulations
+//----------------------------------------------------------------
 
 typedef struct 		s_elements
 {

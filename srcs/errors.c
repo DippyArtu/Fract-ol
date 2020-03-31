@@ -9,5 +9,5 @@ void		error(int type)
 	}
 	else if (type == 2)
 		ft_putstr(INVALID);
-	exit(0);
+	exit(1);
 }

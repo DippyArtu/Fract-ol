@@ -24,7 +24,7 @@ void 		prep_kernel(t_cl *cl, char *kernel_name)
 void 		set_kernel_args(t_cl *cl)
 {
 	//Set arguments of the kernel according to the template below
-	//Change "cl->items->a_mem_obk" to the actual memory object
+	//Change "cl->items->a_mem_obj" to the actual memory object
 	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 0, sizeof(cl_mem),\
 			(void *)&cl->items->a_mem_obj);
 	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 1, sizeof(cl_mem),\
