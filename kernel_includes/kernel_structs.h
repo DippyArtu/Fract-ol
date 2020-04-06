@@ -1,14 +1,5 @@
-#ifndef _FRACT_STRUCTS_H
-# define _FRACT_STRUCTS_H
-
-typedef struct	s_mouse
-{
-	int			press;
-	double		x;
-	double		y;
-	double 		Re;
-	double 		Im;
-}				t_mouse;
+#ifndef _STRUCTS_H_
+# define _STRUCTS_H_
 
 typedef struct 		s_position
 {
@@ -33,5 +24,9 @@ typedef struct 		s_mandelbrot
 	int 			max_iter;
 	t_pos			*pos;
 }					t_mandel;
+
+void		position(int x, int y, __global t_mandel *man);
+double		sqr_mod(__global t_mandel *mandel);
+void		find_p(__global t_mandel *mandel);
 
 #endif

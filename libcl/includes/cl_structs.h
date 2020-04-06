@@ -40,4 +40,22 @@ typedef struct		s_cl
 	t_cl_items			*items;
 }					t_cl;
 
+typedef struct		s_fract
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	void			*image;
+	char			*data_addr;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	int 			type;
+	int 			iter_c;
+	int 			max_iter;
+	int 			cl_init;
+	t_mandel		*mandel;
+	t_mouse			*mouse;
+	t_cl 			*cl;
+}					t_fract;
+
 #endif

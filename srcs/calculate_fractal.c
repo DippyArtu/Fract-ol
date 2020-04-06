@@ -37,31 +37,81 @@
  * 	R, therefore, becomes R(^2) = 4.
  */
 
-void		mandelbrot(t_mandel *mandel, t_fract *fract)
+void		mandelbrot(t_mandel *mandel, t_fract *fract, t_cl *cl)
 {
-	int 			re;  // x pixel coordinate
-	int 			im;  // y pixel coordinate
-	int				iter;
+	t_elems	*elems;
+	int 	*iter;
+	int 	i;
 
-	im = 0;
-	while (im < HEIGHT)
+	mandel->max_iter = fract->max_iter;
+	elems = cl->items->elems;
+	if (!fract->cl_init)
 	{
-		re = 0;
-		while (re < WIDTH)
+		i = 0;
+		while (i < WIDTH)
 		{
-			mandel->x = 0;
-			mandel->y = 0;
-			position(re, im, mandel);
-			iter = 0;
-			while (sqr_mod(mandel) <= 4 && iter < fract->max_iter)
-			{
-				find_p(mandel);
-				iter++;
-			}
-			if (iter < fract->max_iter)
-				put_pixel(fract, re, im, color(iter, fract->max_iter)); // Z is not in the set
-			re++;
+			elems->re[i] = i;
+			i++;
 		}
-		im++;
+		i = 0;
+		while (i < HEIGHT)
+		{
+			elems->im[i] = i;
+			i++;
+		}
+		fract->cl_init = 1;
 	}
+	create_buffs(cl, elems, MANDEL);
+	prep_kernel(cl, elems->function_name, elems->include_flag);
+	exec_kernel(cl, elems->NDRANGE);
+	iter = read_buff(cl, elems->NDRANGE);
+	i = 0;
+	while (i < elems->NDRANGE)
+	{
+		if (iter[i] > -1)
+			put_pixel(fract, i, color(iter[i], fract->max_iter)); // Z is not in the set
+		i++;
+	}
+	cl_clean_up(cl);
+	free(iter);
+	iter = NULL;
+
+
+
+
+
+
+
+
+
+
+
+//	int 			re;  // x pixel coordinate
+//	int 			im;  // y pixel coordinate
+//	int				iter;
+//	int 			i;
+//
+//	i = 0;
+//	im = 0;
+//	while (im < HEIGHT)
+//	{
+//		re = 0;
+//		while (re < WIDTH)
+//		{
+//			mandel->x = 0;
+//			mandel->y = 0;
+//			position(re, im, mandel);
+//			iter = 0;
+//			while (sqr_mod(mandel) <= 4 && iter < fract->max_iter)
+//			{
+//				find_p(mandel);
+//				iter++;
+//			}
+//			if (iter < fract->max_iter)
+//				put_pixel(fract, i, color(iter, fract->max_iter)); // Z is not in the set
+//			re++;
+//			i++;
+//		}
+//		im++;
+//	}
 }

@@ -7,15 +7,18 @@ include_directories(includes)
 include_directories(libft/includes)
 include_directories(libcl/includes)
 include_directories(minilibx_macos)
+include_directories(kernel_includes)
 
 add_executable(fract_ol
         includes/fract_defines.h
         includes/fract_structs.h
         includes/fractol.h
-        kernels/kernel.cl
+        kernels/mandel.cl
+        kernel_includes/kernel_structs.h
         libcl/includes/cl_structs.h
         libcl/includes/cl_user_structs.h
         libcl/includes/libcl.h
+        libcl/includes/cl_errors.h
         libcl/srcs/assembly.c
         libcl/srcs/build.c
         libcl/srcs/clean_up.c
@@ -23,6 +26,7 @@ add_executable(fract_ol
         libcl/srcs/get_dev_info.c
         libcl/srcs/init_cl.c
         libcl/srcs/libcl.c
+        libcl/srcs/clean_up.c
         libcl/Makefile
         libft/includes/get_next_line.h
         libft/includes/libft.h
@@ -117,4 +121,4 @@ add_executable(fract_ol
         srcs/menu.c
         srcs/mouse_control.c
         srcs/view_control.c
-        Makefile libcl/includes/cl_errors.h)
+        Makefile)

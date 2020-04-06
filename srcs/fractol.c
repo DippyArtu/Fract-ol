@@ -1,4 +1,5 @@
 //TODO now do OpenGL and multithread
+//TODO fix cl_clean_up_all to clean_rest
 
 #include "fractol.h"
 
@@ -12,38 +13,35 @@ static int			key_press(int key, t_fract *fract)
 	if (key >= 123 && key <= 126)
 		shift_control(key, fract);
 	fill_background(fract);
-	draw(fract, fract->type);
+	draw(fract, fract->cl, fract->type);
 	if (key == 53)
+	{
+		//cl_clean_up_all(fract->cl);
+		cl_clean_structs(fract->cl, fract->cl->items->elems);
 		exit(0);
+	}
 	return (0);
 }
 
 int 		main(int argc, char **argv)
 {
-	//-------timing----
-	clock_t start, end;
-	double cpu_time_used;
-	start = clock();
-	//------------------
-
 	t_fract		*fractol;
+	t_cl		*cl;
 	int 		type;
 
 	type = 0;
 	if (argc != 2)
 		error(1);
 	if (!ft_strcmp(argv[1], "Mandelbrot"))
-		type = 1;
+		type = MANDEL;
 	if (type)
 	{
-		fractol = init_fractol_struct(1);
-		draw(fractol, type);
-
-		//-------timing----
-		end = clock();
-		cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-		printf("%f\n", cpu_time_used);
-		//------------------
+		fractol = init_fractol_struct(type);
+		cl = init_opencl_structs();
+		fractol->cl = cl;
+		get_cl_info(cl);
+		create_context_coms_queue(cl);
+		draw(fractol, cl, type);
 
 		mlx_hook(fractol->win_ptr, 2, 0, key_press, fractol);
 		mlx_hook(fractol->win_ptr, 4, 0, mouse_press, fractol);

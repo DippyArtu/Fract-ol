@@ -15,20 +15,34 @@ void			fill_background(t_fract *fract)
 	background[i] = '\0';
 }
 
-void			put_pixel(t_fract *fractal, int x, int y, int color)
+void			put_pixel(t_fract *fractal, int i, int color)
 {
 	int		*pixel;
 
 	pixel = (int *)(fractal->data_addr);
-	if (x > 0 && y > 0 && x < WIDTH && y < WIDTH)
-		pixel[x + (y * WIDTH)] = color;
+
+//	if (x > 0 && y > 0 && x < WIDTH && y < WIDTH)
+//		pixel[x + (y * WIDTH)] = color;
+
+	pixel[i] = color;
 }
 
-void		draw(t_fract *fract, int type)
+void		draw(t_fract *fract, t_cl *cl, int type)
 {
+	t_elems *elems;
 
-	if (type == 1)
-		mandelbrot(fract->mandel, fract);
+	if (type == MANDEL)
+	{
+		if (!fract->cl_init)
+		{
+			elems = init_opencl_elems((HEIGHT * WIDTH), "./kernels/mandel.cl",\
+				"mandel_calc", "-I ./kernel_includes");
+			elems->mandel = fract->mandel;
+			load_kernel_src_code(elems->kernel_name, cl);
+			cl->items->elems = elems;
+		}
+		mandelbrot(fract->mandel, fract, cl);
+	}
 	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
 	print_menu(fract);
 }

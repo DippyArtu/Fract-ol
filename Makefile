@@ -54,14 +54,19 @@ CL_SRC_DIR = ./libcl/srcs/
 
 CL_INC = 	libcl.h\
 			cl_structs.h\
-			cl_user_structs.h
+			cl_user_structs.h\
+			cl_errors.h
 
 CL_INC_DIR = ./libcl/includes/
 CL_INCS = $(addprefix $(CL_INC_DIR), $(CL_INC))
 
+KERNEL_INC = kernel_structs.h
+KERNEL_INC_DIR = ./kernel_includes/
+KERNEL_INCS = $(addprefix $(KERNEL_INC_DIR), $(KERNEL_INC))
+
 LIBRARIES = -framework OpenGL -framework AppKit -framework OpenCL
 
-FLAGS = -g -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIB_INC_DIR) -I$(MLX_LIB_DIR) -I$(CL_INC_DIR)
+FLAGS = -g -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIB_INC_DIR) -I$(MLX_LIB_DIR) -I$(CL_INC_DIR) -I$(KERNEL_INC_DIR)
 
 all: $(NAME)
 
@@ -79,7 +84,7 @@ $(LIB_OBJ_DIR)%.o: $(LIB_SRC_DIR)%.c $(LIB_INCS)
 $(CL_OBJ_DIR)%.o: $(CL_SRC_DIR)%.c $(CL_INCS)
 		@make -C libcl
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) $(KERNEL_INCS)
 		gcc $(FLAGS) -o $@ -c $<
 
 $(MLX_LIB_DIR)%.a:

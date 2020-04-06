@@ -24,7 +24,8 @@ int 		*opencl_calc(t_cl *cl, t_elems *elems)
 	//
 	//Instead of "a", "b", pass actual pointers to the input arrays
 	//Also, go into the function and change it according to your needs
-	create_buffs(cl, elems->a, elems->b, elems->NDRANGE);
+
+	create_buffs(cl, elems, 0);
 
 	//-------------------------------------------------------------------
 	//This will create a program from the kernel source,
@@ -33,7 +34,7 @@ int 		*opencl_calc(t_cl *cl, t_elems *elems)
 	//Give the name of an actual kernel function as a second argument here
 	//
 	//Go into the function and change "set_kernel_args" function to suit your needs
-	prep_kernel(cl, elems->function_name);
+	prep_kernel(cl, elems->function_name, elems->include_flag);
 
 	//-------------------------------------------------------------------
 	//Execute the OpenCL kernel on the list

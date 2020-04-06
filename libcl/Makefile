@@ -16,14 +16,25 @@ OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
 INC = 		libcl.h\
 			cl_structs.h\
 			cl_user_structs.h
-
 INC_DIR = ./includes/
+
 LIB_INC = libft.h
 LIBFT_INC_DIR = ../libft/includes/
-LIB_INCS = $(addprefix $(LIB_INC_DIR), $(LIB_INC))
+
+FRACT_DEF_INC = 	fract_defines.h\
+					fract_structs.h
+
+FRACT_DEF_INC_DIR = ../includes/
+FRACT_DEF_INCS = $(addprefix $(FRACT_DEF_INC_DIR), $(FRACT_DEF_INC))
+
+LIB_INCS = $(addprefix $(LIBFT_INC_DIR), $(LIB_INC))
 INCS = $(addprefix $(INC_DIR), $(INC))
 
-FLAGS = -g -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_INC_DIR)
+KERNEL_INC = kernel_structs.h
+KERNEL_INC_DIR = ../kernel_includes/
+KERNEL_INCS = $(addprefix $(KERNEL_INC_DIR), $(KERNEL_INC))
+
+FLAGS = -g -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_INC_DIR) -I$(KERNEL_INC_DIR) -I$(FRACT_DEF_INC_DIR)
 
 all: $(NAME)
 
@@ -31,7 +42,7 @@ $(NAME): $(OBJS)
 		@ar rc $(NAME) $(OBJS)
 		ranlib $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) $(KERNEL_INCS) $(FRACT_DEF_INCS)
 		gcc $(FLAGS) -o $@ -c $<
 
 clean:

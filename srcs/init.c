@@ -39,6 +39,7 @@ static t_mandel		*init_mandelbrot(void)
 	man->im_min = -2.0;
 	man->im_max = man->im_min + (man->re_max - man->re_min) * HEIGHT / WIDTH;
 	man->im_max_start = man->im_max;
+	man->max_iter = K_START;
 	return (man);
 }
 
@@ -60,5 +61,6 @@ t_fract				*init_fractol_struct(int type)
 	fractol->image = mlx_new_image(fractol->mlx_ptr, WIDTH, HEIGHT);
 	fractol->data_addr = mlx_get_data_addr(fractol->image, &fractol->bpp, \
 			&fractol->size_line, &fractol->endian);
+	fractol->cl_init = 0;
 	return (fractol);
 }

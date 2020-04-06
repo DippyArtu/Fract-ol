@@ -18,9 +18,10 @@ void 		print_log(t_cl *cl)
 	exit(1);
 }
 
-void 		prep_kernel(t_cl *cl, char *kernel_name)
+void 		prep_kernel(t_cl *cl, char *kernel_name, char *include)
 {
 	t_cl_context		*cntx;
+	cl_int 				err;
 
 	cntx = cl->context;
 
@@ -36,14 +37,19 @@ void 		prep_kernel(t_cl *cl, char *kernel_name)
 	}
 
 	//Build the program
-	cl->dev_info->ret = clBuildProgram(cntx->program, 1,\
-			&cl->dev_info->device_id, NULL, NULL, NULL);
+	err = cl->dev_info->ret = clBuildProgram(cntx->program, 1,\
+			&cl->dev_info->device_id, include, NULL, NULL);
 	if (cl->dev_info->ret < 0)
 		print_log(cl);
 
 	//Create the OpenCL kernel
 	cntx->kernel = clCreateKernel(cntx->program, kernel_name, &cl->dev_info->ret);
 	set_kernel_args(cl);
+	if (cl->dev_info->ret < 0)
+	{
+		ft_putstr(KERNEL_CREAT_ERR);
+		exit(1);
+	}
 }
 
 void 		set_kernel_args(t_cl *cl)
@@ -51,11 +57,13 @@ void 		set_kernel_args(t_cl *cl)
 	//Set arguments of the kernel according to the template below
 	//Change "cl->items->a_mem_obj" to the actual memory object
 	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 0, sizeof(cl_mem),\
-			(void *)&cl->items->a_mem_obj);
+			(void *)&cl->items->re_mem_obj);
 	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 1, sizeof(cl_mem),\
-			(void *)&cl->items->b_mem_obj);
+			(void *)&cl->items->im_mem_obj);
 	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 2, sizeof(cl_mem),\
-			(void *)&cl->items->c_mem_obj);
+			(void *)&cl->items->iter_mem_obj);
+	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 3, sizeof(cl_mem),\
+			(void *)&cl->items->fract_mem_obj);
 	if (cl->dev_info->ret < 0)
 	{
 		ft_putstr(ARG_ERR);
