@@ -1,9 +1,4 @@
-//TODO now do OpenGL and multithread
-//TODO fix cl_clean_up_all to clean_rest
-
 #include "fractol.h"
-
-// time with single thread -> 0.119811 - 0.192184
 
 static int			key_press(int key, t_fract *fract)
 {
@@ -16,7 +11,7 @@ static int			key_press(int key, t_fract *fract)
 	draw(fract, fract->cl, fract->type);
 	if (key == 53)
 	{
-		//cl_clean_up_all(fract->cl);
+		cl_clean_up_all(fract->cl);
 		cl_clean_structs(fract->cl, fract->cl->items->elems);
 		exit(0);
 	}

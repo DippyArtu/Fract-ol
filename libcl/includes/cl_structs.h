@@ -27,8 +27,6 @@ typedef  struct		s_cl_context
 	cl_command_queue	command_queue;
 	cl_program			program;
 	cl_kernel			kernel;
-	size_t 				ndrange;
-	size_t 				work_group;
 }					t_cl_context;
 
 typedef struct		s_cl

@@ -32,10 +32,10 @@ void		zoom_in(t_fract *fract)
 	apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
 	if (fract->iter_c++ == 3)
 	{
-		if (fract->max_iter == K_MAX)
+		if (fract->mandel->max_iter == K_MAX)
 			fract->iter_c = 0;
 		else
-			fract->max_iter++;
+			fract->mandel->max_iter++;
 		fract->iter_c = 0;
 	}
 }
@@ -51,10 +51,10 @@ void		zoom_out(t_fract *fract)
 	apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
 	if (fract->iter_c++ == 3)
 	{
-		if (fract->max_iter == K_START)
+		if (fract->mandel->max_iter == K_START)
 			fract->iter_c = 0;
 		else
-			fract->max_iter--;
+			fract->mandel->max_iter--;
 		fract->iter_c = 0;
 	}
 }

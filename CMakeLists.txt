@@ -14,7 +14,7 @@ add_executable(fract_ol
         includes/fract_structs.h
         includes/fractol.h
         kernels/mandel.cl
-        kernel_includes/kernel_structs.h
+        kernel_includes/mandelbrot.h
         libcl/includes/cl_structs.h
         libcl/includes/cl_user_structs.h
         libcl/includes/libcl.h
@@ -25,7 +25,6 @@ add_executable(fract_ol
         libcl/srcs/execute_kernel.c
         libcl/srcs/get_dev_info.c
         libcl/srcs/init_cl.c
-        libcl/srcs/libcl.c
         libcl/srcs/clean_up.c
         libcl/Makefile
         libft/includes/get_next_line.h
@@ -115,7 +114,6 @@ add_executable(fract_ol
         srcs/color_managment.c
         srcs/draw_image.c
         srcs/errors.c
-        srcs/formulas.c
         srcs/fractol.c
         srcs/init.c
         srcs/menu.c

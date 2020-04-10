@@ -1,5 +1,33 @@
-#include "fractol.h"
+#ifndef _MANDELBROT_H_
+# define _MANDELBROT_H_
 
+typedef struct 		s_position
+{
+	float 			width;
+	float 			height;
+	float  			shift_x;
+	float  			shift_y;
+	float 			zoom;
+}					t_pos;
+
+typedef struct 		s_mandelbrot
+{
+	float 			c_re;
+	float  			c_im;
+	float 			x;
+	float 			y;
+	float 			x_sqr;
+	float 			y_sqr;
+	float 			re_min;
+	float 			re_max;
+	float 			im_min;
+	float 			im_max;
+	float 			im_max_start;
+	int 			max_iter;
+	t_pos			*pos;
+}					t_mandel;
+
+//-------------------------------------------------------------------
 /*
  *  Mandelbrot set lies within a circle of radius 2.
  *
@@ -12,22 +40,10 @@
  *  "position" function is used, which outputs given
  *  coordinates relative to (0,0).
  */
+void				position(int x, int y, global t_mandel *man, constant t_pos *pos);
+//-------------------------------------------------------------------
 
-void		position(int x, int y, t_mandel *man)
-{
-	float	*s_x;
-	float 	*s_y;
-	float 	re_factor;
-	float 	im_factor;
-
-	s_x = &man->pos->shift_x;
-	s_y = &man->pos->shift_y;
-	re_factor = (man->re_max - man->re_min) / (WIDTH - 1);
-	im_factor = (man->im_max - man->im_min) / (HEIGHT - 1);
-	man->c_re = man->re_min + x * re_factor + *s_x;
-	man->c_im = man->im_max - y * im_factor + *s_y;
-}
-
+//-------------------------------------------------------------------
 /*
  *  Before returning sum of squares,
  *  this function will write the
@@ -36,14 +52,10 @@ void		position(int x, int y, t_mandel *man)
  *  operation of squaring is performed only
  *  once per iteration.
  */
+float				sqr_mod(global t_mandel *mandel);
+//-------------------------------------------------------------------
 
-float			sqr_mod(t_mandel *mandel)
-{
-	mandel->x_sqr = mandel->x * mandel->x;
-	mandel->y_sqr = mandel->y * mandel->y;
-	return(mandel->x_sqr + mandel->y_sqr);
-}
-
+//-------------------------------------------------------------------
 /*
  * This formula finds a value of P_k
  * to check if it lies within the Mandlebrot set.
@@ -58,13 +70,7 @@ float			sqr_mod(t_mandel *mandel)
  *
  *           where X & Y are all real numbers
  */
+void				find_p(global t_mandel *mandel);
+//-------------------------------------------------------------------
 
-void		find_p(t_mandel *mandel)
-{
-	float	xy_d;
-
-	xy_d = mandel->x + mandel->y;
-	xy_d *= xy_d;
-	mandel->x = mandel->x_sqr - mandel->y_sqr + mandel->c_re;
-	mandel->y = xy_d - mandel->x_sqr - mandel->y_sqr + mandel->c_im;
-}
+#endif

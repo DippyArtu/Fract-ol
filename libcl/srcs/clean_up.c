@@ -13,6 +13,8 @@ void 		cl_clean_mem_objs(t_cl *cl)
 	di->ret = clReleaseMemObject(its->re_mem_obj);
 	di->ret = clReleaseMemObject(its->im_mem_obj);
 	di->ret = clReleaseMemObject(its->iter_mem_obj);
+	di->ret = clReleaseMemObject(its->pos_mem_obj);
+	di->ret = clReleaseMemObject(its->fract_mem_obj);
 
 }
 
@@ -51,9 +53,6 @@ void 		cl_clean_up_all(t_cl *cl)
 	di = cl->dev_info;
 	di->ret = clFlush(cl->context->command_queue);
 	di->ret = clFinish(cl->context->command_queue);
-	di->ret = clReleaseKernel(cl->context->kernel);
-	di->ret = clReleaseProgram(cl->context->program);
-	cl_clean_mem_objs(cl); //Change this function to clean your memory objects
 	di->ret = clReleaseCommandQueue(cl->context->command_queue);
 	di->ret = clReleaseContext(cl->context->context);
 }

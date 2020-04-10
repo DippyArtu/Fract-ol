@@ -35,8 +35,6 @@ void 		create_context_coms_queue(t_cl *cl)
 	}
 }
 
-//TODO watch buf sizes
-
 void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 {
 	//---------------------------------------------------------------------------------
@@ -47,12 +45,10 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 	t_cl_items			*its;
 	int 				*re;
 	int 				*im;
-	int 				NDRANGE;
 
 	its = cl->items;
 	re = elems->re;
 	im = elems->im;
-	NDRANGE = elems->NDRANGE;
 	//---------------------------------------------------------------------------------
 	//Declare "CL_MEM_READ_ONLY" for the read array (i.e. things to sum together),
 	// or "CL_MEM_WRITE_ONLY" for the write array (i.e. result)
@@ -66,12 +62,14 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 			HEIGHT * sizeof(int), NULL, &cl->dev_info->ret);
 	// Configure this to create an object which will store your result
 	its->iter_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_WRITE_ONLY,\
-			NDRANGE * sizeof(int), NULL, &cl->dev_info->ret);
+			(WIDTH * HEIGHT) * sizeof(int), NULL, &cl->dev_info->ret);
 	if (type == 1)
 	{
 		its->fract_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_USE_HOST_PTR,\
 				sizeof(t_mandel), elems->mandel, &cl->dev_info->ret);
-		cpy_to_buffs(cl, re, im, NDRANGE);
+		its->pos_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_USE_HOST_PTR,\
+			sizeof(t_pos), elems->mandel->pos, &cl->dev_info->ret);
+		cpy_to_buffs(cl, re, im);
 	}
 	if (cl->dev_info->ret < 0)
 	{
@@ -80,11 +78,8 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 	}
 }
 
-//TODO not sure about memory allocation sizes
-
-void 		cpy_to_buffs(t_cl *cl, int *re, int *im, int NDRANGE)
+void 		cpy_to_buffs(t_cl *cl, int *re, int *im)
 {
-	NDRANGE += 0;
 	//-------------------------------------------------------------------
 	//Copy the lists A and B to their respective memory buffers as per template below
 	//

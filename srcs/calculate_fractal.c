@@ -37,13 +37,12 @@
  * 	R, therefore, becomes R(^2) = 4.
  */
 
-void		mandelbrot(t_mandel *mandel, t_fract *fract, t_cl *cl)
+void		mandelbrot(t_fract *fract, t_cl *cl)
 {
 	t_elems		*elems;
 	int 		*iter;
 	int 		i;
 
-	mandel->max_iter = fract->max_iter;
 	elems = cl->items->elems;
 	if (!fract->cl_init)
 	{
@@ -63,17 +62,15 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract, t_cl *cl)
 	}
 	create_buffs(cl, elems, MANDEL);
 	prep_kernel(cl, elems->function_name, elems->include_flag);
-	exec_kernel(cl, elems->NDRANGE);
+	exec_kernel(cl);
 	iter = read_buff(cl, elems->NDRANGE);
-	//exit(0);
 	i = 0;
 	while (i < elems->NDRANGE)
 	{
 		if (iter[i] > -1)
-			put_pixel(fract, i, color(iter[i], fract->max_iter)); // Z is not in the set
+			put_pixel(fract, i, color(iter[i], fract->mandel->max_iter)); // Z is not in the set
 		i++;
 	}
 	cl_clean_up(cl);
 	free(iter);
-	iter = NULL;
 }

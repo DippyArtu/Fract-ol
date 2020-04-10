@@ -5,6 +5,8 @@ static int		gradient(int start, int end, int iter)
 	return (iter * start + iter * end);
 }
 
+//TODO rewrite this for opencl as well
+
 int				color(int iter, int max_iter)
 {
 	int			r;

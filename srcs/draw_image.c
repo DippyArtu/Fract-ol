@@ -35,13 +35,13 @@ void		draw(t_fract *fract, t_cl *cl, int type)
 	{
 		if (!fract->cl_init)
 		{
-			elems = init_opencl_elems((HEIGHT * WIDTH), MANDEL_KERNEL_FILE,\
+			elems = init_opencl_elems(MANDEL_KERNEL_FILE,\
 				MANDEL_KERNEL_FT, INC_PATH);
 			elems->mandel = fract->mandel;
 			load_kernel_src_code(elems->kernel_name, cl);
 			cl->items->elems = elems;
 		}
-		mandelbrot(fract->mandel, fract, cl);
+		mandelbrot(fract, cl);
 	}
 	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
 	print_menu(fract);

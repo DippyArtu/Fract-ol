@@ -21,6 +21,8 @@ static	t_pos		*init_position(void)
 	pos->shift_x = (float)-0.496;
 	pos->shift_y = (float)0.496;
 	pos->zoom = 1;
+	pos->width = WIDTH;
+	pos->height = HEIGHT;
 	return (pos);
 }
 
@@ -54,7 +56,6 @@ t_fract				*init_fractol_struct(int type)
 		fractol->type = 1;
 	}
 	fractol->iter_c = 0;
-	fractol->max_iter = K_START;
 	fractol->mouse = init_mouse();
 	fractol->mlx_ptr = mlx_init();
 	fractol->win_ptr = mlx_new_window(fractol->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");

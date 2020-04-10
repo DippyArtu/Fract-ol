@@ -28,12 +28,18 @@ void 		init_user_cl_structs(t_cl *cl)
 	cl->items->elems = NULL;
 }
 
-t_elems		*init_opencl_elems(int NDR, char *k_name, char *ft_name, char *inc)
+//TODO find good local_ws
+
+t_elems		*init_opencl_elems(char *k_name, char *ft_name, char *inc)
 {
 	t_elems			*elems;
 
 	elems = (t_elems *)malloc(sizeof(t_elems));
-	elems->NDRANGE = NDR; //Total number of elements in the array to be processed
+	elems->NDRANGE = WIDTH * HEIGHT; //Total number of elements in the array to be processed
+	elems->global_ws[0] = WIDTH;
+	elems->global_ws[1] = HEIGHT;
+	elems->local_ws[0] = 25;
+	elems->local_ws[1] = 10;
 	elems->re = (int *)malloc(sizeof(int) * WIDTH);
 	elems->im = (int *)malloc(sizeof(int) * HEIGHT);
 	elems->kernel_name = k_name;

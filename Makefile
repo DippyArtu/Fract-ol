@@ -6,7 +6,7 @@
 #    By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 17:45:47 by jsalome           #+#    #+#              #
-#    Updated: 2020/03/30 20:14:51 by Artur            ###   ########.fr        #
+#    Updated: 2020/04/10 20:20:07 by Artur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ SRC = 	fractol.c\
 		draw_image.c\
 		init.c\
 		calculate_fractal.c\
-		formulas.c\
 		color_managment.c\
 		errors.c\
 		menu.c\
@@ -60,13 +59,9 @@ CL_INC = 	libcl.h\
 CL_INC_DIR = ./libcl/includes/
 CL_INCS = $(addprefix $(CL_INC_DIR), $(CL_INC))
 
-KERNEL_INC = kernel_structs.h
-KERNEL_INC_DIR = ./kernel_includes/
-KERNEL_INCS = $(addprefix $(KERNEL_INC_DIR), $(KERNEL_INC))
-
 LIBRARIES = -framework OpenGL -framework AppKit -framework OpenCL
 
-FLAGS = -g -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIB_INC_DIR) -I$(MLX_LIB_DIR) -I$(CL_INC_DIR) -I$(KERNEL_INC_DIR)
+FLAGS = -g -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIB_INC_DIR) -I$(MLX_LIB_DIR) -I$(CL_INC_DIR)
 
 all: $(NAME)
 
@@ -84,7 +79,7 @@ $(LIB_OBJ_DIR)%.o: $(LIB_SRC_DIR)%.c $(LIB_INCS)
 $(CL_OBJ_DIR)%.o: $(CL_SRC_DIR)%.c $(CL_INCS)
 		@make -C libcl
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) $(KERNEL_INCS)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS)
 		gcc $(FLAGS) -o $@ -c $<
 
 $(MLX_LIB_DIR)%.a:

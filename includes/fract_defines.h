@@ -1,7 +1,7 @@
 #ifndef _FRACT_DEFINES_H
 # define _FRACT_DEFINES_H
 
-// 1400 * 800 desired resolution
+// 1400 * 1000 desired resolution
 # define WIDTH 800
 # define HEIGHT 600
 
@@ -17,7 +17,7 @@
 
 //maximum  & initial amount of iterations
 # define K_MAX 100000
-# define K_START 20
+# define K_START 50
 
 # define BLACK 0x000000
 # define START_COLOR 0xBE04FF
