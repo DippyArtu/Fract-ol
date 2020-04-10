@@ -20,7 +20,7 @@ void 		get_cl_info(t_cl *cl)
 	//---------------------------------------------------------------------------------
 
 	inf->ret = clGetDeviceIDs(inf->platform_id, CL_DEVICE_TYPE_GPU,\
-			1, &inf->device_id, &inf->num_devices);
+			128, &inf->device_id, &inf->num_devices);
 	if (inf->ret < 0)
 	{
 		ft_putstr(DEVICE_ERR);

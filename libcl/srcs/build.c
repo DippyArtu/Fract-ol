@@ -57,12 +57,12 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 	//Change "sizeof(int)" to the appropriate type
 	//---------------------------------------------------------------------------------
 	its->re_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_ONLY,\
-			WIDTH * sizeof(int), NULL, &cl->dev_info->ret);
+			WIDTH * sizeof(cl_int), NULL, &cl->dev_info->ret);
 	its->im_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_ONLY,\
-			HEIGHT * sizeof(int), NULL, &cl->dev_info->ret);
+			HEIGHT * sizeof(cl_int), NULL, &cl->dev_info->ret);
 	// Configure this to create an object which will store your result
 	its->iter_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_WRITE_ONLY,\
-			(WIDTH * HEIGHT) * sizeof(int), NULL, &cl->dev_info->ret);
+			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
 	if (type == 1)
 	{
 		its->fract_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_USE_HOST_PTR,\

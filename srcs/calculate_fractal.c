@@ -49,13 +49,13 @@ void		mandelbrot(t_fract *fract, t_cl *cl)
 		i = 0;
 		while (i < WIDTH)
 		{
-			elems->re[i] = i;
+			elems->re[i] = (cl_int)i;
 			i++;
 		}
 		i = 0;
 		while (i < HEIGHT)
 		{
-			elems->im[i] = i;
+			elems->im[i] = (cl_int)i;
 			i++;
 		}
 		fract->cl_init = 1;

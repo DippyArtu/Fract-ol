@@ -16,7 +16,7 @@
 # define INVALID "Invalid type given as an argument\n" TYPES
 
 //maximum  & initial amount of iterations
-# define K_MAX 100000
+# define K_MAX 50000
 # define K_START 50
 
 # define BLACK 0x000000

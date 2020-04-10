@@ -23,10 +23,10 @@ int 		*read_buff(t_cl *cl, int NDRANGE)
 {
 	int 				*res;
 
-	res = (int *)malloc(sizeof(int) * NDRANGE); //Change type to the desired type
+	res = (int *)malloc(sizeof(cl_int) * NDRANGE); //Change type to the desired type
 	cl->dev_info->ret = clEnqueueReadBuffer(cl->context->command_queue,\
 			cl->items->iter_mem_obj, //Change this to the actual object which will host the result of a calculation
-			CL_TRUE, 0, NDRANGE * sizeof(int), //Change type to the desired type
+			CL_TRUE, 0, NDRANGE * sizeof(cl_int), //Change type to the desired type
 			res, 0, NULL, NULL);
 	if (cl->dev_info->ret < 0)
 	{
