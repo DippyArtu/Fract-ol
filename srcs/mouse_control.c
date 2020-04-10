@@ -34,14 +34,14 @@ int 					mouse_move(int x, int y, void *p)
 {
 	t_fract			*fract;
 	t_mandel		*man;
-	double 			re_factor;
-	double 			im_factor;
+	float 			re_factor;
+	float 			im_factor;
 
 	fract = (t_fract *)p;
 	man = fract->mandel;
 	re_factor = (man->re_max - man->re_min) / (WIDTH - 1);
 	im_factor = (man->im_max - man->im_min) / (HEIGHT - 1);
-	fract->mouse->Re = man->re_min + x * re_factor;
-	fract->mouse->Im = man->im_max - y * im_factor;
+	fract->mouse->Re = man->re_min + (float)x * re_factor;
+	fract->mouse->Im = man->im_max - (float)y * im_factor;
 	return (0);
 }

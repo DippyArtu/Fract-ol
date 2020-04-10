@@ -1,23 +1,24 @@
 #include "kernel_structs.h"
 
-//TODO figure out calculations
+//TODO sort this out
 
-void		position(int x, int y, __global t_mandel *man)
+void		position(int x, int y, global t_mandel *man)
 {
-	double	*s_x;
-	double 	*s_y;
-	double 	re_factor;
-	double 	im_factor;
+	float	*s_x;
+	float 	*s_y;
+	float 	re_factor;
+	float 	im_factor;
 
 	s_x = &man->pos->shift_x;
 	s_y = &man->pos->shift_y;
+//	printf("%f\n", man->pos->shift_x);
 	re_factor = (man->re_max - man->re_min) / (800 - 1); //WIDTH
 	im_factor = (man->im_max - man->im_min) / (600 - 1); //HEIGHT
 	man->c_re = man->re_min + x * re_factor + *s_x;
 	man->c_im = man->im_max - y * im_factor + *s_y;
 }
 
-double			sqr_mod(__global t_mandel *mandel)
+float			sqr_mod(global t_mandel *mandel)
 {
 	mandel->x_sqr = mandel->x * mandel->x;
 	mandel->y_sqr = mandel->y * mandel->y;
@@ -26,7 +27,7 @@ double			sqr_mod(__global t_mandel *mandel)
 
 void		find_p(__global t_mandel *mandel)
 {
-	double	xy_d;
+	float	xy_d;
 
 	xy_d = mandel->x + mandel->y;
 	xy_d *= xy_d;
@@ -34,16 +35,21 @@ void		find_p(__global t_mandel *mandel)
 	mandel->y = xy_d - mandel->x_sqr - mandel->y_sqr + mandel->c_im;
 }
 
-__kernel void		mandel_calc(__global const int *re, __global const int *im, __global int *iter, __global t_mandel *man)
+kernel void		vector_mandel(global const int *re, global const int *im, global int *iter, global t_mandel *man)
 {
-	unsigned int 	i;
+	int 			width = 800;
+	int 			height = 600;
+	int 			tx;
+	int 			ty;
 	int 			x;
 	int 			y;
 	int 			iter_c;
 
-	i = get_global_id(0);
-	x = re[i];
-	y = im[i];
+	tx = get_global_id(0);
+	ty = get_global_id(1);
+
+	x = re[tx];
+	y = im[ty];
 	iter_c = 0;
 	man->x = 0;
 	man->y = 0;
@@ -54,20 +60,7 @@ __kernel void		mandel_calc(__global const int *re, __global const int *im, __glo
 		iter_c++;
 	}
 	if (iter_c < man->max_iter)
-		iter[i] = iter_c;
+		iter[ty * width + tx] = iter_c;
 	else
-		iter[i] = -1;
+		iter[ty * width + tx] = -1;
 }
-
-
-//			mandel->x = 0;
-//			mandel->y = 0;
-//			position(re, im, mandel);
-//			iter = 0;
-//			while (sqr_mod(mandel) <= 4 && iter < fract->max_iter)
-//			{
-//				find_p(mandel);
-//				iter++;
-//			}
-//			if (iter < fract->max_iter)
-//				put_pixel(fract, i, color(iter, fract->max_iter)); // Z is not in the set

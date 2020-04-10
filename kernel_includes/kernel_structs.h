@@ -3,30 +3,30 @@
 
 typedef struct 		s_position
 {
-	double  		shift_x;
-	double  		shift_y;
-	double 			zoom;
+	float  			shift_x;
+	float  			shift_y;
+	float 			zoom;
 }					t_pos;
 
 typedef struct 		s_mandelbrot
 {
-	double 			c_re;
-	double  		c_im;
-	double 			x;
-	double 			y;
-	double 			x_sqr;
-	double 			y_sqr;
-	double 			re_min;
-	double 			re_max;
-	double 			im_min;
-	double 			im_max;
-	double 			im_max_start;
+	float 			c_re;
+	float  			c_im;
+	float 			x;
+	float 			y;
+	float 			x_sqr;
+	float 			y_sqr;
+	float 			re_min;
+	float 			re_max;
+	float 			im_min;
+	float 			im_max;
+	float 			im_max_start;
 	int 			max_iter;
 	t_pos			*pos;
 }					t_mandel;
 
-void		position(int x, int y, __global t_mandel *man);
-double		sqr_mod(__global t_mandel *mandel);
-void		find_p(__global t_mandel *mandel);
+void		position(int x, int y, global t_mandel *man);
+float		sqr_mod(global t_mandel *mandel);
+void		find_p(global t_mandel *mandel);
 
 #endif

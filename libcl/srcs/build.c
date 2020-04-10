@@ -1,4 +1,5 @@
 #include "libcl.h"
+#include "fract_defines.h"
 
 void 		load_kernel_src_code(char *kernel, t_cl *cl)
 {
@@ -34,6 +35,8 @@ void 		create_context_coms_queue(t_cl *cl)
 	}
 }
 
+//TODO watch buf sizes
+
 void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 {
 	//---------------------------------------------------------------------------------
@@ -58,9 +61,9 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 	//Change "sizeof(int)" to the appropriate type
 	//---------------------------------------------------------------------------------
 	its->re_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_ONLY,\
-			NDRANGE * sizeof(int), NULL, &cl->dev_info->ret);
+			WIDTH * sizeof(int), NULL, &cl->dev_info->ret);
 	its->im_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_ONLY,\
-			NDRANGE * sizeof(int), NULL, &cl->dev_info->ret);
+			HEIGHT * sizeof(int), NULL, &cl->dev_info->ret);
 	// Configure this to create an object which will store your result
 	its->iter_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_WRITE_ONLY,\
 			NDRANGE * sizeof(int), NULL, &cl->dev_info->ret);
@@ -77,8 +80,11 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 	}
 }
 
+//TODO not sure about memory allocation sizes
+
 void 		cpy_to_buffs(t_cl *cl, int *re, int *im, int NDRANGE)
 {
+	NDRANGE += 0;
 	//-------------------------------------------------------------------
 	//Copy the lists A and B to their respective memory buffers as per template below
 	//
@@ -86,10 +92,10 @@ void 		cpy_to_buffs(t_cl *cl, int *re, int *im, int NDRANGE)
 	//Change "sizeof(int) to the appropriate type
 	//Change "a" to appropriate pointer
 	cl->dev_info->ret = clEnqueueWriteBuffer(cl->context->command_queue,\
-			cl->items->re_mem_obj, CL_TRUE, 0, NDRANGE * sizeof(int), re,\
+			cl->items->re_mem_obj, CL_TRUE, 0, WIDTH * sizeof(int), re,\
 			0, NULL, NULL);
 	cl->dev_info->ret = clEnqueueWriteBuffer(cl->context->command_queue,\
-			cl->items->im_mem_obj, CL_TRUE, 0, NDRANGE * sizeof(int), im,\
+			cl->items->im_mem_obj, CL_TRUE, 0, HEIGHT * sizeof(int), im,\
 			0, NULL, NULL);
 	if (cl->dev_info->ret < 0)
 	{

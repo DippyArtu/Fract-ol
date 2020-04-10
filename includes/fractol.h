@@ -15,11 +15,29 @@
 
 # include <stdio.h>
 
+typedef struct		s_fract
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	void			*image;
+	char			*data_addr;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	int 			type;
+	int 			iter_c;
+	int 			max_iter;
+	int 			cl_init;
+	t_mandel		*mandel;
+	t_mouse			*mouse;
+	t_cl 			*cl;
+}					t_fract;
+
 t_fract			*init_fractol_struct(int type);
 void			draw(t_fract *fract, t_cl *cl, int type);
 void			mandelbrot(t_mandel *mandel, t_fract *fract, t_cl *cl);
 void			position(int x, int y, t_mandel *mandel);
-double			sqr_mod(t_mandel *mandel);
+float			sqr_mod(t_mandel *mandel);
 void			find_p(t_mandel *mandel);
 void			put_pixel(t_fract *fractal, int i, int color);
 int				color(int iter, int max_iter);
@@ -32,8 +50,8 @@ t_mouse			*init_mouse(void);
 int				mouse_press(int key, int x, int y, void *p);
 int				mouse_release(int key, int x, int y, void *p);
 int 			mouse_move(int x, int y, void *p);
-double			interpolate(double start, double end, double interp);
-void			apply_zoom(t_mandel *man, double m_re, double m_im, double interp);
+float			interpolate(float start, float end, float interp);
+void			apply_zoom(t_mandel *man, float m_re, float m_im, float interp);
 void			zoom_in(t_fract *fract);
 void			zoom_out(t_fract *fract);
 

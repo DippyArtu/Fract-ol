@@ -39,9 +39,9 @@
 
 void		mandelbrot(t_mandel *mandel, t_fract *fract, t_cl *cl)
 {
-	t_elems	*elems;
-	int 	*iter;
-	int 	i;
+	t_elems		*elems;
+	int 		*iter;
+	int 		i;
 
 	mandel->max_iter = fract->max_iter;
 	elems = cl->items->elems;
@@ -65,6 +65,7 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract, t_cl *cl)
 	prep_kernel(cl, elems->function_name, elems->include_flag);
 	exec_kernel(cl, elems->NDRANGE);
 	iter = read_buff(cl, elems->NDRANGE);
+	//exit(0);
 	i = 0;
 	while (i < elems->NDRANGE)
 	{
@@ -75,43 +76,4 @@ void		mandelbrot(t_mandel *mandel, t_fract *fract, t_cl *cl)
 	cl_clean_up(cl);
 	free(iter);
 	iter = NULL;
-
-
-
-
-
-
-
-
-
-
-
-//	int 			re;  // x pixel coordinate
-//	int 			im;  // y pixel coordinate
-//	int				iter;
-//	int 			i;
-//
-//	i = 0;
-//	im = 0;
-//	while (im < HEIGHT)
-//	{
-//		re = 0;
-//		while (re < WIDTH)
-//		{
-//			mandel->x = 0;
-//			mandel->y = 0;
-//			position(re, im, mandel);
-//			iter = 0;
-//			while (sqr_mod(mandel) <= 4 && iter < fract->max_iter)
-//			{
-//				find_p(mandel);
-//				iter++;
-//			}
-//			if (iter < fract->max_iter)
-//				put_pixel(fract, i, color(iter, fract->max_iter)); // Z is not in the set
-//			re++;
-//			i++;
-//		}
-//		im++;
-//	}
 }

@@ -15,10 +15,10 @@
 
 void		position(int x, int y, t_mandel *man)
 {
-	double	*s_x;
-	double 	*s_y;
-	double 	re_factor;
-	double 	im_factor;
+	float	*s_x;
+	float 	*s_y;
+	float 	re_factor;
+	float 	im_factor;
 
 	s_x = &man->pos->shift_x;
 	s_y = &man->pos->shift_y;
@@ -37,7 +37,7 @@ void		position(int x, int y, t_mandel *man)
  *  once per iteration.
  */
 
-double			sqr_mod(t_mandel *mandel)
+float			sqr_mod(t_mandel *mandel)
 {
 	mandel->x_sqr = mandel->x * mandel->x;
 	mandel->y_sqr = mandel->y * mandel->y;
@@ -61,7 +61,7 @@ double			sqr_mod(t_mandel *mandel)
 
 void		find_p(t_mandel *mandel)
 {
-	double	xy_d;
+	float	xy_d;
 
 	xy_d = mandel->x + mandel->y;
 	xy_d *= xy_d;

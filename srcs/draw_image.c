@@ -35,8 +35,8 @@ void		draw(t_fract *fract, t_cl *cl, int type)
 	{
 		if (!fract->cl_init)
 		{
-			elems = init_opencl_elems((HEIGHT * WIDTH), "./kernels/mandel.cl",\
-				"mandel_calc", "-I ./kernel_includes");
+			elems = init_opencl_elems((HEIGHT * WIDTH), MANDEL_KERNEL_FILE,\
+				MANDEL_KERNEL_FT, INC_PATH);
 			elems->mandel = fract->mandel;
 			load_kernel_src_code(elems->kernel_name, cl);
 			cl->items->elems = elems;

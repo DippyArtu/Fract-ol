@@ -24,7 +24,6 @@ void 		prep_kernel(t_cl *cl, char *kernel_name, char *include)
 	cl_int 				err;
 
 	cntx = cl->context;
-
 	//Create a program from the kernel source
 	cntx->program = clCreateProgramWithSource(cntx->context, 1,\
 			(const char **)&cl->kernel_src->source_str,\

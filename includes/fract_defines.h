@@ -5,8 +5,9 @@
 # define WIDTH 800
 # define HEIGHT 600
 
-# define MANDEL_KERNEL_FILE "kernels/mandel_calc.cl"
+# define MANDEL_KERNEL_FILE "./kernels/mandel.cl"
 # define MANDEL_KERNEL_FT "vector_mandel"
+# define INC_PATH "-I ./kernel_includes"
 
 # define Z_FACTOR 1.03
 
@@ -15,7 +16,7 @@
 # define INVALID "Invalid type given as an argument\n" TYPES
 
 //maximum  & initial amount of iterations
-# define K_MAX 2147483647
+# define K_MAX 100000
 # define K_START 20
 
 # define BLACK 0x000000
