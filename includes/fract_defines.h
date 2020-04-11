@@ -6,6 +6,8 @@
 # define HEIGHT 1000
 
 # define MANDEL_KERNEL_FILE "./kernels/mandel.cl"
+# define COLOR_KERNEL_FILE "./kernels/color.cl"
+# define COLOR_KERNEL_FT "vector_color"
 # define MANDEL_KERNEL_FT "vector_mandel"
 # define INC_PATH "-I ./kernel_includes"
 
@@ -17,11 +19,9 @@
 
 //maximum  & initial amount of iterations
 # define K_MAX 100000
-# define K_START 50
+# define K_START 100
 
 # define BLACK 0x000000
-# define START_COLOR 0xBE04FF
-# define END_COLOR 0x89FF04
 
 # define MANDEL 1
 

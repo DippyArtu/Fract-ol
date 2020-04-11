@@ -21,7 +21,7 @@ typedef struct 		s_mandelbrot
 	float 			im_min;
 	float 			im_max;
 	float 			im_max_start;
-	int 			max_iter;
+	float 			max_iter;
 	t_pos			*pos;
 }					t_mandel;
 

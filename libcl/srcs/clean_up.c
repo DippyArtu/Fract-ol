@@ -11,6 +11,7 @@ void 		cl_clean_mem_objs(t_cl *cl)
 	its = cl->items;
 	di = cl->dev_info;
 	di->ret = clReleaseMemObject(its->iter_mem_obj);
+	di->ret = clReleaseMemObject(its->color_mem_obj);
 	di->ret = clReleaseMemObject(its->pos_mem_obj);
 	di->ret = clReleaseMemObject(its->fract_mem_obj);
 
@@ -20,6 +21,8 @@ void 		cl_clean_structs(t_cl *cl, t_elems *elems)
 {
 	free(cl->kernel_src->fract_src_str);
 	cl->kernel_src->fract_src_str = NULL;
+	free(cl->kernel_src->color_src_str);
+	cl->kernel_src->color_src_str = NULL;
 	free(cl->kernel_src);
 	cl->kernel_src = NULL;
 	free(cl->dev_info);
@@ -46,7 +49,9 @@ void 		cl_clean_up_all(t_cl *cl)
 
 	di = cl->dev_info;
 	di->ret = clReleaseKernel(cl->context->fract_kernel);
-	di->ret = clReleaseProgram(cl->context->program);
+	di->ret = clReleaseKernel(cl->context->color_kernel);
+	di->ret = clReleaseProgram(cl->context->program_fract);
+	di->ret = clReleaseProgram(cl->context->program_color);
 	di->ret = clFlush(cl->context->command_queue);
 	di->ret = clFinish(cl->context->command_queue);
 	di->ret = clReleaseCommandQueue(cl->context->command_queue);

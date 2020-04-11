@@ -1,5 +1,4 @@
 #include "libcl.h"
-#include "fract_defines.h"
 
 //-------------------------------------------------------------------
 // Init OpenCL structures
@@ -29,8 +28,6 @@ void 		init_user_cl_structs(t_cl *cl)
 	cl->items->elems = NULL;
 }
 
-//TODO find good local_ws
-
 t_elems		*init_opencl_elems(char *k_name, char *ft_name, char *inc)
 {
 	t_elems			*elems;
@@ -43,6 +40,8 @@ t_elems		*init_opencl_elems(char *k_name, char *ft_name, char *inc)
 	elems->local_ws[1] = 10;
 	elems->fract_kernel_name = k_name;
 	elems->fract_ft_name = ft_name;
+	elems->color_kernel_name = COLOR_KERNEL_FILE;
+	elems->color_ft_name = COLOR_KERNEL_FT;
 	elems->include_flag = inc;
 	elems->mandel = NULL;
 	return (elems);

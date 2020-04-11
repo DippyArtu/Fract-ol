@@ -43,20 +43,31 @@
 void		mandelbrot(t_fract *fract, t_cl *cl)
 {
 	t_elems		*elems;
-	int 		*iter;
+	int 		*color;
 	int 		i;
 
 	elems = cl->items->elems;
 	create_buffs(cl, elems, MANDEL);
-	exec_kernel(cl);
-	iter = read_buff(cl, elems->NDRANGE);
+	exec_kernel(cl, 1);
+	exec_kernel(cl, 2);
+	color = read_buff(cl, elems->NDRANGE, 2);
 	i = 0;
-	while (i < elems->NDRANGE)
+	while (i < (int)elems->NDRANGE)
 	{
-		if (iter[i] > -1)
-			put_pixel(fract, i, color(iter[i], fract->mandel->max_iter)); // Z is not in the set
+		if (color[i] > -1)
+		{
+			put_pixel(fract, i, color[i]);
+		}
 		i++;
 	}
+
+//	i = 0;
+//	while (i < elems->NDRANGE)
+//	{
+//		if (iter[i] > -1)
+//			put_pixel(fract, i, color(iter[i], fract->mandel->max_iter)); // Z is not in the set
+//		i++;
+//	}
 	cl_clean_mem_objs(cl);
-	free(iter);
+	free(color);
 }
