@@ -10,7 +10,7 @@ void 		exec_kernel(t_cl *cl)
 	cntx = cl->context;
 	cl->dev_info->ret = clEnqueueNDRangeKernel(cntx->command_queue,\
 			cntx->kernel, 2, NULL, cl->items->elems->global_ws,\
-			cl->items->elems->local_ws,
+			NULL,
 			0, NULL, NULL);
 	if (cl->dev_info->ret < 0)
 	{

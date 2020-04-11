@@ -35,6 +35,9 @@
  * 	is a time consuming one (taking a square root).
  *
  * 	R, therefore, becomes R(^2) = 4.
+ *
+ * 	This calculation is performed using OpenCL in the
+ * 	mandel.cl kernel.
  */
 
 void		mandelbrot(t_fract *fract, t_cl *cl)
@@ -44,22 +47,6 @@ void		mandelbrot(t_fract *fract, t_cl *cl)
 	int 		i;
 
 	elems = cl->items->elems;
-	if (!fract->cl_init)
-	{
-		i = 0;
-		while (i < WIDTH)
-		{
-			elems->re[i] = (cl_int)i;
-			i++;
-		}
-		i = 0;
-		while (i < HEIGHT)
-		{
-			elems->im[i] = (cl_int)i;
-			i++;
-		}
-		fract->cl_init = 1;
-	}
 	create_buffs(cl, elems, MANDEL);
 	prep_kernel(cl, elems->function_name, elems->include_flag);
 	exec_kernel(cl);

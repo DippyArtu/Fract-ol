@@ -35,6 +35,7 @@ void		draw(t_fract *fract, t_cl *cl, int type)
 	{
 		if (!fract->cl_init)
 		{
+			fract->cl_init = 1;
 			elems = init_opencl_elems(MANDEL_KERNEL_FILE,\
 				MANDEL_KERNEL_FT, INC_PATH);
 			elems->mandel = fract->mandel;

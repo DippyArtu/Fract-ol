@@ -56,14 +56,10 @@ void 		set_kernel_args(t_cl *cl)
 	//Set arguments of the kernel according to the template below
 	//Change "cl->items->a_mem_obj" to the actual memory object
 	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 0, sizeof(cl_mem),\
-			(void *)&cl->items->re_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 1, sizeof(cl_mem),\
-			(void *)&cl->items->im_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 2, sizeof(cl_mem),\
 			(void *)&cl->items->iter_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 3, sizeof(cl_mem),\
+	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 1, sizeof(cl_mem),\
 			(void *)&cl->items->fract_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 4, sizeof(cl_mem),\
+	cl->dev_info->ret = clSetKernelArg(cl->context->kernel, 2, sizeof(cl_mem),\
 			(void *)&cl->items->pos_mem_obj);
 	if (cl->dev_info->ret < 0)
 	{

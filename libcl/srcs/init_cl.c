@@ -40,8 +40,6 @@ t_elems		*init_opencl_elems(char *k_name, char *ft_name, char *inc)
 	elems->global_ws[1] = HEIGHT;
 	elems->local_ws[0] = 25;
 	elems->local_ws[1] = 10;
-	elems->re = (int *)malloc(sizeof(cl_int) * WIDTH);
-	elems->im = (int *)malloc(sizeof(cl_int) * HEIGHT);
 	elems->kernel_name = k_name;
 	elems->function_name = ft_name;
 	elems->include_flag = inc;

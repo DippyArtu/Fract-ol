@@ -10,8 +10,6 @@ void 		cl_clean_mem_objs(t_cl *cl)
 
 	its = cl->items;
 	di = cl->dev_info;
-	di->ret = clReleaseMemObject(its->re_mem_obj);
-	di->ret = clReleaseMemObject(its->im_mem_obj);
 	di->ret = clReleaseMemObject(its->iter_mem_obj);
 	di->ret = clReleaseMemObject(its->pos_mem_obj);
 	di->ret = clReleaseMemObject(its->fract_mem_obj);
@@ -34,10 +32,6 @@ void 		cl_clean_structs(t_cl *cl, t_elems *elems)
 
 	free(cl->items);
 	cl->items = NULL;
-	free(elems->re);
-	elems->re = NULL;
-	free(elems->im);
-	elems->im = NULL;
 	free(elems);
 	elems = NULL;
 	//-------------------------------------------------------------------

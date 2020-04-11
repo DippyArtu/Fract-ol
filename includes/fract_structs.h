@@ -12,8 +12,6 @@ typedef struct		s_mouse
 
 typedef struct 		s_position
 {
-	float 			width;
-	float 			height;
 	float  			shift_x;
 	float  			shift_y;
 	float 			zoom;

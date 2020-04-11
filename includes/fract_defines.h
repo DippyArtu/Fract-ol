@@ -2,8 +2,8 @@
 # define _FRACT_DEFINES_H
 
 // 1400 * 1000 desired resolution
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1300
+# define HEIGHT 900
 
 # define MANDEL_KERNEL_FILE "./kernels/mandel.cl"
 # define MANDEL_KERNEL_FT "vector_mandel"

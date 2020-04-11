@@ -43,12 +43,8 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 	//Items are stored in the t_cl_items structure
 	//---------------------------------------------------------------------------------
 	t_cl_items			*its;
-	int 				*re;
-	int 				*im;
 
 	its = cl->items;
-	re = elems->re;
-	im = elems->im;
 	//---------------------------------------------------------------------------------
 	//Declare "CL_MEM_READ_ONLY" for the read array (i.e. things to sum together),
 	// or "CL_MEM_WRITE_ONLY" for the write array (i.e. result)
@@ -56,45 +52,20 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 	//
 	//Change "sizeof(int)" to the appropriate type
 	//---------------------------------------------------------------------------------
-	its->re_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_ONLY,\
-			WIDTH * sizeof(cl_int), NULL, &cl->dev_info->ret);
-	its->im_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_ONLY,\
-			HEIGHT * sizeof(cl_int), NULL, &cl->dev_info->ret);
+
 	// Configure this to create an object which will store your result
 	its->iter_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_WRITE_ONLY,\
 			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
 	if (type == 1)
 	{
-		its->fract_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_USE_HOST_PTR,\
+		its->fract_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_COPY_HOST_PTR,\
 				sizeof(t_mandel), elems->mandel, &cl->dev_info->ret);
-		its->pos_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_USE_HOST_PTR,\
+		its->pos_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_COPY_HOST_PTR,\
 			sizeof(t_pos), elems->mandel->pos, &cl->dev_info->ret);
-		cpy_to_buffs(cl, re, im);
 	}
 	if (cl->dev_info->ret < 0)
 	{
 		ft_putstr(BUFF_CREAT_ERR);
-		exit(1);
-	}
-}
-
-void 		cpy_to_buffs(t_cl *cl, int *re, int *im)
-{
-	//-------------------------------------------------------------------
-	//Copy the lists A and B to their respective memory buffers as per template below
-	//
-	//Change "cl->items->a_mem_obj" to the appropriate buffer
-	//Change "sizeof(int) to the appropriate type
-	//Change "a" to appropriate pointer
-	cl->dev_info->ret = clEnqueueWriteBuffer(cl->context->command_queue,\
-			cl->items->re_mem_obj, CL_TRUE, 0, WIDTH * sizeof(int), re,\
-			0, NULL, NULL);
-	cl->dev_info->ret = clEnqueueWriteBuffer(cl->context->command_queue,\
-			cl->items->im_mem_obj, CL_TRUE, 0, HEIGHT * sizeof(int), im,\
-			0, NULL, NULL);
-	if (cl->dev_info->ret < 0)
-	{
-		ft_putstr(BUFF_CPY_ERR);
 		exit(1);
 	}
 }

@@ -21,8 +21,6 @@ static	t_pos		*init_position(void)
 	pos->shift_x = (float)-0.496;
 	pos->shift_y = (float)0.496;
 	pos->zoom = 1;
-	pos->width = WIDTH;
-	pos->height = HEIGHT;
 	return (pos);
 }
 

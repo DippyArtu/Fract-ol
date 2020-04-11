@@ -10,8 +10,6 @@
 
 typedef struct 		s_elements
 {
-	int 		*re;  //Variable for x pixel coordinates
-	int 		*im;  //Variable for y pixel coordinates
 	int 		NDRANGE; //Total number of items (calculations to perform)
 	size_t 		global_ws[2]; //Global work size
 	size_t 		local_ws[2]; //Local work group
@@ -24,8 +22,6 @@ typedef struct 		s_elements
 typedef struct		s_cl_items
 {
 	t_elems 			*elems;
-	cl_mem 				re_mem_obj;
-	cl_mem 				im_mem_obj;
 	cl_mem 				iter_mem_obj;
 	cl_mem 				pos_mem_obj;
 	cl_mem 				fract_mem_obj;
