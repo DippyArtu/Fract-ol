@@ -9,7 +9,8 @@ void 		load_kernel_src_code(char *kernel, t_cl *cl)
 		ft_putstr(KERNEL_LOAD_ERR);
 		exit(1);
 	}
-	cl->kernel_src->source_size = read(cl->kernel_src->fd, cl->kernel_src->source_str,\
+	cl->kernel_src->fract_src_size = read(cl->kernel_src->fd,\
+			cl->kernel_src->fract_src_str,\
 			MAX_SOURCE_SIZE);
 	close(cl->kernel_src->fd);
 }
@@ -68,4 +69,5 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 		ft_putstr(BUFF_CREAT_ERR);
 		exit(1);
 	}
+	set_kernel_args(cl);
 }

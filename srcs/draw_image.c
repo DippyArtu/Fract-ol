@@ -20,10 +20,6 @@ void			put_pixel(t_fract *fractal, int i, int color)
 	int		*pixel;
 
 	pixel = (int *)(fractal->data_addr);
-
-//	if (x > 0 && y > 0 && x < WIDTH && y < WIDTH)
-//		pixel[x + (y * WIDTH)] = color;
-
 	pixel[i] = color;
 }
 
@@ -39,8 +35,9 @@ void		draw(t_fract *fract, t_cl *cl, int type)
 			elems = init_opencl_elems(MANDEL_KERNEL_FILE,\
 				MANDEL_KERNEL_FT, INC_PATH);
 			elems->mandel = fract->mandel;
-			load_kernel_src_code(elems->kernel_name, cl);
+			load_kernel_src_code(elems->fract_kernel_name, cl);
 			cl->items->elems = elems;
+			prep_kernel(cl, elems->fract_ft_name, elems->include_flag);
 		}
 		mandelbrot(fract, cl);
 	}

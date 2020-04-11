@@ -17,6 +17,7 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 	float 			x;
 	float 			y;
 	int 			iter_c;
+	int 			max_iter;
 	float 			width;
 	float 			height;
 
@@ -26,6 +27,7 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 	width = get_global_size(0);
 	height = get_global_size(1);
 	index = ty * (int)width + tx;
+	max_iter = man->max_iter;
 
 	x = (float)tx;
 	y = (float)ty;
@@ -33,7 +35,7 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 	man->x = 0;
 	man->y = 0;
 	position(x, y, man, pos, width, height);
-	while (sqr_mod(man) <= (float)4 && iter_c < man->max_iter)
+	while (sqr_mod(man) <= (float)4 && iter_c < max_iter)
 	{
 		find_p(man);
 		iter_c++;

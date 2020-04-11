@@ -8,8 +8,10 @@
 typedef struct 		s_cl_kernel_src
 {
 	int 				fd;
-	char				*source_str;
-	size_t				source_size;
+	char				*fract_src_str;
+	size_t				fract_src_size;
+	char 				*color_src_str;
+	size_t 				color_src_size;
 }					t_cl_kernel_src;
 
 typedef struct 		s_cl_dev_info
@@ -26,7 +28,8 @@ typedef  struct		s_cl_context
 	cl_context			context;
 	cl_command_queue	command_queue;
 	cl_program			program;
-	cl_kernel			kernel;
+	cl_kernel			fract_kernel;
+	cl_kernel 			color_kernel;
 }					t_cl_context;
 
 typedef struct		s_cl

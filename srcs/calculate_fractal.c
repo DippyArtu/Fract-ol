@@ -48,7 +48,6 @@ void		mandelbrot(t_fract *fract, t_cl *cl)
 
 	elems = cl->items->elems;
 	create_buffs(cl, elems, MANDEL);
-	prep_kernel(cl, elems->function_name, elems->include_flag);
 	exec_kernel(cl);
 	iter = read_buff(cl, elems->NDRANGE);
 	i = 0;
@@ -58,6 +57,6 @@ void		mandelbrot(t_fract *fract, t_cl *cl)
 			put_pixel(fract, i, color(iter[i], fract->mandel->max_iter)); // Z is not in the set
 		i++;
 	}
-	cl_clean_up(cl);
+	cl_clean_mem_objs(cl);
 	free(iter);
 }

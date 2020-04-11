@@ -13,8 +13,10 @@ typedef struct 		s_elements
 	int 		NDRANGE; //Total number of items (calculations to perform)
 	size_t 		global_ws[2]; //Global work size
 	size_t 		local_ws[2]; //Local work group
-	char 		*kernel_name; //Name of the vector code file (i.e. kernel.cl)
-	char 		*function_name; //Name of the function to perform in the vector (i.e. vector_add)
+	char 		*fract_kernel_name; //Name of the vector code file (i.e. kernel.cl)
+	char 		*fract_ft_name; //Name of the function to perform in the vector (i.e. vector_add)
+	char 		*color_kernel_name;
+	char 		*color_ft_name;
 	char 		*include_flag;
 	t_mandel 	*mandel;
 }					t_elems;
