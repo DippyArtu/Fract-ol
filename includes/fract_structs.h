@@ -1,6 +1,12 @@
 #ifndef _FRACT_STRUCTS_H
 # define _FRACT_STRUCTS_H
 
+typedef struct 		s_color
+{
+	float 			max_iter;
+	int 			mode;
+}					t_color;
+
 typedef struct		s_mouse
 {
 	int				press;
@@ -32,6 +38,7 @@ typedef struct 		s_mandelbrot
 	float 			im_max_start;
 	float 			max_iter;
 	t_pos			*pos;
+	t_color			*color;
 }					t_mandel;
 
 #endif

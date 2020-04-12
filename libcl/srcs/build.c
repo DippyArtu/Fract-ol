@@ -63,17 +63,9 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
 	its->color_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_WRITE_ONLY,\
 			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
-
-	its->max_iter_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
-			sizeof(cl_float), NULL, &cl->dev_info->ret);
-	cl->dev_info->ret = clEnqueueWriteBuffer(cl->context->coms_queue,\
-			cl->items->max_iter_mem_obj, CL_TRUE, 0, sizeof(cl_float),\
-			&elems->mandel->max_iter, 0, NULL, NULL);
-	if (cl->dev_info->ret < 0)
-	{
-		ft_putstr(BUFF_CPY_ERR);
-		exit(1);
-	}
+	its->color_struct_mem_obj = clCreateBuffer(cl->context->context,\
+			CL_MEM_COPY_HOST_PTR, sizeof(t_color),\
+			elems->color, &cl->dev_info->ret);
 	if (type == MANDEL)
 	{
 		its->fract_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_COPY_HOST_PTR,\

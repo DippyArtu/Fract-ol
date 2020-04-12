@@ -33,6 +33,7 @@ typedef struct		s_fract
 }					t_fract;
 
 t_fract			*init_fractol_struct(int type);
+t_color 		*init_color(void);
 t_fract 		*prep_fractal(int type);
 void			draw(t_fract *fract, t_cl *cl, int type);
 void			mandelbrot(t_fract *fract, t_cl *cl);

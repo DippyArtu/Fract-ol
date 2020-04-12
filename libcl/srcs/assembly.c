@@ -96,7 +96,7 @@ void 		set_kernel_args(t_cl *cl)
 	cl->dev_info->ret = clSetKernelArg(cl->context->color_kernel, 1, sizeof(cl_mem),\
 			(void *)&cl->items->color_mem_obj);
 	cl->dev_info->ret = clSetKernelArg(cl->context->color_kernel, 2, sizeof(cl_mem),\
-			(void *)&cl->items->max_iter_mem_obj);
+			(void *)&cl->items->color_struct_mem_obj);
 	if (cl->dev_info->ret < 0)
 	{
 		ft_putstr(ARG_ERR);

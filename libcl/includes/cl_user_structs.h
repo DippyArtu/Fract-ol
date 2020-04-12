@@ -18,13 +18,14 @@ typedef struct 		s_elements
 	char 		*fract_ft_name; //Name of the function to perform in the vector (i.e. vector_add)
 	char 		*include_flag;
 	t_mandel 	*mandel;
+	t_color		*color;
 }					t_elems;
 
 typedef struct		s_cl_items
 {
 	t_elems 			*elems;
 	cl_mem 				iter_mem_obj;
-	cl_mem 				max_iter_mem_obj;
+	cl_mem 				color_struct_mem_obj;
 	cl_mem 				color_mem_obj;
 	cl_mem 				pos_mem_obj;
 	cl_mem 				fract_mem_obj;

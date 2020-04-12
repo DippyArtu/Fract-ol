@@ -1,5 +1,8 @@
 #include "fractol.h"
 
+//TODO clean up color struct
+//TODO implement color models
+
 static int			key_press(int key, t_fract *fract)
 {
 

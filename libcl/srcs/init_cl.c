@@ -40,5 +40,6 @@ t_elems		*init_opencl_elems(char *k_name, char *ft_name, char *inc)
 	elems->fract_ft_name = ft_name;
 	elems->include_flag = inc;
 	elems->mandel = NULL;
+	elems->color = NULL;
 	return (elems);
 }

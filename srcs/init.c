@@ -1,5 +1,12 @@
 #include "fractol.h"
 
+t_color 	*init_color(void)
+{
+	t_color		*color;
+
+	color = (t_color *)malloc(sizeof(t_color));
+	return (color);
+}
 t_mouse		*init_mouse(void)
 {
 	t_mouse		*mouse;
@@ -40,6 +47,9 @@ static t_mandel		*init_mandelbrot(void)
 	man->im_max = man->im_min + (man->re_max - man->re_min) * HEIGHT / WIDTH;
 	man->im_max_start = man->im_max;
 	man->max_iter = K_START;
+	man->color = init_color();
+	man->color->max_iter = man->max_iter;
+	man->color->mode = 1;
 	return (man);
 }
 
