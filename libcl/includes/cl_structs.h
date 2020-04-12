@@ -27,7 +27,7 @@ typedef struct 		s_cl_dev_info
 typedef  struct		s_cl_context
 {
 	cl_context			context;
-	cl_command_queue	command_queue;
+	cl_command_queue	coms_queue;
 	cl_program			program_fract;
 	cl_program			program_color;
 	cl_kernel			fract_kernel;

@@ -36,12 +36,8 @@ t_elems		*init_opencl_elems(char *k_name, char *ft_name, char *inc)
 	elems->NDRANGE = WIDTH * HEIGHT; //Total number of elements in the array to be processed
 	elems->global_ws[0] = WIDTH;
 	elems->global_ws[1] = HEIGHT;
-	elems->local_ws[0] = 25;
-	elems->local_ws[1] = 10;
 	elems->fract_kernel_name = k_name;
 	elems->fract_ft_name = ft_name;
-	elems->color_kernel_name = COLOR_KERNEL_FILE;
-	elems->color_ft_name = COLOR_KERNEL_FT;
 	elems->include_flag = inc;
 	elems->mandel = NULL;
 	return (elems);

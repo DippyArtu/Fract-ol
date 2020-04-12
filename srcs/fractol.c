@@ -18,10 +18,23 @@ static int			key_press(int key, t_fract *fract)
 	return (0);
 }
 
-int 		main(int argc, char **argv)
+t_fract 	*prep_fractal(int type)
 {
 	t_fract		*fractol;
 	t_cl		*cl;
+
+	fractol = init_fractol_struct(type);
+	cl = init_opencl_structs();
+	fractol->cl = cl;
+	get_cl_info(cl);
+	create_context_coms_queue(cl);
+	draw(fractol, cl, type);
+	return (fractol);
+}
+
+int 		main(int argc, char **argv)
+{
+	t_fract		*fractol;
 	int 		type;
 
 	type = 0;
@@ -29,23 +42,16 @@ int 		main(int argc, char **argv)
 		error(1);
 	if (!ft_strcmp(argv[1], "Mandelbrot"))
 		type = MANDEL;
-	if (type)
+	if(!type)
+		error(2);
+	else if (type)
 	{
-		fractol = init_fractol_struct(type);
-		cl = init_opencl_structs();
-		fractol->cl = cl;
-		get_cl_info(cl);
-		create_context_coms_queue(cl);
-		draw(fractol, cl, type);
-
+		fractol = prep_fractal(type);
 		mlx_hook(fractol->win_ptr, 2, 0, key_press, fractol);
 		mlx_hook(fractol->win_ptr, 4, 0, mouse_press, fractol);
 		mlx_hook(fractol->win_ptr, 5, 0, mouse_release, fractol);
 		mlx_hook(fractol->win_ptr, 6, 0, mouse_move, fractol);
 		mlx_loop(fractol->mlx_ptr);
 	}
-	else if(!type)
-		error(2);
-
 	return (0);
 }

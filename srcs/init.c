@@ -48,10 +48,10 @@ t_fract				*init_fractol_struct(int type)
 	t_fract 	*fractol;
 
 	fractol = (t_fract *)malloc(sizeof(t_fract));
-	if (type == 1)
+	if (type == MANDEL)
 	{
 		fractol->mandel = init_mandelbrot();
-		fractol->type = 1;
+		fractol->type = MANDEL;
 	}
 	fractol->iter_c = 0;
 	fractol->mouse = init_mouse();

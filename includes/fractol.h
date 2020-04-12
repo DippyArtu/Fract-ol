@@ -33,10 +33,10 @@ typedef struct		s_fract
 }					t_fract;
 
 t_fract			*init_fractol_struct(int type);
+t_fract 		*prep_fractal(int type);
 void			draw(t_fract *fract, t_cl *cl, int type);
 void			mandelbrot(t_fract *fract, t_cl *cl);
 void			put_pixel(t_fract *fractal, int i, int color);
-//int				color(int iter, int max_iter);
 void			error(int type);
 void			print_menu(t_fract *fract);
 void			zoom_control(int key, t_fract *fract);

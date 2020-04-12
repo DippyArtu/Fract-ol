@@ -30,7 +30,7 @@ void		zoom_in(t_fract *fract)
 	*zoom /= (float)Z_FACTOR;
 	interp = (float)(1 / Z_FACTOR);
 	apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
-	if (fract->iter_c++ == 3)
+	if (fract->iter_c++ == 2)
 	{
 		if (fract->mandel->max_iter == K_MAX)
 			fract->iter_c = 0;
@@ -49,7 +49,7 @@ void		zoom_out(t_fract *fract)
 	*zoom *= (float)Z_FACTOR;
 	interp = (float)(1 * Z_FACTOR);
 	apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
-	if (fract->iter_c++ == 3)
+	if (fract->iter_c++ == 2)
 	{
 		if (fract->mandel->max_iter == K_START)
 			fract->iter_c = 0;

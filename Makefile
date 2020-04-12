@@ -17,7 +17,6 @@ SRC = 	fractol.c\
 		draw_image.c\
 		init.c\
 		calculate_fractal.c\
-		color_managment.c\
 		errors.c\
 		menu.c\
 		view_control.c\

@@ -16,6 +16,7 @@ add_executable(fract_ol
         kernels/mandel.cl
         kernels/color.cl
         kernel_includes/mandelbrot.h
+        kernel_includes/color.h
         libcl/includes/cl_structs.h
         libcl/includes/cl_user_structs.h
         libcl/includes/libcl.h
@@ -112,7 +113,6 @@ add_executable(fract_ol
         minilibx_macos/mlx_shaders.c
         minilibx_macos/mlx_xpm.c
         srcs/calculate_fractal.c
-        srcs/color_managment.c
         srcs/draw_image.c
         srcs/errors.c
         srcs/fractol.c
@@ -120,4 +120,4 @@ add_executable(fract_ol
         srcs/menu.c
         srcs/mouse_control.c
         srcs/view_control.c
-        Makefile kernel_includes/color.h)
+        Makefile)

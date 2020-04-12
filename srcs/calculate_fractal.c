@@ -38,6 +38,9 @@
  *
  * 	This calculation is performed using OpenCL in the
  * 	mandel.cl kernel.
+ *
+ * 	The color calculation is also performed on OpenCL
+ * 	in the color.cl kernel.
  */
 
 void		mandelbrot(t_fract *fract, t_cl *cl)
@@ -48,26 +51,18 @@ void		mandelbrot(t_fract *fract, t_cl *cl)
 
 	elems = cl->items->elems;
 	create_buffs(cl, elems, MANDEL);
-	exec_kernel(cl, 1);
-	exec_kernel(cl, 2);
-	color = read_buff(cl, elems->NDRANGE, 2);
+	exec_kernel(cl, FRACTOL);
+	exec_kernel(cl, COLOR);
+	color = read_buff(cl, elems->NDRANGE);
 	i = 0;
 	while (i < (int)elems->NDRANGE)
 	{
 		if (color[i] > -1)
 		{
-			put_pixel(fract, i, color[i]);
+			put_pixel(fract, i, color[i]); // Z is not in the set
 		}
 		i++;
 	}
-
-//	i = 0;
-//	while (i < elems->NDRANGE)
-//	{
-//		if (iter[i] > -1)
-//			put_pixel(fract, i, color(iter[i], fract->mandel->max_iter)); // Z is not in the set
-//		i++;
-//	}
 	cl_clean_mem_objs(cl);
 	free(color);
 }

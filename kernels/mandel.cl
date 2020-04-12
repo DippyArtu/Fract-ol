@@ -4,7 +4,6 @@ static void			position(int x, int y, global t_mandel *man, constant t_pos *pos, 
 static float		sqr_mod(global t_mandel *mandel);
 static void			find_p(global t_mandel *mandel);
 
-//-------------------------------------------------------------------
 /*
  *  This function tests whether a point
  *  lies within the mandelbrot set or not.
@@ -17,7 +16,7 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 	float 			x;
 	float 			y;
 	int 			iter_c;
-	int 			max_iter;
+	float 			max_iter;
 	float 			width;
 	float 			height;
 
@@ -40,7 +39,7 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 		find_p(man);
 		iter_c++;
 	}
-	if (iter_c < man->max_iter)
+	if (iter_c < max_iter)
 		iter[index] = iter_c;
 	else
 		iter[index] = -1;

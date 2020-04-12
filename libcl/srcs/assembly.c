@@ -1,4 +1,5 @@
 #include "libcl.h"
+#include <stdio.h>
 
 void 		print_log(t_cl *cl, int type)
 {
@@ -24,13 +25,11 @@ void 		print_log(t_cl *cl, int type)
 	exit(1);
 }
 
-void 		prep_kernel(t_cl *cl, char *kernel_name, char *include)
+void 		create_program(t_cl *cl)
 {
 	t_cl_context		*cntx;
-	cl_int 				err;
 
 	cntx = cl->context;
-	//Create a program from the kernel source
 	cntx->program_fract = clCreateProgramWithSource(cntx->context, 1,\
 			(const char **)&cl->kernel_src->fract_src_str,\
 			(const size_t *)&cl->kernel_src->fract_src_size,\
@@ -44,8 +43,14 @@ void 		prep_kernel(t_cl *cl, char *kernel_name, char *include)
 		ft_putstr(PROGRAM_ERR);
 		exit(1);
 	}
+}
 
-	//Build the program
+void 		build_program(t_cl *cl, char *include)
+{
+	t_cl_context		*cntx;
+	cl_int 				err;
+
+	cntx = cl->context;
 	err = cl->dev_info->ret = clBuildProgram(cntx->program_fract, 1,\
 			&cl->dev_info->device_id, include, NULL, NULL);
 	if (cl->dev_info->ret < 0)
@@ -54,14 +59,23 @@ void 		prep_kernel(t_cl *cl, char *kernel_name, char *include)
 			&cl->dev_info->device_id, include, NULL, NULL);
 	if (cl->dev_info->ret < 0)
 		print_log(cl, 2);
+}
 
+void 		prep_kernel(t_cl *cl, char *kernel_ft, char *include)
+{
+	t_cl_context		*cntx;
+
+	cntx = cl->context;
+	create_program(cl); //Create a program from the kernel source
+	build_program(cl, include); //Build the program
 	//Create the OpenCL kernel
 	cntx->fract_kernel = clCreateKernel(cntx->program_fract,\
-			kernel_name, &cl->dev_info->ret);
+			kernel_ft, &cl->dev_info->ret);
 	cntx->color_kernel = clCreateKernel(cntx->program_color,\
-			COLOR_KERNEL_FILE, &cl->dev_info->ret);
+			COLOR_KERNEL_FT, &cl->dev_info->ret);
 	if (cl->dev_info->ret < 0)
 	{
+		printf("%i\n", cl->dev_info->ret);
 		ft_putstr(KERNEL_CREAT_ERR);
 		exit(1);
 	}
