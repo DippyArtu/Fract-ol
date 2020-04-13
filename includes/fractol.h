@@ -27,6 +27,8 @@ typedef struct		s_fract
 	int 			type;
 	int 			iter_c;
 	int 			cl_init;
+	t_pos			*pos;
+	t_color			*color;
 	t_mandel		*mandel;
 	t_mouse			*mouse;
 	t_cl 			*cl;
@@ -42,7 +44,6 @@ void			error(int type);
 void			print_menu(t_fract *fract);
 void			zoom_control(int key, t_fract *fract);
 void			shift_control(int key, t_fract *fract);
-void			fill_background(t_fract *fract);
 t_mouse			*init_mouse(void);
 int				mouse_press(int key, int x, int y, void *p);
 int				mouse_release(int key, int x, int y, void *p);
@@ -51,5 +52,6 @@ float			interpolate(float start, float end, float interp);
 void			apply_zoom(t_mandel *man, float m_re, float m_im, float interp);
 void			zoom_in(t_fract *fract);
 void			zoom_out(t_fract *fract);
+void 			set_color(int key, t_fract *fract);
 
 #endif

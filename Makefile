@@ -20,7 +20,8 @@ SRC = 	fractol.c\
 		errors.c\
 		menu.c\
 		view_control.c\
-		mouse_control.c
+		mouse_control.c\
+		color_control.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 

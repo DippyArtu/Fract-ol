@@ -57,10 +57,10 @@ void		mandelbrot(t_fract *fract, t_cl *cl)
 	i = 0;
 	while (i < (int)elems->NDRANGE)
 	{
-		if (color[i] > -1)
-		{
+		if (color[i] == -1)
+			put_pixel(fract, i, BLACK); // Z is in the set
+		else
 			put_pixel(fract, i, color[i]); // Z is not in the set
-		}
 		i++;
 	}
 	cl_clean_mem_objs(cl);

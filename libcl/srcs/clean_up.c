@@ -12,6 +12,7 @@ void 		cl_clean_mem_objs(t_cl *cl)
 	di = cl->dev_info;
 	di->ret = clReleaseMemObject(its->iter_mem_obj);
 	di->ret = clReleaseMemObject(its->color_mem_obj);
+	di->ret = clReleaseMemObject(its->color_struct_mem_obj);
 	di->ret = clReleaseMemObject(its->pos_mem_obj);
 	di->ret = clReleaseMemObject(its->fract_mem_obj);
 

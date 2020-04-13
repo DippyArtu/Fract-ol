@@ -1,16 +1,14 @@
 #include "fractol.h"
 
-//TODO clean up color struct
-//TODO implement color models
-
 static int			key_press(int key, t_fract *fract)
 {
 
-	//printf("%d\n", key);
+//	printf("%d\n", key);
 
 	if (key >= 123 && key <= 126)
 		shift_control(key, fract);
-	fill_background(fract);
+	else if (key >= 18 && key <= 25)
+		set_color(key, fract);
 	draw(fract, fract->cl, fract->type);
 	if (key == 53)
 	{
@@ -27,6 +25,11 @@ t_fract 	*prep_fractal(int type)
 	t_cl		*cl;
 
 	fractol = init_fractol_struct(type);
+	if (type == MANDEL)
+	{
+		fractol->mandel->color = fractol->color;
+		fractol->mandel->color->max_iter = fractol->pos->max_iter;
+	}
 	cl = init_opencl_structs();
 	fractol->cl = cl;
 	get_cl_info(cl);

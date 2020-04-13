@@ -1,20 +1,5 @@
 #include "fractol.h"
 
-void			fill_background(t_fract *fract)
-{
-	int		i;
-	int		*background;
-
-	i = 0;
-	background = (int *)fract->data_addr;
-	while (i < WIDTH * HEIGHT)
-	{
-		background[i] = BLACK;
-		i++;
-	}
-	background[i] = '\0';
-}
-
 void			put_pixel(t_fract *fractal, int i, int color)
 {
 	int		*pixel;
@@ -36,6 +21,7 @@ void		draw(t_fract *fract, t_cl *cl, int type)
 				MANDEL_KERNEL_FT, INC_PATH);
 			elems->mandel = fract->mandel;
 			elems->color = fract->mandel->color;
+			elems->mandel->pos = fract->pos;
 			load_kernel_src_code(elems->fract_kernel_name, cl);
 			cl->items->elems = elems;
 			prep_kernel(cl, elems->fract_ft_name, elems->include_flag);

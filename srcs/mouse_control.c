@@ -11,7 +11,6 @@ int					mouse_press(int key, int x, int y, void *p)
 		zoom_in(fract);
 	else if (key == 4)
 		zoom_out(fract);
-	fill_background(fract);
 	draw(fract, fract->cl, fract->type);
 	if (key == 1)
 		fract->mouse->press = 1;

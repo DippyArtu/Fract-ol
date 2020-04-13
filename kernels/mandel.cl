@@ -1,8 +1,8 @@
 #include "mandelbrot.h"
 
-static void			position(int x, int y, global t_mandel *man, constant t_pos *pos, float width, float height);
-static float		sqr_mod(global t_mandel *mandel);
-static void			find_p(global t_mandel *mandel);
+static void			position(int x, int y, local t_mandel *man, local t_pos *pos, float width, float height);
+static float		sqr_mod(local t_mandel *mandel);
+static void			find_p(local t_mandel *mandel);
 
 /*
  *  This function tests whether a point
@@ -19,6 +19,10 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 	float 			max_iter;
 	float 			width;
 	float 			height;
+	local t_mandel	man_l;
+	local t_pos		pos_l;
+	man_l = *man;
+	pos_l = *pos;
 
 
 	tx = get_global_id(0);
@@ -26,17 +30,17 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 	width = get_global_size(0);
 	height = get_global_size(1);
 	index = ty * (int)width + tx;
-	max_iter = man->max_iter;
+	max_iter = pos_l.max_iter;
 
 	x = (float)tx;
 	y = (float)ty;
 	iter_c = 0;
-	man->x = 0;
-	man->y = 0;
-	position(x, y, man, pos, width, height);
-	while (sqr_mod(man) <= (float)4 && iter_c < max_iter)
+	man_l.x = 0;
+	man_l.y = 0;
+	position(x, y, &man_l, &pos_l, width, height);
+	while (sqr_mod(&man_l) <= (float)4 && iter_c < max_iter)
 	{
-		find_p(man);
+		find_p(&man_l);
 		iter_c++;
 	}
 	if (iter_c < max_iter)
@@ -58,7 +62,7 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
  *  "position" function is used, which outputs given
  *  coordinates relative to (0,0).
  */
-static void			position(int x, int y, global t_mandel *man, constant t_pos *pos, float width, float height)
+static void			position(int x, int y, local t_mandel *man, local t_pos *pos, float width, float height)
 {
 	float 	re_factor;
 	float 	im_factor;
@@ -78,7 +82,7 @@ static void			position(int x, int y, global t_mandel *man, constant t_pos *pos, 
  *  operation of squaring is performed only
  *  once per iteration.
  */
-static float		sqr_mod(global t_mandel *mandel)
+static float		sqr_mod(local t_mandel *mandel)
 {
 	mandel->x_sqr = mandel->x * mandel->x;
 	mandel->y_sqr = mandel->y * mandel->y;
@@ -101,7 +105,7 @@ static float		sqr_mod(global t_mandel *mandel)
  *           where X & Y are all real numbers
  */
 
-static void			find_p(global t_mandel *mandel)
+static void			find_p(local t_mandel *mandel)
 {
 	float	xy_d;
 

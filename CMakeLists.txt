@@ -120,4 +120,5 @@ add_executable(fract_ol
         srcs/menu.c
         srcs/mouse_control.c
         srcs/view_control.c
+        srcs/color_control.c
         Makefile)

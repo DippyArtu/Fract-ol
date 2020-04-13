@@ -2,8 +2,8 @@
 # define _FRACT_DEFINES_H
 
 // 1400 * 1000 desired resolution
-# define WIDTH 1300
-# define HEIGHT 900
+# define WIDTH 1400
+# define HEIGHT 1000
 
 # define MANDEL_KERNEL_FILE "./kernels/mandel.cl"
 # define COLOR_KERNEL_FILE "./kernels/color.cl"
@@ -19,7 +19,7 @@
 
 //maximum  & initial amount of iterations
 # define K_MAX 100000
-# define K_START 1000
+# define K_START 500
 
 # define BLACK 0x000000
 

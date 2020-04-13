@@ -12,13 +12,13 @@ void 		exec_kernel(t_cl *cl, int type)
 	{
 		cl->dev_info->ret = clEnqueueNDRangeKernel(cntx->coms_queue,\
 			cntx->fract_kernel, 2, NULL, cl->items->elems->global_ws,\
-			NULL, 0, NULL, NULL);
+			cl->items->elems->local_ws, 0, NULL, NULL);
 	}
 	else if (type == COLOR)
 	{
 		cl->dev_info->ret = clEnqueueNDRangeKernel(cntx->coms_queue,\
 			cntx->color_kernel, 1, NULL, &cl->items->elems->NDRANGE,\
-			NULL, 0, NULL, NULL);
+			&cl->items->elems->color_local_ws, 0, NULL, NULL);
 	}
 	if (cl->dev_info->ret < 0)
 	{

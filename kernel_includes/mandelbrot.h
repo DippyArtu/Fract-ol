@@ -6,6 +6,7 @@ typedef struct 		s_position
 	float  			shift_x;
 	float  			shift_y;
 	float 			zoom;
+	float 			max_iter;
 }					t_pos;
 
 typedef struct 		s_mandelbrot
@@ -21,7 +22,7 @@ typedef struct 		s_mandelbrot
 	float 			im_min;
 	float 			im_max;
 	float 			im_max_start;
-	float 			max_iter;
+	t_pos			*pos;
 }					t_mandel;
 
 #endif

@@ -26,16 +26,16 @@ void		zoom_in(t_fract *fract)
 	float	*zoom;
 	float 	interp;
 
-	zoom = &fract->mandel->pos->zoom;
+	zoom = &fract->pos->zoom;
 	*zoom /= (float)Z_FACTOR;
 	interp = (float)(1 / Z_FACTOR);
 	apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
 	if (fract->iter_c++ == 2)
 	{
-		if (fract->mandel->max_iter == K_MAX)
+		if (fract->pos->max_iter == K_MAX)
 			fract->iter_c = 0;
 		else
-			fract->mandel->max_iter++;
+			fract->pos->max_iter++;
 		fract->iter_c = 0;
 	}
 }
@@ -45,16 +45,16 @@ void		zoom_out(t_fract *fract)
 	float	*zoom;
 	float 	interp;
 
-	zoom = &fract->mandel->pos->zoom;
+	zoom = &fract->pos->zoom;
 	*zoom *= (float)Z_FACTOR;
 	interp = (float)(1 * Z_FACTOR);
 	apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
 	if (fract->iter_c++ == 2)
 	{
-		if (fract->mandel->max_iter == K_START)
+		if (fract->pos->max_iter == K_START)
 			fract->iter_c = 0;
 		else
-			fract->mandel->max_iter--;
+			fract->pos->max_iter--;
 		fract->iter_c = 0;
 	}
 }
@@ -62,11 +62,11 @@ void		zoom_out(t_fract *fract)
 void		shift_control(int key, t_fract *fract)
 {
 	if (key == 124)
-		fract->mandel->pos->shift_x += (float)0.015 * (float)fract->mandel->pos->zoom;
+		fract->pos->shift_x += (float)0.015 * (float)fract->pos->zoom;
 	else if (key == 123)
-		fract->mandel->pos->shift_x -= (float)0.015 * (float)fract->mandel->pos->zoom;
+		fract->pos->shift_x -= (float)0.015 * (float)fract->pos->zoom;
 	else if (key == 125)
-		fract->mandel->pos->shift_y -= (float)0.015 * (float)fract->mandel->pos->zoom;
+		fract->pos->shift_y -= (float)0.015 * (float)fract->pos->zoom;
 	else if (key == 126)
-		fract->mandel->pos->shift_y += (float)0.015 * (float)fract->mandel->pos->zoom;
+		fract->pos->shift_y += (float)0.015 * (float)fract->pos->zoom;
 }
