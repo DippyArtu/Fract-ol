@@ -14,6 +14,7 @@ int					mouse_press(int key, int x, int y, void *p)
 	draw(fract, fract->cl, fract->type);
 	if (key == 1)
 		fract->mouse->press = 1;
+	mlx_do_sync(fract->mlx_ptr);
 	return (0);
 }
 

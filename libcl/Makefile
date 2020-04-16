@@ -38,7 +38,7 @@ $(NAME): $(OBJS)
 		ranlib $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) $(FRACT_DEF_INCS)
-		gcc $(FLAGS) -o $@ -c $<
+		clang $(FLAGS) -o $@ -c $<
 
 clean:
 		@rm -f $(OBJS)

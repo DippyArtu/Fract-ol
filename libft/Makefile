@@ -100,7 +100,7 @@ $(NAME): $(OBJS)
 		ranlib $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS)
-		gcc $(FLAGS) -o $@ -c $<
+		clang $(FLAGS) -o $@ -c $<
 
 clean:
 		@rm -f $(OBJS)

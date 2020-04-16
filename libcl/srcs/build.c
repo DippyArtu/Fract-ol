@@ -61,6 +61,8 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 	// Configure this to create an object which will store your result
 	its->iter_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
 			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
+	its->mu_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
+			(WIDTH * HEIGHT) * sizeof(cl_float), NULL, &cl->dev_info->ret);
 	its->color_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_WRITE_ONLY,\
 			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
 	its->color_struct_mem_obj = clCreateBuffer(cl->context->context,\

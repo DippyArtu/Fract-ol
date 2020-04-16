@@ -6,4 +6,6 @@ void 		set_color(int key, t_fract *fract)
 		fract->color->mode = 1;
 	else if (key == 19)
 		fract->color->mode = 2;
+	else if (key == 20)
+		fract->color->mode = 3;
 }

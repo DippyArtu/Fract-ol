@@ -6,7 +6,7 @@
 #    By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 17:45:47 by jsalome           #+#    #+#              #
-#    Updated: 2020/04/10 20:20:07 by Artur            ###   ########.fr        #
+#    Updated: 2020/04/13 15:17:09 by Artur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ $(CL_OBJ_DIR)%.o: $(CL_SRC_DIR)%.c $(CL_INCS)
 		@make -C libcl
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS)
-		gcc $(FLAGS) -o $@ -c $<
+		clang $(FLAGS) -o $@ -c $<
 
 $(MLX_LIB_DIR)%.a:
 		@make -sC $(MLX_LIB_DIR)

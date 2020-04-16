@@ -25,6 +25,7 @@ typedef struct		s_cl_items
 {
 	t_elems 			*elems;
 	cl_mem 				iter_mem_obj;
+	cl_mem 				mu_mem_obj;
 	cl_mem 				color_struct_mem_obj;
 	cl_mem 				color_mem_obj;
 	cl_mem 				pos_mem_obj;
