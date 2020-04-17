@@ -4,6 +4,7 @@ static float		gradient(float start, float end, float iter);
 static void 		mode_1(int iter, global int *color, int i, float max_iter);
 static void 		mode_2(int iter, global int *color, int i, float max_iter);
 static void 		mode_3(int iter, global int *color, int i, float mu);
+static void 		mode_4(int iter, global int *color, int i, float mu);
 
 kernel void			vector_color(global int *iter, global int *color, constant t_color *color_s, global float *mu)
 {
@@ -20,6 +21,7 @@ kernel void			vector_color(global int *iter, global int *color, constant t_color
 		case 1: mode_1(iter[i], color, i, color_s_l.max_iter); break;
 		case 2: mode_2(iter[i], color, i, color_s_l.max_iter); break;
 		case 3: mode_3(iter[i], color, i, mu[i]); break;
+		case 4: mode_4(iter[i], color, i, mu[i]); break;
 		default: mode_1(iter[i], color, i, color_s_l.max_iter); break;
 	}
 
@@ -79,8 +81,23 @@ static void 		mode_3(int iter, global int *color, int i, float mu)
 	if (iter != -1)
 	{
 		r = (int)(255 * ((1 - cos((1 * one_log * mu)))) / 2);
-		g = (int)(255 * ((1 - cos((three_sqr_two * one_log) * mu)) / 2));
-		b = (int)(255 * ((1 - cos((sev_three_eighth * one_log) * mu)) / 2));
+		g = (int)(240 * ((1 - sin((three_sqr_two * one_log) * mu)) / 2));
+		b = (int)(200 * ((1 - cos((sev_three_eighth * one_log) * mu)) / 2));
+	}
+	color[i] = (iter != -1) ? ((r << 16) | (g << 8) | b) : 0;
+}
+
+static void 		mode_4(int iter, global int *color, int i, float mu)
+{
+	int				r;
+	int				g;
+	int				b;
+
+	if (iter != -1)
+	{
+		r = (int)(255 * ((1 + cos((float)(2 * PI_c * mu))) / 2));
+		g = (int)(255 * ((1 + cos((float)(2 * PI_c * mu))) / 2));
+		b = (int)(255 * ((1 + cos((float)(2 * PI_c * mu))) / 2));
 	}
 	color[i] = (iter != -1) ? ((r << 16) | (g << 8) | b) : 0;
 }

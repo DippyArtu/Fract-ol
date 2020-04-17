@@ -8,4 +8,6 @@ void 		set_color(int key, t_fract *fract)
 		fract->color->mode = 2;
 	else if (key == 20)
 		fract->color->mode = 3;
+	else if (key == 21)
+		fract->color->mode = 4;
 }

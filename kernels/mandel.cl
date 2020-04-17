@@ -3,6 +3,7 @@
 static void			position(int x, int y, local t_mandel *man, local t_pos *pos, float width, float height);
 static float		sqr_mod(local t_mandel *mandel);
 static void			find_p(local t_mandel *mandel);
+static float 		find_mu(int iter_c, local t_mandel *man_l);
 
 /*
  *  This function tests whether a point
@@ -19,7 +20,6 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 	float 			max_iter;
 	float 			width;
 	float 			height;
-	float 			mod;
 
 	local t_mandel	man_l;
 	local t_pos		pos_l;
@@ -40,13 +40,50 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 	man_l.x = 0;
 	man_l.y = 0;
 	position(x, y, &man_l, &pos_l, width, height);
-	while ((mod = sqr_mod(&man_l)) <= (float)4 && iter_c < max_iter)
+	while (sqr_mod(&man_l) <= (float)4 && iter_c < max_iter)
 	{
 		find_p(&man_l);
 		iter_c++;
 	}
-	mu[index] = iter_c - (log((float)log((float)mod)) / log((float)2));
+	mu[index] = find_mu(iter_c, &man_l);
 	iter[index] = (iter_c < max_iter) ? iter_c : -1;
+}
+
+/*
+ * This function is used to find so called
+ * smooth-iteration count, or log-potential scale.
+ *
+ * Instead of using integer-valued scale-dependant
+ * on the escape radius algorithm (number of iterations
+ * before the escape radius is reached), variable
+ * "mu" calculates renormalized, scale-independent,
+ * quasi-integral-valued iteration count.
+ *
+ * (more info: http://www.iquilezles.org/www/articles/mset_smooth/mset_smooth.htm)
+ *
+ * Variable "hi" is then used to perform smooth Hermite
+ * interpolation between 0 and 1. This enables to
+ * use a threshold function (mix) with a smooth transition.
+ *
+ * mix function returns a linear blend of x and y as:
+ * 				x + (y - x) * a
+ * where a is a value in the range of 0.0 to 1.0.
+ *
+ * Before performing those calculations, the Mandelbrot
+ * equation is iterated 3 more times to reduce an error on "mu".
+ */
+static float 		find_mu(int iter_c, local t_mandel *man_l)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		find_p(man_l);
+		sqr_mod(man_l);
+		iter_c++;
+	}
+	float mod = sqr_mod(man_l);
+	float mu = (float)((iter_c - log2((float)log2((float)mod)) + 4));
+	float hi = smoothstep(-0.1, 0.0, sin((float)(0.5 * 6.2831)));
+	return (mix(iter_c, mu, hi));
 }
 
 //-------------------------------------------------------------------
