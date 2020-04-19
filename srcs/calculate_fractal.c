@@ -43,18 +43,35 @@
  * 	in the color.cl kernel.
  */
 
-void		mandelbrot(t_fract *fract, t_cl *cl)
+static void 	delay(int t)
+{
+	int 	i;
+
+	i = 0;
+	while (i < t)
+	{
+		i++;
+	}
+}
+
+void			mandelbrot(t_fract *fract, t_cl *cl)
 {
 	t_elems		*elems;
 	int 		*color;
 	int 		i;
+	pthread_t 	thread;
 
+	i = 0;
 	elems = cl->items->elems;
 	create_buffs(cl, elems, MANDEL);
 	exec_kernel(cl, FRACTOL);
-	exec_kernel(cl, COLOR);
+	delay(1);
+	if (pthread_create(&thread, NULL, exec_kernel_color, (void *)cl))
+	{
+		ft_putstr(THREAD_ERR);
+		exit(-1);
+	}
 	color = read_buff(cl, elems->NDRANGE);
-	i = 0;
 	while (i < (int)elems->NDRANGE)
 	{
 		if (color[i] == -1)

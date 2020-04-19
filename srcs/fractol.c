@@ -1,9 +1,16 @@
 #include "fractol.h"
 
+static int			exit_prog(t_fract *fract)
+{
+	cl_clean_up_all(fract->cl);
+	cl_clean_structs(fract->cl, fract->cl->items->elems);
+	exit(0);
+}
+
 static int			key_press(int key, t_fract *fract)
 {
 
-//	printf("%d\n", key);
+	//printf("%d\n", key);
 
 	if (key >= 123 && key <= 126)
 		shift_control(key, fract);
@@ -11,11 +18,7 @@ static int			key_press(int key, t_fract *fract)
 		set_color(key, fract);
 	draw(fract, fract->cl, fract->type);
 	if (key == 53)
-	{
-		cl_clean_up_all(fract->cl);
-		cl_clean_structs(fract->cl, fract->cl->items->elems);
-		exit(0);
-	}
+		exit_prog(fract);
 	return (0);
 }
 
@@ -57,6 +60,7 @@ int 		main(int argc, char **argv)
 		mlx_hook(fractol->win_ptr, 4, 0, mouse_press, fractol);
 		mlx_hook(fractol->win_ptr, 5, 0, mouse_release, fractol);
 		mlx_hook(fractol->win_ptr, 6, 0, mouse_move, fractol);
+		mlx_hook(fractol->win_ptr, 17, 1L << 17, exit_prog, fractol);
 		mlx_loop(fractol->mlx_ptr);
 	}
 	return (0);

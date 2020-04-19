@@ -27,6 +27,24 @@ void 		exec_kernel(t_cl *cl, int type)
 	}
 }
 
+void 		*exec_kernel_color(void *struc)
+{
+	t_cl				*cl;
+	t_cl_context		*cntx;
+
+	cl = (t_cl *)struc;
+	cntx = cl->context;
+	cl->dev_info->ret = clEnqueueNDRangeKernel(cntx->coms_queue,\
+			cntx->color_kernel, 1, NULL, &cl->items->elems->NDRANGE,\
+			&cl->items->elems->color_local_ws, 0, NULL, NULL);
+	if (cl->dev_info->ret < 0)
+	{
+	ft_putstr(EXEC_ERR);
+	exit(1);
+	}
+	pthread_exit(NULL);
+}
+
 int 		*read_buff(t_cl *cl, size_t NDRANGE)
 {
 	int 				*res;

@@ -59,7 +59,7 @@ CL_INC = 	libcl.h\
 CL_INC_DIR = ./libcl/includes/
 CL_INCS = $(addprefix $(CL_INC_DIR), $(CL_INC))
 
-LIBRARIES = -framework OpenGL -framework AppKit -framework OpenCL
+LIBRARIES = -framework OpenGL -framework AppKit -framework OpenCL -lpthread
 
 FLAGS = -g -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIB_INC_DIR) -I$(MLX_LIB_DIR) -I$(CL_INC_DIR)
 

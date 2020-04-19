@@ -16,6 +16,7 @@
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
 # define TYPES "Available types:\n Mandelbrot\n"
 # define INVALID "Invalid type given as an argument\n" TYPES
+# define THREAD_ERR "Thread execution error\n"
 
 //maximum  & initial amount of iterations
 # define K_MAX 100000

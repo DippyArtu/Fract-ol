@@ -6,6 +6,7 @@
 #  include "libft.h"
 # endif
 
+# include <pthread.h>
 # include "cl_structs.h"
 # include "cl_errors.h"
 # include "fract_defines.h"
@@ -30,6 +31,7 @@ void 		cl_clean_up_all(t_cl *cl);
 void 		cl_clean_mem_objs(t_cl *cl);
 void 		cl_clean_structs(t_cl *cl, t_elems *elems);
 void 		print_log(t_cl *cl, int type);
+void 		*exec_kernel_color(void *cl);
 
 
 #endif
