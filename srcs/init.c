@@ -6,6 +6,7 @@ t_color 	*init_color(void)
 
 	color = (t_color *)malloc(sizeof(t_color));
 	color->mode = 1;
+	color->angle = 45;
 	return (color);
 }
 t_mouse		*init_mouse(void)
@@ -40,8 +41,6 @@ static t_mandel		*init_mandelbrot(void)
 	man = (t_mandel *)malloc(sizeof(t_mandel));
 	man->c_im = 0;
 	man->c_re = 0;
-	man->x = 0;
-	man->y = 0;
 	man->re_max = 2;
 	man->re_min = -2;
 	man->im_min = -2;

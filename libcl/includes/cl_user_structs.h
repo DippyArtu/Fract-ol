@@ -30,6 +30,8 @@ typedef struct		s_cl_items
 	cl_mem 				color_mem_obj;
 	cl_mem 				pos_mem_obj;
 	cl_mem 				fract_mem_obj;
+	cl_mem 				z_mem_obj;
+	cl_mem				dc_mem_obj;
 }					t_cl_items;
 
 #endif

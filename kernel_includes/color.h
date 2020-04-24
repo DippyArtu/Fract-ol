@@ -1,7 +1,7 @@
 #ifndef _COLOR_H
 # define _COLOR_H
 
-# define PI_c 3.14159265358979323846
+# include "cl_complex.cl"
 
 # define BLACK 0x000000
 # define RED 0xFF047A
@@ -14,6 +14,7 @@ typedef struct 		s_color
 {
 	float 			max_iter;
 	int 			mode;
+	float 			angle;
 }					t_color;
 
 #endif

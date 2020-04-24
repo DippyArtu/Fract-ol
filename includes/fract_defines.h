@@ -1,7 +1,6 @@
 #ifndef _FRACT_DEFINES_H
 # define _FRACT_DEFINES_H
 
-// 1400 * 1000 desired resolution
 # define WIDTH 1400
 # define HEIGHT 1000
 
@@ -23,9 +22,6 @@
 # define K_START 500
 
 # define BLACK 0x000000
-
-# define FRACTOL 1
-# define COLOR 2
 
 # define MANDEL 1
 

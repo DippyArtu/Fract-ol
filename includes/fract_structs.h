@@ -5,6 +5,7 @@ typedef struct 		s_color
 {
 	float 			max_iter;
 	int 			mode;
+	float 			angle;
 }					t_color;
 
 typedef struct		s_mouse
@@ -28,10 +29,6 @@ typedef struct 		s_mandelbrot
 {
 	float 			c_re;
 	float  			c_im;
-	float 			x;
-	float 			y;
-	float 			x_sqr;
-	float 			y_sqr;
 	float 			re_min;
 	float 			re_max;
 	float 			im_min;

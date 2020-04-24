@@ -43,17 +43,6 @@
  * 	in the color.cl kernel.
  */
 
-static void 	delay(int t)
-{
-	int 	i;
-
-	i = 0;
-	while (i < t)
-	{
-		i++;
-	}
-}
-
 void			mandelbrot(t_fract *fract, t_cl *cl)
 {
 	t_elems		*elems;
@@ -64,8 +53,7 @@ void			mandelbrot(t_fract *fract, t_cl *cl)
 	i = 0;
 	elems = cl->items->elems;
 	create_buffs(cl, elems, MANDEL);
-	exec_kernel(cl, FRACTOL);
-	delay(1);
+	exec_kernel(cl);
 	if (pthread_create(&thread, NULL, exec_kernel_color, (void *)cl))
 	{
 		ft_putstr(THREAD_ERR);
@@ -74,12 +62,10 @@ void			mandelbrot(t_fract *fract, t_cl *cl)
 	color = read_buff(cl, elems->NDRANGE);
 	while (i < (int)elems->NDRANGE)
 	{
-		if (color[i] == -1)
-			put_pixel(fract, i, BLACK); // Z is in the set
-		else
-			put_pixel(fract, i, color[i]); // Z is not in the set
+		put_pixel(fract, i, color[i]);
 		i++;
 	}
+	mlx_do_sync(fract->mlx_ptr);
 	cl_clean_mem_objs(cl);
 	free(color);
 }

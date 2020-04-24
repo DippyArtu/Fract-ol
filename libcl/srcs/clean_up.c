@@ -15,7 +15,9 @@ void 		cl_clean_mem_objs(t_cl *cl)
 	di->ret = clReleaseMemObject(its->color_struct_mem_obj);
 	di->ret = clReleaseMemObject(its->pos_mem_obj);
 	di->ret = clReleaseMemObject(its->fract_mem_obj);
-
+	di->ret = clReleaseMemObject(its->mu_mem_obj);
+	di->ret = clReleaseMemObject(its->z_mem_obj);
+	di->ret = clReleaseMemObject(its->dc_mem_obj);
 }
 
 void 		cl_clean_structs(t_cl *cl, t_elems *elems)

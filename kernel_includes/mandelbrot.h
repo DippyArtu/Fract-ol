@@ -1,6 +1,8 @@
 #ifndef _MANDELBROT_H_
 # define _MANDELBROT_H_
 
+#include "cl_complex.cl"
+
 typedef struct 		s_position
 {
 	float  			shift_x;
@@ -13,10 +15,6 @@ typedef struct 		s_mandelbrot
 {
 	float 			c_re;
 	float  			c_im;
-	float 			x;
-	float 			y;
-	float 			x_sqr;
-	float 			y_sqr;
 	float 			re_min;
 	float 			re_max;
 	float 			im_min;

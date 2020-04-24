@@ -1,15 +1,29 @@
 #include "mandelbrot.h"
 
-static void			position(int x, int y, local t_mandel *man, local t_pos *pos, float width, float height);
-static float		sqr_mod(local t_mandel *mandel);
-static void			find_p(local t_mandel *mandel);
-static float 		find_mu(int iter_c, local t_mandel *man_l);
+static cl_complex	position(int x, int y, local t_mandel *man, local t_pos *pos, float width, float height);
+static float 		find_mu(int iter_c, cl_complex z, cl_complex c);
 
+//-------------------------------------------------------------------
 /*
- *  This function tests whether a point
- *  lies within the mandelbrot set or not.
+ * This function finds a value of P_k
+ * to check if it lies within the Mandlebrot set.
+ *
+ * P_k+1 = Z(^2) + C -> where C is a complex number
+ *
+ *           __                             __
+ *          | X_k+1 = X(^2)_k - Y(^2)_k + X_0 |
+ * P_k+1 =  |                                 |
+ *          | Y_k+1 = 2(X_k * Y_k) + Y_0      |
+ *           --                             --
+ *
+ *           where X & Y are all real numbers
  */
-kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_pos *pos, global float *mu)
+kernel void			vector_mandel(global int *iter,\
+									global t_mandel *man,\
+									constant t_pos *pos,\
+									global float *mu,\
+									global cl_complex *Z,\
+									global cl_complex *dC)
 {
 	int 			tx;
 	int 			ty;
@@ -20,6 +34,11 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 	float 			max_iter;
 	float 			width;
 	float 			height;
+	cl_complex		c = (0, 0);
+	cl_complex		z = (0, 0); // value for iteration Z -> Z = Z * Z + C;
+	cl_complex		dc = (0, 0); // derivative with respect to c -> dC = 2.0 * dC * Z + 1.0;
+	cl_complex		two = 0;
+	cl_complex		one = 0;
 
 	local t_mandel	man_l;
 	local t_pos		pos_l;
@@ -33,20 +52,27 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
 	height = get_global_size(1);
 	index = ty * (int)width + tx;
 	max_iter = pos_l.max_iter;
+	two.x = 2;
+	one.x = 1;
 
 	x = (float)tx;
 	y = (float)ty;
 	iter_c = 0;
-	man_l.x = 0;
-	man_l.y = 0;
-	position(x, y, &man_l, &pos_l, width, height);
-	while (sqr_mod(&man_l) <= (float)4 && iter_c < max_iter)
+	c = position(x, y, &man_l, &pos_l, width, height);
+
+	while (cl_cmod(z) <= 100 && iter_c < (int)max_iter)
 	{
-		find_p(&man_l);
+		dc = cl_cmult(two, dc);
+		dc = cl_cmult(dc, z);
+		dc = cl_cadd(dc, one);
+		z = cl_cmult(z, z);
+		z = cl_cadd(z, c);
 		iter_c++;
 	}
-	mu[index] = find_mu(iter_c, &man_l);
+	mu[index] = find_mu(iter_c, z, c);
 	iter[index] = (iter_c < max_iter) ? iter_c : -1;
+	dC[index] = dc;
+	Z[index] = z;
 }
 
 /*
@@ -72,18 +98,12 @@ kernel void			vector_mandel(global int *iter, global t_mandel *man, constant t_p
  * Before performing those calculations, the Mandelbrot
  * equation is iterated 3 more times to reduce an error on "mu".
  */
-static float 		find_mu(int iter_c, local t_mandel *man_l)
+static float 		find_mu(int iter_c, cl_complex z, cl_complex c)
 {
-	for (int i = 0; i < 3; i++)
-	{
-		find_p(man_l);
-		sqr_mod(man_l);
-		iter_c++;
-	}
-	float mod = sqr_mod(man_l);
-	float mu = (float)((iter_c - log2((float)log2((float)mod)) + 4));
+	float mod = cl_cmod(z);
+	float mu = (float)((iter_c - log2((float)log2((float)mod)) + 10));
 	float hi = smoothstep(-0.1, 0.0, sin((float)(0.5 * 6.2831)));
-	return (mix(iter_c, mu, hi));
+	return ((float)mix(iter_c, mu, hi));
 }
 
 //-------------------------------------------------------------------
@@ -99,55 +119,17 @@ static float 		find_mu(int iter_c, local t_mandel *man_l)
  *  "position" function is used, which outputs given
  *  coordinates relative to (0,0).
  */
-static void			position(int x, int y, local t_mandel *man, local t_pos *pos, float width, float height)
+static cl_complex	position(int x, int y, local t_mandel *man, local t_pos *pos, float width, float height)
 {
-	float 	re_factor;
-	float 	im_factor;
+	float 		re_factor;
+	float 		im_factor;
+	cl_complex 	c;
 
 	re_factor = (man->re_max - man->re_min) / (width - 1);
 	im_factor = (man->im_max - man->im_min) / (height - 1);
 	man->c_re = man->re_min + x * re_factor + pos->shift_x;
 	man->c_im = man->im_max - y * im_factor + pos->shift_y;
-}
-
-//-------------------------------------------------------------------
-/*
- *  Before returning sum of squares,
- *  this function will write the
- *  x squared and y squared values into
- *  the structure, so that the time-costly
- *  operation of squaring is performed only
- *  once per iteration.
- */
-static float		sqr_mod(local t_mandel *mandel)
-{
-	mandel->x_sqr = mandel->x * mandel->x;
-	mandel->y_sqr = mandel->y * mandel->y;
-	return(mandel->x_sqr + mandel->y_sqr);
-}
-
-//-------------------------------------------------------------------
-/*
- * This formula finds a value of P_k
- * to check if it lies within the Mandlebrot set.
- *
- * P_k+1 = Z(^2) + C -> where C is a complex number
- *
- *           __                             __
- *          | X_k+1 = X(^2)_k - Y(^2)_k + X_0 |
- * P_k+1 =  |                                 |
- *          | Y_k+1 = 2(X_k * Y_k) + Y_0      |
- *           --                             --
- *
- *           where X & Y are all real numbers
- */
-
-static void			find_p(local t_mandel *mandel)
-{
-	float	xy_d;
-
-	xy_d = mandel->x + mandel->y;
-	xy_d *= xy_d;
-	mandel->x = mandel->x_sqr - mandel->y_sqr + mandel->c_re;
-	mandel->y = xy_d - mandel->x_sqr - mandel->y_sqr + mandel->c_im;
+	c.x = man->c_re;
+	c.y = man->c_im;
+	return(c);
 }

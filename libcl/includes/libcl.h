@@ -25,13 +25,13 @@ void 		prep_kernel(t_cl *cl, char *kernel_ft, char *include);
 void 		create_program(t_cl *cl);
 void 		build_program(t_cl *cl, char *include);
 void 		set_kernel_args(t_cl *cl);
-void 		exec_kernel(t_cl *cl, int type);
+void 		exec_kernel(t_cl *cl);
 int 		*read_buff(t_cl *cl, size_t NDRANGE);
 void 		cl_clean_up_all(t_cl *cl);
 void 		cl_clean_mem_objs(t_cl *cl);
 void 		cl_clean_structs(t_cl *cl, t_elems *elems);
 void 		print_log(t_cl *cl, int type);
-void 		*exec_kernel_color(void *cl);
+void 		*exec_kernel_color(void *struc);
 
 
 #endif

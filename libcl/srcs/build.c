@@ -40,25 +40,13 @@ void 		create_context_coms_queue(t_cl *cl)
 	}
 }
 
+//TODO too big
+
 void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 {
-	//---------------------------------------------------------------------------------
-	//Here, buffers for each given vector of the program should be declared and processed
-	//Below is a template for the test code
-	//Items are stored in the t_cl_items structure
-	//---------------------------------------------------------------------------------
 	t_cl_items			*its;
 
 	its = cl->items;
-	//---------------------------------------------------------------------------------
-	//Declare "CL_MEM_READ_ONLY" for the read array (i.e. things to sum together),
-	// or "CL_MEM_WRITE_ONLY" for the write array (i.e. result)
-	// or "CL_MEM_USE_HOST_PTR" to use host memory area as buff (i.e. if you passing a structure)
-	//
-	//Change "sizeof(int)" to the appropriate type
-	//---------------------------------------------------------------------------------
-
-	// Configure this to create an object which will store your result
 	its->iter_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
 			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
 	its->mu_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
@@ -74,6 +62,10 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 				sizeof(t_mandel), elems->mandel, &cl->dev_info->ret);
 		its->pos_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_COPY_HOST_PTR,\
 				sizeof(t_pos), elems->mandel->pos, &cl->dev_info->ret);
+		its->z_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
+				(WIDTH * HEIGHT) * sizeof(cl_float2), NULL, &cl->dev_info->ret);
+		its->dc_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
+				(WIDTH * HEIGHT) * sizeof(cl_float2), NULL, &cl->dev_info->ret);
 	}
 	if (cl->dev_info->ret < 0)
 	{

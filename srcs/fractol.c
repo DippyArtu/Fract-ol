@@ -14,7 +14,7 @@ static int			key_press(int key, t_fract *fract)
 
 	if (key >= 123 && key <= 126)
 		shift_control(key, fract);
-	else if (key >= 18 && key <= 25)
+	else if ((key >= 18 && key <= 25) || key == 24 || key == 27)
 		set_color(key, fract);
 	draw(fract, fract->cl, fract->type);
 	if (key == 53)

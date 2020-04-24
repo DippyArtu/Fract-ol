@@ -17,6 +17,7 @@ add_executable(fract_ol
         kernels/color.cl
         kernel_includes/mandelbrot.h
         kernel_includes/color.h
+        kernel_includes/cl_complex.cl
         libcl/includes/cl_structs.h
         libcl/includes/cl_user_structs.h
         libcl/includes/libcl.h
