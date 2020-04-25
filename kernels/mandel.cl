@@ -34,9 +34,9 @@ kernel void			vector_mandel(global int *iter,\
 	float 			max_iter;
 	float 			width;
 	float 			height;
-	cl_complex		c = (0, 0);
-	cl_complex		z = (0, 0); // value for iteration Z -> Z = Z * Z + C;
-	cl_complex		dc = (0, 0); // derivative with respect to c -> dC = 2.0 * dC * Z + 1.0;
+	cl_complex		c = 0;
+	cl_complex		z = 0; // value for iteration Z -> Z = Z * Z + C;
+	cl_complex		dc = 0; // derivative with respect to c -> dC = 2.0 * dC * Z + 1.0;
 	cl_complex		two = 0;
 	cl_complex		one = 0;
 

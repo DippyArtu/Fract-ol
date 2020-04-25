@@ -1,7 +1,7 @@
 #ifndef _MANDELBROT_H_
 # define _MANDELBROT_H_
 
-#include "cl_complex.cl"
+#include "cl_complex.h.cl"
 
 typedef struct 		s_position
 {

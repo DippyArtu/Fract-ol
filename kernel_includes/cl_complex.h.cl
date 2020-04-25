@@ -1,31 +1,48 @@
 #ifndef CL_COMPLEX_H_CL
-#define CL_COMPLEX_H_CL
+# define CL_COMPLEX_H_CL
 
-typedef float2 cl_complex;
+# if TEST_DOUBLE_SUPPORT
+#  if defined(cl_khr_fp64)  // Khronos extension available?
+#   pragma OPENCL EXTENSION cl_khr_fp64 : enable
+#   define DOUBLE_SUPPORT_AVAILABLE
+#  elif defined(cl_amd_fp64)  // AMD extension available?
+#   pragma OPENCL EXTENSION cl_amd_fp64 : enable
+#   define DOUBLE_SUPPORT_AVAILABLE
+#  endif
+# endif
+
+# if defined(DOUBLE_SUPPORT_AVAILABLE)
+ typedef double2	cl_complex;
+ typedef double		TYPE;
+# else
+ typedef float2		cl_complex;
+ typedef float		TYPE;
+# endif
+
 # define I_cl ((cl_complex)(0.0, 1.0))
 # define Pi_cl 3.14159265358979323846
 # define E_cl 2.718281828459045235360
 
-float			cl_creal(cl_complex n);
-float			cl_cimag(cl_complex n);
-float			cl_cmod(cl_complex n);
+TYPE			cl_creal(cl_complex n);
+TYPE			cl_cimag(cl_complex n);
+TYPE			cl_cmod(cl_complex n);
 cl_complex		cl_cadd(cl_complex a, cl_complex b);
 cl_complex 		cl_cmult(cl_complex a, cl_complex b);
 cl_complex 		cl_cpow(cl_complex base , int exp);
 cl_complex 		cl_cdiv(cl_complex a, cl_complex b);
-float 			cl_carg(cl_complex a);
+TYPE 			cl_carg(cl_complex a);
 cl_complex 		cl_csqrt(cl_complex n);
 cl_complex 		cl_cexp(cl_complex n);
 cl_complex 		cl_clog(cl_complex z);
-float			cl_cdot(cl_complex a, cl_complex b);
+TYPE			cl_cdot(cl_complex a, cl_complex b);
 
 
-float			cl_creal(const cl_complex n)
+TYPE			cl_creal(const cl_complex n)
 {
 	return(n.x);
 }
 
-float			cl_cimag(const cl_complex n)
+TYPE			cl_cimag(const cl_complex n)
 {
 	return(n.y);
 }
@@ -33,16 +50,16 @@ float			cl_cimag(const cl_complex n)
 /*
  * Returns modulus of complex number (its length):
  */
-float			cl_cmod(const cl_complex n)
+TYPE			cl_cmod(const cl_complex n)
 {
-	return(sqrt((float)((n.x * n.x) + (n.y * n.y))));
+	return(sqrt((TYPE)((n.x * n.x) + (n.y * n.y))));
 }
 
 /*
  The dot product of two vectors a = [a1, a2, ..., an] and b = [b1, b2, ..., bn] is defined as:
  d = a1b1 + a2b2
 */
-float			cl_cdot(const cl_complex a, const cl_complex b)
+TYPE			cl_cdot(const cl_complex a, const cl_complex b)
 {
 	return((a.x * b.x) + (a.y * b.y));
 }
@@ -86,7 +103,7 @@ cl_complex 		cl_cpow(const cl_complex base , int exp)
 
 cl_complex 		cl_cdiv(const cl_complex a, const cl_complex b)
 {
-	float		dividend;
+	TYPE		dividend;
 	cl_complex	res;
 
 	dividend = (b.x * b.x + b.y * b.y);
@@ -99,18 +116,18 @@ cl_complex 		cl_cdiv(const cl_complex a, const cl_complex b)
  * Get the argument of a complex number (its angle):
  * http://en.wikipedia.org/wiki/Complex_number#Absolute_value_and_argument
  */
-float 			cl_carg(const cl_complex a)
+TYPE 			cl_carg(const cl_complex a)
 {
 	if(a.x > 0)
-		return(atan((float)(a.y / a.x)));
+		return(atan((TYPE)(a.y / a.x)));
 	else if(a.x < 0 && a.y >= 0)
-		return(atan((float)(a.y / a.x)) + Pi_cl);
+		return(atan((TYPE)(a.y / a.x)) + Pi_cl);
 	else if(a.x < 0 && a.y < 0)
-		return(atan((float)(a.y / a.x)) - Pi_cl);
+		return(atan((TYPE)(a.y / a.x)) - Pi_cl);
 	else if(a.x == 0 && a.y > 0)
-		return((float)(Pi_cl / 2));
+		return((TYPE)(Pi_cl / 2));
 	else if(a.x == 0 && a.y < 0)
-		return((float)(Pi_cl * -1) / 2);
+		return((TYPE)(Pi_cl * -1) / 2);
 	else
 		return(0);
 }
@@ -123,10 +140,10 @@ float 			cl_carg(const cl_complex a)
  */
 cl_complex 		cl_csqrt(const cl_complex n)
 {
-	const float sm = sqrt((float)(cl_cmod(n)));
-	const float a2 = cl_carg(n) / 2;
-	const float ca2 = cos((float)a2);
-	const float sa2 = sin((float)a2);
+	const TYPE sm = sqrt((TYPE)(cl_cmod(n)));
+	const TYPE a2 = cl_carg(n) / 2;
+	const TYPE ca2 = cos((TYPE)a2);
+	const TYPE sa2 = sin((TYPE)a2);
 	cl_complex	res;
 
 	res.x = sm * ca2;
@@ -141,11 +158,11 @@ cl_complex 		cl_csqrt(const cl_complex n)
 */
 cl_complex 		cl_cexp(const cl_complex n)
 {
-	const float e = exp((float)n.x);
+	const TYPE e = exp((TYPE)n.x);
 	cl_complex	res;
 
-	res.x = (e * cos((float)n.y));
-	res.y = (e * sin((float)n.y));
+	res.x = (e * cos((TYPE)n.y));
+	res.y = (e * sin((TYPE)n.y));
 	return(res);
 }
 
@@ -161,7 +178,7 @@ cl_complex 		cl_clog(const cl_complex z)
 {
 	cl_complex	res;
 
-	res.x = log((float)cl_cmod(z));
+	res.x = log((TYPE)cl_cmod(z));
 	res.y = cl_carg(z);
 	return(res);
 }

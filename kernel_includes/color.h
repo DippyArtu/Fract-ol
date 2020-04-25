@@ -1,7 +1,7 @@
 #ifndef _COLOR_H
 # define _COLOR_H
 
-# include "cl_complex.cl"
+# include "cl_complex.h.cl"
 
 # define BLACK 0x000000
 # define RED 0xFF047A
