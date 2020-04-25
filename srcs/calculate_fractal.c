@@ -34,7 +34,7 @@
  * 	Working with a squared modulus saves an extra step, which
  * 	is a time consuming one (taking a square root).
  *
- * 	R, therefore, becomes R(^2) = 4.
+ * 	R, therefore, becomes R(^2).
  *
  * 	This calculation is performed using OpenCL in the
  * 	mandel.cl kernel.

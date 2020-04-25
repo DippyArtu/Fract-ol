@@ -1,7 +1,6 @@
 #ifndef _FRACTOL_H
 # define _FRACTOL_H
 
-
 # ifndef LIBFT_H
 #  include "libft.h"
 # endif
@@ -53,5 +52,6 @@ void			apply_zoom(t_mandel *man, float m_re, float m_im, float interp);
 void			zoom_in(t_fract *fract);
 void			zoom_out(t_fract *fract);
 void 			set_color(int key, t_fract *fract);
+void 			menu(t_fract *fract);
 
 #endif

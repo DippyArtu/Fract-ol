@@ -22,6 +22,8 @@
 # define K_START 500
 
 # define BLACK 0x000000
+# define WHITE 0xFFFFFF
+# define GREY 0x5A5A5A
 
 # define MANDEL 1
 

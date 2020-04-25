@@ -94,9 +94,6 @@ kernel void			vector_mandel(global int *iter,\
  * mix function returns a linear blend of x and y as:
  * 				x + (y - x) * a
  * where a is a value in the range of 0.0 to 1.0.
- *
- * Before performing those calculations, the Mandelbrot
- * equation is iterated 3 more times to reduce an error on "mu".
  */
 static float 		find_mu(int iter_c, cl_complex z, cl_complex c)
 {
@@ -108,7 +105,7 @@ static float 		find_mu(int iter_c, cl_complex z, cl_complex c)
 
 //-------------------------------------------------------------------
 /*
- *  Mandelbrot set lies within a circle of radius 2.
+ *  Mandelbrot set lies within a circle of radius R.
  *
  *  The visible area then lies within a rectangle defined
  *  by RE_MIN, RE_MAX, IM_MIN, IM_MAX, where RE is a
