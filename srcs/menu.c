@@ -23,7 +23,10 @@ void			print_menu(t_fract *fract)
 	x = 0;
 	mlx = fract->mlx_ptr;
 	win = fract->win_ptr;
-	mlx_string_put(mlx, win, x += 15, y += 15, GREY, "Menu: M");
+	if (fract->color->mode == 1 || fract->color->mode == 2)
+		mlx_string_put(mlx, win, x += 15, y += 15, GREY, "Menu: M");
+	else
+		mlx_string_put(mlx, win, x += 15, y += 15, BLACKISH, "Menu: M");
 }
 
 void 			menu(t_fract *fract)

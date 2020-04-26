@@ -28,6 +28,7 @@ void		draw(t_fract *fract, t_cl *cl, int type)
 		}
 		mandelbrot(fract, cl);
 	}
+	mlx_clear_window(fract->mlx_ptr, fract->win_ptr);
 	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
 	print_menu(fract);
 }
