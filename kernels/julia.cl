@@ -1,29 +1,14 @@
-#include "mandelbrot.h"
+#include "julia.h"
 
-static cl_complex	position(int x, int y, local t_mandel *man, local t_pos *pos, float width, float height);
+static cl_complex	position(int x, int y, local t_julia *jul, local t_pos *pos, float width, float height);
 static float 		find_mu(int iter_c, cl_complex z);
 
-//-------------------------------------------------------------------
-/*
- * This function finds a value of P_k
- * to check if it lies within the Mandlebrot set.
- *
- * P_k+1 = Z(^2) + C -> where C is a complex number
- *
- *           __                             __
- *          | X_k+1 = X(^2)_k - Y(^2)_k + X_0 |
- * P_k+1 =  |                                 |
- *          | Y_k+1 = 2(X_k * Y_k) + Y_0      |
- *           --                             --
- *
- *           where X & Y are all real numbers
- */
-kernel void			vector_mandel(global int *iter,\
-									global t_mandel *man,\
+kernel void			vector_julia(global int *iter,\
+									global t_julia *jul,\
 									constant t_pos *pos,\
 									global float *mu,\
 									global cl_complex *Z,\
-									global cl_complex *dC)
+									global cl_complex *dK)
 {
 	int 			tx;
 	int 			ty;
@@ -34,17 +19,19 @@ kernel void			vector_mandel(global int *iter,\
 	float 			max_iter;
 	float 			width;
 	float 			height;
-	cl_complex		c = 0;
-	cl_complex		z = 0; // value for iteration Z -> Z = Z * Z + C;
-	cl_complex		dc = 0; // derivative with respect to c -> dC = 2.0 * dC * Z + 1.0;
+	cl_complex		k = 0;
+	cl_complex		z = 0; // value for iteration Z -> Z = Z * Z + k;
+	cl_complex		dk = 0; // derivative with respect to k -> dK = 2.0 * dK * Z + 1.0;
 	cl_complex		two = 0;
 	cl_complex		one = 0;
 
-	local t_mandel	man_l;
+	local t_julia	jul_l;
 	local t_pos		pos_l;
-	man_l = *man;
+	jul_l = *jul;
 	pos_l = *pos;
 
+	k.x = jul_l.k_re;
+	k.y = jul_l.k_im;
 
 	tx = get_global_id(0);
 	ty = get_global_id(1);
@@ -58,20 +45,20 @@ kernel void			vector_mandel(global int *iter,\
 	x = (float)tx;
 	y = (float)ty;
 	iter_c = 0;
-	c = position(x, y, &man_l, &pos_l, width, height);
+	z = position(x, y, &jul_l, &pos_l, width, height);
 
 	while (cl_cmod(z) <= 100 && iter_c < (int)max_iter)
 	{
-		dc = cl_cmult(two, dc);
-		dc = cl_cmult(dc, z);
-		dc = cl_cadd(dc, one);
+		dk = cl_cmult(two, dk);
+		dk = cl_cmult(dk, z);
+		dk = cl_cadd(dk, one);
 		z = cl_cmult(z, z);
-		z = cl_cadd(z, c);
+		z = cl_cadd(z, k);
 		iter_c++;
 	}
 	mu[index] = find_mu(iter_c, z);
 	iter[index] = (iter_c < max_iter) ? iter_c : -1;
-	dC[index] = dc;
+	dK[index] = dk;
 	Z[index] = z;
 }
 
@@ -105,7 +92,7 @@ static float 		find_mu(int iter_c, cl_complex z)
 
 //-------------------------------------------------------------------
 /*
- *  Mandelbrot set lies within a circle of radius R.
+ *  Julia set, like Mandelbrot, lies within a circle of radius R.
  *
  *  The visible area then lies within a rectangle defined
  *  by RE_MIN, RE_MAX, IM_MIN, IM_MAX, where RE is a
@@ -116,17 +103,13 @@ static float 		find_mu(int iter_c, cl_complex z)
  *  "position" function is used, which outputs given
  *  coordinates relative to (0,0).
  */
-static cl_complex	position(int x, int y, local t_mandel *man, local t_pos *pos, float width, float height)
+static cl_complex	position(int x, int y, local t_julia *jul, local t_pos *pos, float width, float height)
 {
-	float 		re_factor;
-	float 		im_factor;
-	cl_complex 	c;
+	cl_complex	k;
+	int 		l = (width < height) ? width : height;
+	float 		radius = 1.5;
 
-	re_factor = (man->re_max - man->re_min) / (width - 1);
-	im_factor = (man->im_max - man->im_min) / (height - 1);
-	man->c_re = man->re_min + x * re_factor + pos->shift_x;
-	man->c_im = man->im_max - y * im_factor + pos->shift_y;
-	c.x = man->c_re;
-	c.y = man->c_im;
-	return(c);
+	k.x = 2 * radius * (x - width / 2) / l + pos->shift_x;
+	k.y = 2 * radius * (y - height / 2) / l + pos->shift_y;
+	return(k);
 }

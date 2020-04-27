@@ -6,7 +6,9 @@ SRC =		assembly.c\
 			clean_up.c\
 			execute_kernel.c\
 			get_dev_info.c\
-			init_cl.c
+			init_cl.c\
+			mandelbrot_buffs.c\
+			julia_buffs.c
 
 OBJ = $(SRC:.c=.o)
 OBJ_DIR = ./obj/

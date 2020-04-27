@@ -38,4 +38,17 @@ typedef struct 		s_mandelbrot
 	t_color			*color;
 }					t_mandel;
 
+typedef struct 		s_julia
+{
+	float 			k_re;
+	float  			k_im;
+	float 			re_min;
+	float 			re_max;
+	float 			im_min;
+	float 			im_max;
+	float 			im_max_start;
+	t_pos			*pos;
+	t_color			*color;
+}					t_julia;
+
 #endif

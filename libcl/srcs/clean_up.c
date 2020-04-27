@@ -2,9 +2,6 @@
 
 void 		cl_clean_mem_objs(t_cl *cl)
 {
-	//-------------------------------------------------------------------
-	//Change this function following the below template to release all your memory objects
-	//-------------------------------------------------------------------
 	t_cl_items			*its;
 	t_cl_dev_info		*di;
 
@@ -27,12 +24,8 @@ void 		cl_clean_structs(t_cl *cl, t_elems *elems)
 	free(cl->kernel_src);
 	free(cl->dev_info);
 	free(cl->context);
-
-	//-------------------------------------------------------------------
-	//Clean up your structures below
 	free(cl->items);
 	free(elems);
-	//-------------------------------------------------------------------
 	free(cl);
 }
 

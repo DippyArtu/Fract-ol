@@ -7,7 +7,7 @@ t_color 	*init_color(void)
 	color = (t_color *)malloc(sizeof(t_color));
 	color->mode = 1;
 	color->angle = 45;
-	return (color);
+	return(color);
 }
 t_mouse		*init_mouse(void)
 {
@@ -19,34 +19,41 @@ t_mouse		*init_mouse(void)
 	mouse->y = 0;
 	mouse->Re = 0;
 	mouse->Im = 0;
-	return (mouse);
+	return(mouse);
 }
 
-static	t_pos		*init_position(void)
+static	t_pos		*init_position(int type)
 {
 	t_pos	*pos;
 
 	pos = (t_pos *)malloc(sizeof(t_pos));
-	pos->shift_x = (float)-0.496;
-	pos->shift_y = (float)0.496;
+	if (type == MANDEL)
+	{
+		pos->shift_x = (float)-0.496;
+		pos->shift_y = (float)0.496;
+	}
+	else
+	{
+		pos->shift_x = 0;
+		pos->shift_y = 0;
+	}
 	pos->zoom = 1;
 	pos->max_iter = K_START;
-	return (pos);
+	return(pos);
 }
 
-static t_mandel		*init_mandelbrot(void)
+static void 		init_rest(t_fract *fract, int type)
 {
-	t_mandel	*man;
-
-	man = (t_mandel *)malloc(sizeof(t_mandel));
-	man->c_im = 0;
-	man->c_re = 0;
-	man->re_max = 2;
-	man->re_min = -2;
-	man->im_min = -2;
-	man->im_max = man->im_min + (man->re_max - man->re_min) * HEIGHT / WIDTH;
-	man->im_max_start = man->im_max;
-	return (man);
+	fract->iter_c = 0;
+	fract->mouse = init_mouse();
+	fract->pos = init_position(type);
+	fract->color = init_color();
+	fract->mlx_ptr = mlx_init();
+	fract->win_ptr = mlx_new_window(fract->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
+	fract->image = mlx_new_image(fract->mlx_ptr, WIDTH, HEIGHT);
+	fract->data_addr = mlx_get_data_addr(fract->image, &fract->bpp, \
+			&fract->size_line, &fract->endian);
+	fract->cl_init = 0;
 }
 
 t_fract				*init_fractol_struct(int type)
@@ -54,20 +61,18 @@ t_fract				*init_fractol_struct(int type)
 	t_fract 	*fractol;
 
 	fractol = (t_fract *)malloc(sizeof(t_fract));
+	fractol->mandel = NULL;
+	fractol->julia = NULL;
 	if (type == MANDEL)
 	{
 		fractol->mandel = init_mandelbrot();
 		fractol->type = MANDEL;
 	}
-	fractol->iter_c = 0;
-	fractol->mouse = init_mouse();
-	fractol->pos = init_position();
-	fractol->color = init_color();
-	fractol->mlx_ptr = mlx_init();
-	fractol->win_ptr = mlx_new_window(fractol->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
-	fractol->image = mlx_new_image(fractol->mlx_ptr, WIDTH, HEIGHT);
-	fractol->data_addr = mlx_get_data_addr(fractol->image, &fractol->bpp, \
-			&fractol->size_line, &fractol->endian);
-	fractol->cl_init = 0;
-	return (fractol);
+	else if (type == JULIA)
+	{
+		fractol->julia = init_julia();
+		fractol->type = JULIA;
+	}
+	init_rest(fractol, type);
+	return(fractol);
 }

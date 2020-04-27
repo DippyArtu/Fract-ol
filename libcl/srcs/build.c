@@ -40,9 +40,7 @@ void 		create_context_coms_queue(t_cl *cl)
 	}
 }
 
-//TODO too big
-
-void 		create_buffs(t_cl *cl, t_elems *elems, int type)
+void 		general_buffs(t_cl *cl, t_elems *elems)
 {
 	t_cl_items			*its;
 
@@ -56,21 +54,19 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 	its->color_struct_mem_obj = clCreateBuffer(cl->context->context,\
 			CL_MEM_COPY_HOST_PTR, sizeof(t_color),\
 			elems->color, &cl->dev_info->ret);
+}
+
+void 		create_buffs(t_cl *cl, t_elems *elems, int type)
+{
+	general_buffs(cl, elems);
 	if (type == MANDEL)
-	{
-		its->fract_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_COPY_HOST_PTR,\
-				sizeof(t_mandel), elems->mandel, &cl->dev_info->ret);
-		its->pos_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_COPY_HOST_PTR,\
-				sizeof(t_pos), elems->mandel->pos, &cl->dev_info->ret);
-		its->z_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
-				(WIDTH * HEIGHT) * sizeof(cl_float2), NULL, &cl->dev_info->ret);
-		its->dc_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
-				(WIDTH * HEIGHT) * sizeof(cl_float2), NULL, &cl->dev_info->ret);
-	}
+		mandel_buffs(cl, elems);
+	else if (type == JULIA)
+		julia_buffs(cl, elems);
 	if (cl->dev_info->ret < 0)
 	{
 		ft_putstr(BUFF_CREAT_ERR);
 		exit(1);
 	}
-	set_kernel_args(cl);
+	set_kernel_args(cl, type);
 }

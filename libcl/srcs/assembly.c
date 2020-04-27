@@ -1,5 +1,4 @@
 #include "libcl.h"
-#include <stdio.h>
 
 void 		print_log(t_cl *cl, int type)
 {
@@ -74,44 +73,15 @@ void 		prep_kernel(t_cl *cl, char *kernel_ft, char *include)
 			COLOR_KERNEL_FT, &cl->dev_info->ret);
 	if (cl->dev_info->ret < 0)
 	{
-		printf("%i\n", cl->dev_info->ret);
 		ft_putstr(KERNEL_CREAT_ERR);
 		exit(1);
 	}
 }
 
-//TODO too big
-
-void 		set_kernel_args(t_cl *cl)
+void 		set_kernel_args(t_cl *cl, int type)
 {
-	cl->dev_info->ret = clSetKernelArg(cl->context->fract_kernel, 0, sizeof(cl_mem),\
-			(void *)&cl->items->iter_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->fract_kernel, 1, sizeof(cl_mem),\
-			(void *)&cl->items->fract_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->fract_kernel, 2, sizeof(cl_mem),\
-			(void *)&cl->items->pos_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->fract_kernel, 3, sizeof(cl_mem),\
-			(void *)&cl->items->mu_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->fract_kernel, 4, sizeof(cl_mem),\
-			(void *)&cl->items->z_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->fract_kernel, 5, sizeof(cl_mem),\
-			(void *)&cl->items->dc_mem_obj);
-
-	cl->dev_info->ret = clSetKernelArg(cl->context->color_kernel, 0, sizeof(cl_mem),\
-			(void *)&cl->items->iter_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->color_kernel, 1, sizeof(cl_mem),\
-			(void *)&cl->items->color_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->color_kernel, 2, sizeof(cl_mem),\
-			(void *)&cl->items->color_struct_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->color_kernel, 3, sizeof(cl_mem),\
-			(void *)&cl->items->mu_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->color_kernel, 4, sizeof(cl_mem),\
-			(void *)&cl->items->z_mem_obj);
-	cl->dev_info->ret = clSetKernelArg(cl->context->color_kernel, 5, sizeof(cl_mem),\
-			(void *)&cl->items->dc_mem_obj);
-	if (cl->dev_info->ret < 0)
-	{
-		ft_putstr(ARG_ERR);
-		exit(1);
-	}
+	if (type == MANDEL)
+		mandel_args(cl);
+	else if (type == JULIA)
+		julia_args(cl);
 }

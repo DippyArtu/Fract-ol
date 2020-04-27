@@ -1,5 +1,5 @@
-#ifndef _MANDELBROT_H_
-# define _MANDELBROT_H_
+#ifndef _JULIA_H
+# define _JULIA_H
 
 # include "cl_complex.h.cl"
 
@@ -11,16 +11,16 @@ typedef struct 		s_position
 	float 			max_iter;
 }					t_pos;
 
-typedef struct 		s_mandelbrot
+typedef struct 		s_julia
 {
-	float 			c_re;
-	float  			c_im;
+	float 			k_re;
+	float  			k_im;
 	float 			re_min;
 	float 			re_max;
 	float 			im_min;
 	float 			im_max;
 	float 			im_max_start;
 	t_pos			*pos;
-}					t_mandel;
+}					t_julia;
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 17:45:47 by jsalome           #+#    #+#              #
-#    Updated: 2020/04/13 15:17:09 by Artur            ###   ########.fr        #
+#    Updated: 2020/04/27 11:01:10 by Artur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,15 @@ SRC_DIR = ./srcs/
 SRC = 	fractol.c\
 		draw_image.c\
 		init.c\
-		calculate_fractal.c\
+		calculate_mandelbrot.c\
+		calculate_julia.c\
 		errors.c\
 		menu.c\
 		view_control.c\
 		mouse_control.c\
-		color_control.c
+		color_control.c\
+		init_fracts.c\
+		julia_transform.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 

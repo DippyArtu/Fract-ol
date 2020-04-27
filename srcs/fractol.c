@@ -24,17 +24,27 @@ static int			key_press(int key, t_fract *fract)
 	return (0);
 }
 
-t_fract 	*prep_fractal(int type)
+static void 		post_setup(t_fract *fractol, int type)
 {
-	t_fract		*fractol;
-	t_cl		*cl;
-
-	fractol = init_fractol_struct(type);
 	if (type == MANDEL)
 	{
 		fractol->mandel->color = fractol->color;
 		fractol->mandel->color->max_iter = fractol->pos->max_iter;
 	}
+	else if (type == JULIA)
+	{
+		fractol->julia->color = fractol->color;
+		fractol->julia->color->max_iter = fractol->pos->max_iter;
+	}
+}
+
+t_fract 			*prep_fractal(int type)
+{
+	t_fract		*fractol;
+	t_cl		*cl;
+
+	fractol = init_fractol_struct(type);
+	post_setup(fractol, type);
 	cl = init_opencl_structs();
 	fractol->cl = cl;
 	get_cl_info(cl);
@@ -43,7 +53,7 @@ t_fract 	*prep_fractal(int type)
 	return (fractol);
 }
 
-int 		main(int argc, char **argv)
+int 				main(int argc, char **argv)
 {
 	t_fract		*fractol;
 	int 		type;
@@ -53,17 +63,19 @@ int 		main(int argc, char **argv)
 		error(1);
 	if (!ft_strcmp(argv[1], "Mandelbrot"))
 		type = MANDEL;
+	else if (!ft_strcmp(argv[1], "Julia"))
+		type = JULIA;
 	if(!type)
 		error(2);
-	else if (type)
-	{
-		fractol = prep_fractal(type);
-		mlx_hook(fractol->win_ptr, 2, 0, key_press, fractol);
-		mlx_hook(fractol->win_ptr, 4, 0, mouse_press, fractol);
-		mlx_hook(fractol->win_ptr, 5, 0, mouse_release, fractol);
-		mlx_hook(fractol->win_ptr, 6, 0, mouse_move, fractol);
-		mlx_hook(fractol->win_ptr, 17, 1L << 17, exit_prog, fractol);
-		mlx_loop(fractol->mlx_ptr);
-	}
+	fractol = prep_fractal(type);
+	mlx_hook(fractol->win_ptr, 2, 0, key_press, fractol);
+	mlx_hook(fractol->win_ptr, 4, 0, mouse_press, fractol);
+	mlx_hook(fractol->win_ptr, 5, 0, mouse_release, fractol);
+	if (type == MANDEL)
+		mlx_hook(fractol->win_ptr, 6, 0, mandel_mouse_pos, fractol);
+//	else if (type == JULIA)
+//		mlx_hook(fractol->win_ptr, 6, 0, julia_mouse_move, fractol);
+	mlx_hook(fractol->win_ptr, 17, 1L << 17, exit_prog, fractol);
+	mlx_loop(fractol->mlx_ptr);
 	return (0);
 }

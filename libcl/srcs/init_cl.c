@@ -1,8 +1,5 @@
 #include "libcl.h"
 
-//-------------------------------------------------------------------
-// Init OpenCL structures
-//-------------------------------------------------------------------
 t_cl		*init_opencl_structs(void)
 {
 	t_cl			*cl;
@@ -13,15 +10,10 @@ t_cl		*init_opencl_structs(void)
 	cl->kernel_src = (t_cl_kernel_src *)malloc(sizeof(t_cl_kernel_src));
 	cl->kernel_src->fract_src_str = (char *)malloc(MAX_SOURCE_SIZE);
 	cl->kernel_src->color_src_str = (char *)malloc(MAX_SOURCE_SIZE);
-	init_user_cl_structs(cl); //Init your structures here
+	init_user_cl_structs(cl);
 	return (cl);
 }
 
-//-------------------------------------------------------------------
-// Init OpenCL structures for your data
-//
-// Change this functions to suit you
-//-------------------------------------------------------------------
 void 		init_user_cl_structs(t_cl *cl)
 {
 	cl->items = (t_cl_items *)malloc(sizeof(t_cl_items));
@@ -33,7 +25,7 @@ t_elems		*init_opencl_elems(char *k_name, char *ft_name, char *inc)
 	t_elems			*elems;
 
 	elems = (t_elems *)malloc(sizeof(t_elems));
-	elems->NDRANGE = WIDTH * HEIGHT; //Total number of elements in the array to be processed
+	elems->NDRANGE = WIDTH * HEIGHT;
 	elems->global_ws[0] = WIDTH;
 	elems->global_ws[1] = HEIGHT;
 	elems->local_ws[0] = 10;
@@ -43,6 +35,7 @@ t_elems		*init_opencl_elems(char *k_name, char *ft_name, char *inc)
 	elems->fract_ft_name = ft_name;
 	elems->include_flag = inc;
 	elems->mandel = NULL;
+	elems->julia = NULL;
 	elems->color = NULL;
 	return (elems);
 }

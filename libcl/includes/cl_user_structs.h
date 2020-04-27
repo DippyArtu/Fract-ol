@@ -18,6 +18,7 @@ typedef struct 		s_elements
 	char 		*fract_ft_name; //Name of the function to perform in the vector (i.e. vector_add)
 	char 		*include_flag;
 	t_mandel 	*mandel;
+	t_julia		*julia;
 	t_color		*color;
 }					t_elems;
 

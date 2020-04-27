@@ -29,6 +29,7 @@ typedef struct		s_fract
 	t_pos			*pos;
 	t_color			*color;
 	t_mandel		*mandel;
+	t_julia			*julia;
 	t_mouse			*mouse;
 	t_cl 			*cl;
 }					t_fract;
@@ -46,12 +47,20 @@ void			shift_control(int key, t_fract *fract);
 t_mouse			*init_mouse(void);
 int				mouse_press(int key, int x, int y, void *p);
 int				mouse_release(int key, int x, int y, void *p);
-int 			mouse_move(int x, int y, void *p);
+int 			mandel_mouse_pos(int x, int y, void *p);
 float			interpolate(float start, float end, float interp);
 void			apply_zoom(t_mandel *man, float m_re, float m_im, float interp);
 void			zoom_in(t_fract *fract);
 void			zoom_out(t_fract *fract);
 void 			set_color(int key, t_fract *fract);
 void 			menu(t_fract *fract);
+t_julia 		*init_julia(void);
+t_mandel		*init_mandelbrot(void);
+void 			draw_mandel(t_fract *fract, t_cl *cl);
+void 			draw_julia(t_fract *fract, t_cl *cl);
+void			julia(t_fract *fract, t_cl *cl);
+int 			julia_mouse_move(int x, int y, void *p);
+void 			julia_forward(t_fract *fract);
+void 			julia_backward(t_fract *fract);
 
 #endif

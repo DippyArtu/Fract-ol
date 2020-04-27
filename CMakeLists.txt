@@ -15,9 +15,11 @@ add_executable(fract_ol
         includes/fractol.h
         kernels/mandel.cl
         kernels/color.cl
+        kernels/julia.cl
         kernel_includes/mandelbrot.h
         kernel_includes/color.h
         kernel_includes/cl_complex.h.cl
+        kernel_includes/julia.h
         libcl/includes/cl_structs.h
         libcl/includes/cl_user_structs.h
         libcl/includes/libcl.h
@@ -29,6 +31,8 @@ add_executable(fract_ol
         libcl/srcs/get_dev_info.c
         libcl/srcs/init_cl.c
         libcl/srcs/clean_up.c
+        libcl/srcs/mandelbrot_buffs.c
+        libcl/srcs/julia_buffs.c
         libcl/Makefile
         libft/includes/get_next_line.h
         libft/includes/libft.h
@@ -113,7 +117,7 @@ add_executable(fract_ol
         minilibx_macos/mlx_rgb.c
         minilibx_macos/mlx_shaders.c
         minilibx_macos/mlx_xpm.c
-        srcs/calculate_fractal.c
+        srcs/calculate_mandelbrot.c
         srcs/draw_image.c
         srcs/errors.c
         srcs/fractol.c
@@ -122,4 +126,6 @@ add_executable(fract_ol
         srcs/mouse_control.c
         srcs/view_control.c
         srcs/color_control.c
-        Makefile)
+        srcs/init_fracts.c
+        srcs/calculate_julia.c
+        Makefile srcs/julia_transform.c)
