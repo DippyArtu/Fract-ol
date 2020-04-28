@@ -24,12 +24,13 @@
 
 //maximum  & initial amount of iterations
 # define K_MAX 100000
-# define K_START 200
+# define K_START 500
 
 # define BLACK 0x000000
 # define BLACKISH 0x151515
 # define WHITE 0xFFFFFF
 # define GREY 0x5A5A5A
+# define PEACH 0xEEC1B0
 
 # define MANDEL 1
 # define JULIA 2

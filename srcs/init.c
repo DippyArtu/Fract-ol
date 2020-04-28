@@ -54,6 +54,7 @@ static void 		init_rest(t_fract *fract, int type)
 	fract->data_addr = mlx_get_data_addr(fract->image, &fract->bpp, \
 			&fract->size_line, &fract->endian);
 	fract->cl_init = 0;
+	fract->menu_init = 0;
 }
 
 t_fract				*init_fractol_struct(int type)

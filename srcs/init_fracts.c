@@ -22,10 +22,5 @@ t_julia 		*init_julia(void)
 	jul = (t_julia *)malloc(sizeof(t_julia));
 	jul->k_re = (float)-0.4;
 	jul->k_im = (float)0.6;
-	jul->re_max = 2;
-	jul->re_min = -2;
-	jul->im_min = -2;
-	jul->im_max = jul->im_min + (jul->re_max - jul->re_min) * HEIGHT / WIDTH;
-	jul->im_max_start = jul->im_max;
 	return(jul);
 }

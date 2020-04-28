@@ -18,7 +18,7 @@ static int			key_press(int key, t_fract *fract)
 		set_color(key, fract);
 	draw(fract, fract->cl, fract->type);
 	if (key == 46)
-		menu(fract);
+		print_menu(fract, fract->type);
 	if (key == 53)
 		exit_prog(fract);
 	return (0);
@@ -73,8 +73,6 @@ int 				main(int argc, char **argv)
 	mlx_hook(fractol->win_ptr, 5, 0, mouse_release, fractol);
 	if (type == MANDEL)
 		mlx_hook(fractol->win_ptr, 6, 0, mandel_mouse_pos, fractol);
-//	else if (type == JULIA)
-//		mlx_hook(fractol->win_ptr, 6, 0, julia_mouse_move, fractol);
 	mlx_hook(fractol->win_ptr, 17, 1L << 17, exit_prog, fractol);
 	mlx_loop(fractol->mlx_ptr);
 	return (0);
