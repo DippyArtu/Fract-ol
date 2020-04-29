@@ -49,7 +49,7 @@ void 		general_buffs(t_cl *cl, t_elems *elems)
 			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
 	its->mu_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
 			(WIDTH * HEIGHT) * sizeof(cl_float), NULL, &cl->dev_info->ret);
-	its->color_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_WRITE_ONLY,\
+	its->color_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
 			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
 	its->color_struct_mem_obj = clCreateBuffer(cl->context->context,\
 			CL_MEM_COPY_HOST_PTR, sizeof(t_color),\
@@ -63,6 +63,8 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 		mandel_buffs(cl, elems);
 	else if (type == JULIA)
 		julia_buffs(cl, elems);
+	else if (type == BUDDHA)
+		buddha_buffs(cl, elems);
 	if (cl->dev_info->ret < 0)
 	{
 		ft_putstr(BUFF_CREAT_ERR);

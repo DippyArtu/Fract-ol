@@ -8,6 +8,14 @@ int			exit_prog(t_fract *fract)
 	exit(0);
 }
 
+void			put_pixel(t_fract *fractal, int i, int color)
+{
+	int		*pixel;
+
+	pixel = (int *)(fractal->data_addr);
+	pixel[i] = color;
+}
+
 void 		set_color(int key, t_fract *fract)
 {
 	if (key == 18)
@@ -46,6 +54,8 @@ void 		set_fractal(int key, t_fract *fract)
 		start(JULIA);
 	else if (key == 46)
 		start(MANDEL);
+	else if (key == 11)
+		start(BUDDHA);
 }
 
 void 		fill_background(t_fract *fract)

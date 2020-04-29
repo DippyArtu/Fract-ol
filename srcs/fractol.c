@@ -5,16 +5,17 @@ static int			key_press(int key, t_fract *fract)
 
 	//printf("%d\n", key);
 
-	if (key >= 123 && key <= 126)
+	if (fract->type != BUDDHA && key >= 123 && key <= 126)
 		shift_control(key, fract);
-	else if ((key >= 18 && key <= 25) || key == 24 || key == 27)
+	else if (fract->type != BUDDHA &&\
+			((key >= 18 && key <= 25) || key == 24 || key == 27))
 		set_color(key, fract);
 	draw(fract, fract->cl, fract->type);
 	if (key == 4)
 		print_menu(fract, fract->type);
 	else if (key == 48)
 		fracts_menu(fract);
-	if (key == 38 || key == 46)
+	if (key == 38 || key == 46 || key == 11)
 		set_fractal(key, fract);
 	if (key == 53)
 		exit_prog(fract);
@@ -75,6 +76,8 @@ int 				main(int argc, char **argv)
 		type = MANDEL;
 	else if (!ft_strcmp(argv[1], "Julia"))
 		type = JULIA;
+	if (!ft_strcmp(argv[1], "Buddhabrot"))
+		type = BUDDHA;
 	if(!type)
 		error(2);
 	start(type);

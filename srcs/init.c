@@ -45,9 +45,14 @@ static	t_pos		*init_position(int type)
 static void 		init_rest(t_fract *fract, int type)
 {
 	fract->iter_c = 0;
+	fract->pos = NULL;
+	fract->color = NULL;
+	if (type != BUDDHA)
+	{
+		fract->pos = init_position(type);
+		fract->color = init_color();
+	}
 	fract->mouse = init_mouse();
-	fract->pos = init_position(type);
-	fract->color = init_color();
 	fract->mlx_ptr = mlx_init();
 	fract->win_ptr = mlx_new_window(fract->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
 	fract->image = mlx_new_image(fract->mlx_ptr, WIDTH, HEIGHT);
@@ -64,6 +69,7 @@ t_fract				*init_fractol_struct(int type)
 	fractol = (t_fract *)malloc(sizeof(t_fract));
 	fractol->mandel = NULL;
 	fractol->julia = NULL;
+	fractol->buddha = NULL;
 	if (type == MANDEL)
 	{
 		fractol->mandel = init_mandelbrot();
@@ -73,6 +79,11 @@ t_fract				*init_fractol_struct(int type)
 	{
 		fractol->julia = init_julia();
 		fractol->type = JULIA;
+	}
+	else if (type == BUDDHA)
+	{
+		fractol->buddha = init_buddha();
+		fractol->type = BUDDHA;
 	}
 	init_rest(fractol, type);
 	return(fractol);

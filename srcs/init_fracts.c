@@ -24,3 +24,19 @@ t_julia 		*init_julia(void)
 	jul->k_im = (float)0.6;
 	return(jul);
 }
+
+t_buddha 		*init_buddha(void)
+{
+	t_buddha	*bud;
+
+	bud = (t_buddha *)malloc(sizeof(t_buddha));
+	bud->c_im = 0;
+	bud->c_re = 0;
+	bud->re_max = 2;
+	bud->re_min = -2;
+	bud->im_min = -2;
+	bud->im_max = bud->im_min + (bud->re_max - bud->re_min) * HEIGHT / WIDTH;
+	bud->min_iter = 50;
+	bud->max_iter = 10000;
+	return(bud);
+}

@@ -54,7 +54,6 @@ void			mandelbrot(t_fract *fract, t_cl *cl)
 	elems = cl->items->elems;
 	create_buffs(cl, elems, MANDEL);
 	exec_kernel(cl);
-	//exec_kernel_color(cl);
 	if (pthread_create(&thread, NULL, exec_kernel_color_multi, (void *)cl))
 	{
 		ft_putstr(THREAD_ERR);
@@ -67,6 +66,6 @@ void			mandelbrot(t_fract *fract, t_cl *cl)
 		i++;
 	}
 	mlx_do_sync(fract->mlx_ptr);
-	cl_clean_mem_objs(cl);
+	cl_clean_mem_objs(cl, fract->type);
 	free(color);
 }

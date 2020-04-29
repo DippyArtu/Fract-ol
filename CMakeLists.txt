@@ -8,6 +8,7 @@ include_directories(libft/includes)
 include_directories(libcl/includes)
 include_directories(minilibx_macos)
 include_directories(kernel_includes)
+include_directories(kernels)
 
 add_executable(fract_ol
         includes/fract_defines.h
@@ -16,10 +17,12 @@ add_executable(fract_ol
         kernels/mandel.cl
         kernels/color.cl
         kernels/julia.cl
+        kernels/buddha.cl
         kernel_includes/mandelbrot.h
         kernel_includes/color.h
         kernel_includes/cl_complex.h.cl
         kernel_includes/julia.h
+        kernel_includes/buddhabrot.h
         libcl/includes/cl_structs.h
         libcl/includes/cl_user_structs.h
         libcl/includes/libcl.h
@@ -33,6 +36,7 @@ add_executable(fract_ol
         libcl/srcs/clean_up.c
         libcl/srcs/mandelbrot_buffs.c
         libcl/srcs/julia_buffs.c
+        libcl/srcs/buddhabrot_buffs.c
         libcl/Makefile
         libft/includes/get_next_line.h
         libft/includes/libft.h
@@ -128,4 +132,7 @@ add_executable(fract_ol
         srcs/utils.c
         srcs/init_fracts.c
         srcs/calculate_julia.c
-        Makefile srcs/julia_transform.c srcs/clean_up.c)
+        srcs/julia_transform.c
+        srcs/clean_up.c
+        srcs/calculate_buddhabrot.c
+        Makefile)

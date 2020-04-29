@@ -31,6 +31,7 @@ typedef struct		s_fract
 	t_color			*color;
 	t_mandel		*mandel;
 	t_julia			*julia;
+	t_buddha		*buddha;
 	t_mouse			*mouse;
 	t_cl 			*cl;
 }					t_fract;
@@ -67,5 +68,8 @@ void 			set_fractal(int key, t_fract *fract);
 void 			fracts_menu(t_fract *fract);
 void 			fill_background(t_fract *fract);
 void 			fractol_clean_up(t_fract *fract);
+t_buddha 		*init_buddha(void);
+void 			draw_buddha(t_fract *fract, t_cl *cl);
+void 			buddhabrot(t_fract *fract, t_cl *cl);
 
 #endif

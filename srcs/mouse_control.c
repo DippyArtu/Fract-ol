@@ -15,11 +15,13 @@ int					mouse_press(int key, int x, int y, void *p)
 		julia_forward(fract);
 	else if (fract->type == JULIA && key == 4)
 		julia_backward(fract);
-	if (key == 1 && fract->type == JULIA)
+	if (fract->type == JULIA && key == 1)
 	{
 		fract->mouse->press = 1;
 		mlx_hook(fract->win_ptr, 6, 0, julia_mouse_move, fract);
 	}
+	else if (key == 1)
+		fract->mouse->press = 1;
 	draw(fract, fract->cl, fract->type);
 	return (0);
 }

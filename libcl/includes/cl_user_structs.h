@@ -19,6 +19,7 @@ typedef struct 		s_elements
 	char 		*include_flag;
 	t_mandel 	*mandel;
 	t_julia		*julia;
+	t_buddha	*buddha;
 	t_color		*color;
 }					t_elems;
 

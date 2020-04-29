@@ -46,4 +46,16 @@ typedef struct 		s_julia
 	t_color			*color;
 }					t_julia;
 
+typedef struct 		s_buddhabrot
+{
+	float 			c_re;
+	float  			c_im;
+	float 			re_min;
+	float 			re_max;
+	float 			im_min;
+	float 			im_max;
+	int 			min_iter;
+	int 			max_iter;
+}					t_buddha;
+
 #endif

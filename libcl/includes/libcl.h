@@ -28,7 +28,7 @@ void 		set_kernel_args(t_cl *cl, int type);
 void 		exec_kernel(t_cl *cl);
 int 		*read_buff(t_cl *cl, size_t NDRANGE);
 void 		cl_clean_up_all(t_cl *cl);
-void 		cl_clean_mem_objs(t_cl *cl);
+void 		cl_clean_mem_objs(t_cl *cl, int type);
 void 		cl_clean_structs(t_cl *cl, t_elems *elems);
 void 		print_log(t_cl *cl, int type);
 void 		*exec_kernel_color_multi(void *struc);
@@ -40,6 +40,8 @@ void 		mandel_color_args(t_cl *cl);
 void 		julia_buffs(t_cl *cl, t_elems *elems);
 void 		julia_args(t_cl *cl);
 void 		julia_color_args(t_cl *cl);
+void 		buddha_buffs(t_cl *cl, t_elems *elems);
+void 		buddha_args(t_cl *cl);
 
 
 #endif

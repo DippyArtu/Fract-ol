@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-void			julia(t_fract *fract, t_cl *cl)
+void 		buddhabrot(t_fract *fract, t_cl *cl)
 {
 	t_elems		*elems;
 	int 		*color;
@@ -8,9 +8,8 @@ void			julia(t_fract *fract, t_cl *cl)
 
 	i = 0;
 	elems = cl->items->elems;
-	create_buffs(cl, elems, JULIA);
+	create_buffs(cl, elems, BUDDHA);
 	exec_kernel(cl);
-	exec_kernel_color(cl);
 	color = read_buff(cl, elems->NDRANGE);
 	while (i < (int)elems->NDRANGE)
 	{

@@ -6,8 +6,13 @@ void 		fractol_clean_up(t_fract *fract)
 		free((void *)fract->mandel);
 	else if (fract->julia)
 		free((void *)fract->julia);
-	free((void *)fract->mouse);
-	free((void *)fract->pos);
-	free((void *)fract->color);
+	else if (fract->buddha)
+		free((void *)fract->buddha);
+	if (fract->mouse)
+		free((void *)fract->mouse);
+	if (fract->pos)
+		free((void *)fract->pos);
+	if (fract->color)
+		free((void *)fract->color);
 	free((void *)fract);
 }

@@ -16,6 +16,8 @@ void 		fracts_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "M");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Julia set:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "J");
+	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Buddhabrot set:");
+	mlx_string_put(mlx, win, x += 350, y, WHITE, "B");
 }
 
 static void 			mandel_menu(t_fract *fract)
@@ -74,10 +76,32 @@ static void 			julia_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "esc key");
 }
 
+static void 			buddha_menu(t_fract *fract)
+{
+	int		y;
+	int		x;
+	void	*mlx;
+	void	*win;
+
+	mlx = fract->mlx_ptr;
+	win = fract->win_ptr;
+	fill_background(fract);
+	mlx_string_put(mlx, win, x = (WIDTH / 2) - 150,\
+			y = (HEIGHT / 2) - 300, WHITE, "Press H to show this menu");
+	mlx_string_put(mlx, win, x += 15, y += 30, WHITE, "or any key to close it");
+	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE, "Press TAB for available fractals");
+	mlx_string_put(mlx, win, x -= 100, y += 70, WHITE, "Change iteration count:");
+	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse wheel scroll");
+	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Exit:");
+	mlx_string_put(mlx, win, x += 350, y, WHITE, "esc key");
+}
+
 void			print_menu(t_fract *fract, int type)
 {
 	if (type == MANDEL)
 		mandel_menu(fract);
 	else if (type == JULIA)
 		julia_menu(fract);
+	else if (type == BUDDHA)
+		buddha_menu(fract);
 }

@@ -10,6 +10,9 @@
 # define JULIA_KERNEL_FILE "./kernels/julia.cl"
 # define JULIA_KERNEL_FT "vector_julia"
 
+# define BUDDHA_KERNEL_FILE "./kernels/buddha.cl"
+# define BUDDHA_KERNEL_FT "vector_buddha"
+
 # define COLOR_KERNEL_FILE "./kernels/color.cl"
 # define COLOR_KERNEL_FT "vector_color"
 
@@ -18,7 +21,7 @@
 # define Z_FACTOR 1.03
 
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
-# define TYPES "Available types:\n Mandelbrot\n Julia\n"
+# define TYPES "Available types:\n Mandelbrot\n Julia\n Buddhabrot\n"
 # define INVALID "Invalid type given as an argument\n" TYPES
 # define THREAD_ERR "Thread execution error\n"
 
@@ -34,5 +37,6 @@
 
 # define MANDEL 1
 # define JULIA 2
+# define BUDDHA 3
 
 #endif
