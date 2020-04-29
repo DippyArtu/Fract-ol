@@ -22,9 +22,10 @@ SRC = 	fractol.c\
 		menu.c\
 		view_control.c\
 		mouse_control.c\
-		color_control.c\
+		utils.c\
 		init_fracts.c\
-		julia_transform.c
+		julia_transform.c\
+		clean_up.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 

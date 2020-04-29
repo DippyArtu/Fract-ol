@@ -61,5 +61,11 @@ void			julia(t_fract *fract, t_cl *cl);
 int 			julia_mouse_move(int x, int y, void *p);
 void 			julia_forward(t_fract *fract);
 void 			julia_backward(t_fract *fract);
+int				exit_prog(t_fract *fract);
+void 			start(int type);
+void 			set_fractal(int key, t_fract *fract);
+void 			fracts_menu(t_fract *fract);
+void 			fill_background(t_fract *fract);
+void 			fractol_clean_up(t_fract *fract);
 
 #endif

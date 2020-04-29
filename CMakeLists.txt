@@ -125,7 +125,7 @@ add_executable(fract_ol
         srcs/menu.c
         srcs/mouse_control.c
         srcs/view_control.c
-        srcs/color_control.c
+        srcs/utils.c
         srcs/init_fracts.c
         srcs/calculate_julia.c
-        Makefile srcs/julia_transform.c)
+        Makefile srcs/julia_transform.c srcs/clean_up.c)

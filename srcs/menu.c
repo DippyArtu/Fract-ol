@@ -1,15 +1,21 @@
 #include "fractol.h"
 
-static void 	fill_background(t_fract *fract)
+void 		fracts_menu(t_fract *fract)
 {
-	int 	*pixel;
-	int 	i;
+	int		y;
+	int		x;
+	void	*mlx;
+	void	*win;
 
-	i = 0;
-	pixel = (int *)(fract->data_addr);
-	while (i++ < HEIGHT * WIDTH)
-		pixel[i] = BLACK;
-	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
+	mlx = fract->mlx_ptr;
+	win = fract->win_ptr;
+	fill_background(fract);
+	mlx_string_put(mlx, win, x = (WIDTH / 2) - 150,\
+			y = (HEIGHT / 2) - 300, WHITE, "Available fractals:");
+	mlx_string_put(mlx, win, x -= 100, y += 100, WHITE, "Mandelbrot set:");
+	mlx_string_put(mlx, win, x += 350, y, WHITE, "M");
+	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Julia set:");
+	mlx_string_put(mlx, win, x += 350, y, WHITE, "J");
 }
 
 static void 			mandel_menu(t_fract *fract)
@@ -23,9 +29,10 @@ static void 			mandel_menu(t_fract *fract)
 	win = fract->win_ptr;
 	fill_background(fract);
 	mlx_string_put(mlx, win, x = (WIDTH / 2) - 150,\
-			y = (HEIGHT / 2) - 300, WHITE, "Press M to show this menu");
+			y = (HEIGHT / 2) - 300, WHITE, "Press H to show this menu");
 	mlx_string_put(mlx, win, x += 15, y += 30, WHITE, "or any key to close it");
-	mlx_string_put(mlx, win, x -= 115, y += 70, WHITE, "Zoom In or Out:");
+	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE, "Press TAB for available fractals");
+	mlx_string_put(mlx, win, x -= 100, y += 70, WHITE, "Zoom In or Out:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse wheel scroll");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Move:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "Arrow keys");
@@ -49,8 +56,9 @@ static void 			julia_menu(t_fract *fract)
 	win = fract->win_ptr;
 	fill_background(fract);
 	mlx_string_put(mlx, win, x = (WIDTH / 2) - 150,\
-			y = (HEIGHT / 2) - 300, WHITE, "Press M to show this menu");
+			y = (HEIGHT / 2) - 300, WHITE, "Press H to show this menu");
 	mlx_string_put(mlx, win, x += 15, y += 30, WHITE, "or any key to close it");
+	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE, "Press TAB for available fractals");
 	mlx_string_put(mlx, win, x -= 115, y += 70, WHITE, "Set transform:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse wheel scroll");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Generate new set:");

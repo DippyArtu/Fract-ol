@@ -1,12 +1,5 @@
 #include "fractol.h"
 
-static int			exit_prog(t_fract *fract)
-{
-	cl_clean_up_all(fract->cl);
-	cl_clean_structs(fract->cl, fract->cl->items->elems);
-	exit(0);
-}
-
 static int			key_press(int key, t_fract *fract)
 {
 
@@ -17,8 +10,12 @@ static int			key_press(int key, t_fract *fract)
 	else if ((key >= 18 && key <= 25) || key == 24 || key == 27)
 		set_color(key, fract);
 	draw(fract, fract->cl, fract->type);
-	if (key == 46)
+	if (key == 4)
 		print_menu(fract, fract->type);
+	else if (key == 48)
+		fracts_menu(fract);
+	if (key == 38 || key == 46)
+		set_fractal(key, fract);
 	if (key == 53)
 		exit_prog(fract);
 	return (0);
@@ -53,9 +50,22 @@ t_fract 			*prep_fractal(int type)
 	return (fractol);
 }
 
-int 				main(int argc, char **argv)
+void 				start(int type)
 {
 	t_fract		*fractol;
+
+	fractol = prep_fractal(type);
+	mlx_hook(fractol->win_ptr, 2, 0, key_press, fractol);
+	mlx_hook(fractol->win_ptr, 4, 0, mouse_press, fractol);
+	mlx_hook(fractol->win_ptr, 5, 0, mouse_release, fractol);
+	if (type == MANDEL)
+		mlx_hook(fractol->win_ptr, 6, 0, mandel_mouse_pos, fractol);
+	mlx_hook(fractol->win_ptr, 17, 1L << 17, exit_prog, fractol);
+	mlx_loop(fractol->mlx_ptr);
+}
+
+int 				main(int argc, char **argv)
+{
 	int 		type;
 
 	type = 0;
@@ -67,13 +77,6 @@ int 				main(int argc, char **argv)
 		type = JULIA;
 	if(!type)
 		error(2);
-	fractol = prep_fractal(type);
-	mlx_hook(fractol->win_ptr, 2, 0, key_press, fractol);
-	mlx_hook(fractol->win_ptr, 4, 0, mouse_press, fractol);
-	mlx_hook(fractol->win_ptr, 5, 0, mouse_release, fractol);
-	if (type == MANDEL)
-		mlx_hook(fractol->win_ptr, 6, 0, mandel_mouse_pos, fractol);
-	mlx_hook(fractol->win_ptr, 17, 1L << 17, exit_prog, fractol);
-	mlx_loop(fractol->mlx_ptr);
+	start(type);
 	return (0);
 }
