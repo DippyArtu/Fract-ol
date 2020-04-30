@@ -4,7 +4,8 @@ t_mandel		*init_mandelbrot(void)
 {
 	t_mandel	*man;
 
-	man = (t_mandel *)malloc(sizeof(t_mandel));
+	if (!(man = (t_mandel *)malloc(sizeof(t_mandel))))
+		error(3);
 	man->c_im = 0;
 	man->c_re = 0;
 	man->re_max = 2;
@@ -19,7 +20,8 @@ t_julia 		*init_julia(void)
 {
 	t_julia		*jul;
 
-	jul = (t_julia *)malloc(sizeof(t_julia));
+	if (!(jul = (t_julia *)malloc(sizeof(t_julia))))
+		error(3);
 	jul->k_re = (float)-0.4;
 	jul->k_im = (float)0.6;
 	return(jul);
@@ -29,7 +31,8 @@ t_buddha 		*init_buddha(void)
 {
 	t_buddha	*bud;
 
-	bud = (t_buddha *)malloc(sizeof(t_buddha));
+	if (!(bud = (t_buddha *)malloc(sizeof(t_buddha))))
+		error(3);
 	bud->c_im = 0;
 	bud->c_re = 0;
 	bud->re_max = 2;
@@ -37,6 +40,10 @@ t_buddha 		*init_buddha(void)
 	bud->im_min = -2;
 	bud->im_max = bud->im_min + (bud->re_max - bud->re_min) * HEIGHT / WIDTH;
 	bud->min_iter = 50;
-	bud->max_iter = 10000;
+	bud->max_iter = 10;
+	bud->red_iter = 50;
+	bud->green_iter = 50;
+	bud->blue_iter = 50;
+	bud->n_samples = WIDTH * HEIGHT;
 	return(bud);
 }

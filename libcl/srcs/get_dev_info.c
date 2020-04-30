@@ -21,3 +21,9 @@ void 		get_cl_info(t_cl *cl)
 		exit(1);
 	}
 }
+
+void 		malloc_fail(void)
+{
+	ft_putstr("Memory allocation failed");
+	exit(-1);
+}

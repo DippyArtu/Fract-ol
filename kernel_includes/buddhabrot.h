@@ -3,6 +3,8 @@
 
 # include "cl_complex.h.cl"
 
+typedef unsigned int t_heatmap;
+
 typedef struct 		s_buddhabrot
 {
 	float 			c_re;
@@ -13,6 +15,10 @@ typedef struct 		s_buddhabrot
 	float 			im_max;
 	int 			min_iter;
 	int 			max_iter;
+	int 			red_iter;
+	int				green_iter;
+	int				blue_iter;
+	int				n_samples;
 }					t_buddha;
 
 #endif

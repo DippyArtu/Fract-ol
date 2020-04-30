@@ -60,7 +60,7 @@ kernel void			vector_mandel(global int *iter,\
 	iter_c = 0;
 	c = position(x, y, &man_l, &pos_l, width, height);
 
-	while (cl_cmod(z) <= 100 && iter_c < (int)max_iter)
+	while (cl_cmodsqr(z) <= 100 && iter_c < (int)max_iter)
 	{
 		dc = cl_cmult(two, dc);
 		dc = cl_cmult(dc, z);
@@ -97,7 +97,7 @@ kernel void			vector_mandel(global int *iter,\
  */
 static float 		find_mu(int iter_c, cl_complex z)
 {
-	float mod = cl_cmod(z);
+	float mod = cl_cmodsqr(z);
 	float mu = (float)((iter_c - log2((float)log2((float)mod)) + 10));
 	float hi = smoothstep(-0.1, 0.0, sin((float)(0.5 * 6.2831)));
 	return ((float)mix(iter_c, mu, hi));

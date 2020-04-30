@@ -47,7 +47,7 @@ kernel void			vector_julia(global int *iter,\
 	iter_c = 0;
 	z = position(x, y, &jul_l, &pos_l, width, height);
 
-	while (cl_cmod(z) <= 100 && iter_c < (int)max_iter)
+	while (cl_cmodsqr(z) <= 100 && iter_c < (int)max_iter)
 	{
 		dk = cl_cmult(two, dk);
 		dk = cl_cmult(dk, z);
@@ -84,7 +84,7 @@ kernel void			vector_julia(global int *iter,\
  */
 static float 		find_mu(int iter_c, cl_complex z)
 {
-	float mod = cl_cmod(z);
+	float mod = cl_cmodsqr(z);
 	float mu = (float)((iter_c - log2((float)log2((float)mod)) + 10));
 	float hi = smoothstep(-0.1, 0.0, sin((float)(0.5 * 6.2831)));
 	return ((float)mix(iter_c, mu, hi));
@@ -107,9 +107,9 @@ static cl_complex	position(int x, int y, local t_julia *jul, local t_pos *pos, f
 {
 	cl_complex	k;
 	int 		l = (width < height) ? width : height;
-	float 		radius = 1.5;
+	float 		scale_fact = 1.5;
 
-	k.x = 2 * radius * (x - width / 2) / l + pos->shift_x;
-	k.y = 2 * radius * (y - height / 2) / l + pos->shift_y;
+	k.x = 2 * scale_fact * (x - width / 2) / l + pos->shift_x;
+	k.y = 2 * scale_fact * (y - height / 2) / l + pos->shift_y;
 	return(k);
 }

@@ -26,6 +26,7 @@
 TYPE			cl_creal(cl_complex n);
 TYPE			cl_cimag(cl_complex n);
 TYPE			cl_cmod(cl_complex n);
+TYPE			cl_cmodsqr(const cl_complex n);
 cl_complex		cl_cadd(cl_complex a, cl_complex b);
 cl_complex 		cl_cmult(cl_complex a, cl_complex b);
 cl_complex 		cl_cpow(cl_complex base , int exp);
@@ -53,6 +54,11 @@ TYPE			cl_cimag(const cl_complex n)
 TYPE			cl_cmod(const cl_complex n)
 {
 	return(sqrt((TYPE)((n.x * n.x) + (n.y * n.y))));
+}
+
+TYPE			cl_cmodsqr(const cl_complex n)
+{
+	return((TYPE)((n.x * n.x) + (n.y * n.y)));
 }
 
 /*

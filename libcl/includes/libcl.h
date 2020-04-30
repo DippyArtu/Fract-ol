@@ -42,6 +42,7 @@ void 		julia_args(t_cl *cl);
 void 		julia_color_args(t_cl *cl);
 void 		buddha_buffs(t_cl *cl, t_elems *elems);
 void 		buddha_args(t_cl *cl);
+void 		malloc_fail(void);
 
 
 #endif

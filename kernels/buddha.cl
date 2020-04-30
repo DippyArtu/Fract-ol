@@ -33,11 +33,11 @@ kernel void			vector_buddha(global int *color, global t_buddha *bud)
 	iter_c = 0;
 	c = position(x, y, &bud_l, width, height);
 
-	while (cl_cmod(z) <= 4 && iter_c < (int)max_iter)
+	while (cl_cmodsqr(z) <= 4 && iter_c < (int)max_iter)
 	{
-	z = cl_cmult(z, z);
-	z = cl_cadd(z, c);
-	iter_c++;
+		z = cl_cmult(z, z);
+		z = cl_cadd(z, c);
+		iter_c++;
 	}
 	if (iter_c < max_iter && iter_c > min_iter)
 	{
@@ -45,19 +45,6 @@ kernel void			vector_buddha(global int *color, global t_buddha *bud)
 	}
 }
 
-//-------------------------------------------------------------------
-/*
- *  Mandelbrot set lies within a circle of radius R.
- *
- *  The visible area then lies within a rectangle defined
- *  by RE_MIN, RE_MAX, IM_MIN, IM_MAX, where RE is a
- *  real part of a complex number (x coordinate) and IM
- *  is an imaginary part (y coordinate).
- *
- *  To map this area to the center of the screen, the
- *  "position" function is used, which outputs given
- *  coordinates relative to (0,0).
- */
 static cl_complex	position(int x, int y, local t_buddha *bud, float width, float height)
 {
 	float 		re_factor;
@@ -66,9 +53,9 @@ static cl_complex	position(int x, int y, local t_buddha *bud, float width, float
 
 	re_factor = (bud->re_max - bud->re_min) / (width - 1);
 	im_factor = (bud->im_max - bud->im_min) / (height - 1);
-	bud->c_re = bud->re_min + x * re_factor - 0.496;
-	bud->c_im = bud->im_max - y * im_factor + 0.496;
-	c.x = bud->c_re;
-	c.y = bud->c_im;
+	bud->c_re = bud->re_min + x * re_factor;
+	bud->c_im = (bud->im_max - y * im_factor + 1) * -1;
+	c.x = bud->c_im * 1.1;
+	c.y = bud->c_re * 1.1;
 	return(c);
 }

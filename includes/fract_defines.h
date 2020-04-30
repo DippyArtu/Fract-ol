@@ -24,6 +24,7 @@
 # define TYPES "Available types:\n Mandelbrot\n Julia\n Buddhabrot\n"
 # define INVALID "Invalid type given as an argument\n" TYPES
 # define THREAD_ERR "Thread execution error\n"
+# define MALLOC_ERR "Memory allocation has failed\n"
 
 //maximum  & initial amount of iterations
 # define K_MAX 100000

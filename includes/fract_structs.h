@@ -1,6 +1,8 @@
 #ifndef _FRACT_STRUCTS_H
 # define _FRACT_STRUCTS_H
 
+typedef unsigned int t_heatmap;
+
 typedef struct 		s_color
 {
 	float 			max_iter;
@@ -56,6 +58,10 @@ typedef struct 		s_buddhabrot
 	float 			im_max;
 	int 			min_iter;
 	int 			max_iter;
+	int 			red_iter;
+	int				green_iter;
+	int				blue_iter;
+	int				n_samples;
 }					t_buddha;
 
 #endif
