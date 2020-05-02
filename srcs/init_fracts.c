@@ -27,6 +27,7 @@ t_julia 		*init_julia(void)
 	return(jul);
 }
 
+//TODO look here
 t_buddha 		*init_buddha(void)
 {
 	t_buddha	*bud;
@@ -38,9 +39,10 @@ t_buddha 		*init_buddha(void)
 	bud->re_max = 2;
 	bud->re_min = -2;
 	bud->im_min = -2;
-	bud->im_max = bud->im_min + (bud->re_max - bud->re_min) * HEIGHT / WIDTH;
+//	bud->im_max = bud->im_min + (bud->re_max - bud->re_min) * HEIGHT / WIDTH;
+	bud->im_max = 2;
 	bud->min_iter = 50;
-	bud->max_iter = 10;
+	bud->max_iter = 100;
 	bud->red_iter = 50;
 	bud->green_iter = 50;
 	bud->blue_iter = 50;

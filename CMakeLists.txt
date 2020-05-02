@@ -135,4 +135,5 @@ add_executable(fract_ol
         srcs/julia_transform.c
         srcs/clean_up.c
         srcs/calculate_buddhabrot.c
+        includes/cl_complex.h
         Makefile)

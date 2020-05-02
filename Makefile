@@ -37,7 +37,8 @@ OBJS = $(addprefix $(OBJ_DIR), $(OBJ))
 INC_DIR = ./includes/
 INC = 	fractol.h\
 		fract_structs.h\
-		fract_defines.h
+		fract_defines.h\
+		cl_complex.h
 
 INCS = $(addprefix $(INC_DIR), $(INC))
 

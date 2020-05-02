@@ -1,7 +1,12 @@
 #include "fractol.h"
 
+//TODO return menu
 void			draw(t_fract *fract, t_cl *cl, int type)
 {
+//	type = 0;
+//	draw_buddha(fract, cl);
+//	mlx_clear_window(fract->mlx_ptr, fract->win_ptr);
+//	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
 	if (fract->menu_init)
 	{
 		if (type == MANDEL)
