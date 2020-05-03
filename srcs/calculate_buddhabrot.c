@@ -2,7 +2,7 @@
 
 #include "cl_complex.h"
 
-//TODO buddhabrot_points seg fault
+//TODO looks more like anti-buddhabrot, figure out how to return right orbits!
 //TODO watch out for cl_complex.h!
 
 static t_heatmap 	**alloc_heatmap(void)
@@ -78,7 +78,7 @@ static float 			get_rand(float min, float max)
 	return(min + rand_n * (max - min));
 }
 
-static cl_complex 	*buddhabrot_points(cl_complex c, int max_iter)
+static cl_complex 		*buddhabrot_points(cl_complex c, int max_iter)
 {
 	int 			iter_c;
 	cl_complex 		z = 0;
@@ -88,7 +88,7 @@ static cl_complex 	*buddhabrot_points(cl_complex c, int max_iter)
 		error(3);
 	cl_bzero(orbit, max_iter);
 	iter_c = 0;
-	while (iter_c < max_iter && cl_cmodsqr(z) < 2)
+	while (iter_c < max_iter && cl_cmodsqr(z) < 4)
 	{
 		z = cl_cmult(z, z);
 		z = cl_cadd(z, c);
@@ -98,8 +98,7 @@ static cl_complex 	*buddhabrot_points(cl_complex c, int max_iter)
 	}
 	if (iter_c == max_iter)
 	{
-		orbit[0].x = 0;
-		orbit[0].y = 0;
+		cl_bzero(orbit, max_iter);
 		return(orbit);
 	}
 	else

@@ -3,26 +3,26 @@
 //TODO return menu
 void			draw(t_fract *fract, t_cl *cl, int type)
 {
-//	type = 0;
-//	draw_buddha(fract, cl);
-//	mlx_clear_window(fract->mlx_ptr, fract->win_ptr);
-//	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
-	if (fract->menu_init)
-	{
-		if (type == MANDEL)
-			draw_mandel(fract, cl);
-		else if (type == JULIA)
-			draw_julia(fract, cl);
-		else if (type == BUDDHA)
-			draw_buddha(fract, cl);
-		mlx_clear_window(fract->mlx_ptr, fract->win_ptr);
-		mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
-	}
-	else
-	{
-		print_menu(fract, type);
-		fract->menu_init = 1;
-	}
+	type = 0;
+	draw_buddha(fract, cl);
+	mlx_clear_window(fract->mlx_ptr, fract->win_ptr);
+	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
+//	if (fract->menu_init)
+//	{
+//		if (type == MANDEL)
+//			draw_mandel(fract, cl);
+//		else if (type == JULIA)
+//			draw_julia(fract, cl);
+//		else if (type == BUDDHA)
+//			draw_buddha(fract, cl);
+//		mlx_clear_window(fract->mlx_ptr, fract->win_ptr);
+//		mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
+//	}
+//	else
+//	{
+//		print_menu(fract, type);
+//		fract->menu_init = 1;
+//	}
 }
 
 void 			draw_buddha(t_fract *fract, t_cl *cl)

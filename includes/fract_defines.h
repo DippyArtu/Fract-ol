@@ -1,8 +1,8 @@
 #ifndef _FRACT_DEFINES_H
 # define _FRACT_DEFINES_H
 
-# define WIDTH 1400
-# define HEIGHT 1000
+# define WIDTH 500
+# define HEIGHT 500
 
 # define MANDEL_KERNEL_FILE "./kernels/mandel.cl"
 # define MANDEL_KERNEL_FT "vector_mandel"
