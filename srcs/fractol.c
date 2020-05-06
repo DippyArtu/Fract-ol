@@ -76,8 +76,11 @@ int 				main(int argc, char **argv)
 		type = MANDEL;
 	else if (!ft_strcmp(argv[1], "Julia"))
 		type = JULIA;
-	if (!ft_strcmp(argv[1], "Buddhabrot"))
-		type = BUDDHA;
+	else if (!ft_strcmp(argv[1], "Buddhabrot"))
+	{
+		printf("hold ur horses we're not there yet cowboy\n");
+		exit(0);
+	}
 	if(!type)
 		error(2);
 	start(type);

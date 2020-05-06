@@ -13,6 +13,13 @@ void 		julia_buffs(t_cl *cl, t_elems *elems)
 				(WIDTH * HEIGHT) * sizeof(cl_float2), NULL, &cl->dev_info->ret);
 	its->dc_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
 				(WIDTH * HEIGHT) * sizeof(cl_float2), NULL, &cl->dev_info->ret);
+	its->iter_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
+			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
+	its->mu_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
+			(WIDTH * HEIGHT) * sizeof(cl_float), NULL, &cl->dev_info->ret);
+	its->color_struct_mem_obj = clCreateBuffer(cl->context->context,\
+				CL_MEM_COPY_HOST_PTR, sizeof(t_color),\
+				elems->color, &cl->dev_info->ret);
 }
 
 void 		julia_args(t_cl *cl)

@@ -55,10 +55,7 @@ void			mandelbrot(t_fract *fract, t_cl *cl)
 	create_buffs(cl, elems, MANDEL);
 	exec_kernel(cl);
 	if (pthread_create(&thread, NULL, exec_kernel_color_multi, (void *)cl))
-	{
-		ft_putstr(THREAD_ERR);
-		exit(-1);
-	}
+		error(4);
 	color = read_buff(cl, elems->NDRANGE);
 	while (i < (int)elems->NDRANGE)
 	{

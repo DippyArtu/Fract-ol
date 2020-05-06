@@ -86,8 +86,8 @@ static void 			buddha_menu(t_fract *fract)
 	mlx = fract->mlx_ptr;
 	win = fract->win_ptr;
 	fill_background(fract);
-	mlx_string_put(mlx, win, x = (WIDTH / 2) - 150,\
-			y = (HEIGHT / 2) - 300, WHITE, "Press H to show this menu");
+	mlx_string_put(mlx, win, x = (B_WIDTH / 2) - 150,\
+			y = (B_HEIGHT / 2) - 300, WHITE, "Press H to show this menu");
 	mlx_string_put(mlx, win, x += 15, y += 30, WHITE, "or any key to close it");
 	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE, "Press TAB for available fractals");
 	mlx_string_put(mlx, win, x -= 100, y += 70, WHITE, "Change iteration count:");

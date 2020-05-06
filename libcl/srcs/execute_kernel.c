@@ -1,4 +1,7 @@
 #include "libcl.h"
+#include <stdio.h>
+
+//TODO 6 functions here
 
 void 		exec_kernel(t_cl *cl)
 {
@@ -10,6 +13,7 @@ void 		exec_kernel(t_cl *cl)
 			cl->items->elems->local_ws, 0, NULL, NULL);
 	if (cl->dev_info->ret < 0)
 	{
+		printf("%i\n", cl->dev_info->ret);
 		ft_putstr(EXEC_ERR);
 		exit(1);
 	}
@@ -56,6 +60,38 @@ int 		*read_buff(t_cl *cl, size_t NDRANGE)
 	cl->dev_info->ret = clEnqueueReadBuffer(cl->context->coms_queue,\
 			cl->items->color_mem_obj,\
 			CL_TRUE, 0, NDRANGE * sizeof(cl_int),\
+			res, 0, NULL, NULL);
+	if (cl->dev_info->ret < 0)
+	{
+		ft_putstr(BUFF_READ_ERR);
+		exit(1);
+	}
+	return (res);
+}
+
+void 		exec_kernel_buddha(t_cl *cl, size_t range)
+{
+	t_cl_context		*cntx;
+
+	cntx = cl->context;
+	cl->dev_info->ret = clEnqueueNDRangeKernel(cntx->coms_queue,\
+			cntx->fract_kernel, 1, NULL, &range,\
+			NULL, 0, NULL, NULL);
+	if (cl->dev_info->ret < 0)
+	{
+		ft_putstr(EXEC_ERR);
+		exit(1);
+	}
+}
+
+float 		*read_buff_buddha(t_cl *cl, size_t NDRANGE)
+{
+	float 		*res;
+
+	res = (float *)malloc(sizeof(float) * NDRANGE);
+	cl->dev_info->ret = clEnqueueReadBuffer(cl->context->coms_queue,\
+			cl->items->res_mem_obj,\
+			CL_TRUE, 0, NDRANGE * sizeof(float),\
 			res, 0, NULL, NULL);
 	if (cl->dev_info->ret < 0)
 	{

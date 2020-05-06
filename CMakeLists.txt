@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(includes)
 include_directories(libft/includes)
 include_directories(libcl/includes)
+include_directories(libcomplex/includes)
 include_directories(minilibx_macos)
 include_directories(kernel_includes)
 include_directories(kernels)
@@ -23,6 +24,9 @@ add_executable(fract_ol
         kernel_includes/cl_complex.h.cl
         kernel_includes/julia.h
         kernel_includes/buddhabrot.h
+        libcomplex/srcs/part_one.c
+        libcomplex/srcs/part_two.c
+        libcomplex/srcs/part_three.c
         libcl/includes/cl_structs.h
         libcl/includes/cl_user_structs.h
         libcl/includes/libcl.h
@@ -135,5 +139,5 @@ add_executable(fract_ol
         srcs/julia_transform.c
         srcs/clean_up.c
         srcs/calculate_buddhabrot.c
-        includes/cl_complex.h
+        srcs/buddhabrot_tools.c
         Makefile)

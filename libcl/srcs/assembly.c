@@ -47,14 +47,13 @@ void 		create_program(t_cl *cl)
 void 		build_program(t_cl *cl, char *include)
 {
 	t_cl_context		*cntx;
-	cl_int 				err;
 
 	cntx = cl->context;
-	err = cl->dev_info->ret = clBuildProgram(cntx->program_fract, 1,\
+	cl->dev_info->ret = clBuildProgram(cntx->program_fract, 1,\
 			&cl->dev_info->device_id, include, NULL, NULL);
 	if (cl->dev_info->ret < 0)
 		print_log(cl, 1);
-	err = cl->dev_info->ret = clBuildProgram(cntx->program_color, 1,\
+	cl->dev_info->ret = clBuildProgram(cntx->program_color, 1,\
 			&cl->dev_info->device_id, include, NULL, NULL);
 	if (cl->dev_info->ret < 0)
 		print_log(cl, 2);

@@ -20,6 +20,9 @@ INC = 		libcl.h\
 			cl_user_structs.h
 INC_DIR = ./includes/
 
+COMPLEX_INC = libcomplex.h
+COMPLEX_INC_DIR = ../libcomplex/includes/
+
 LIB_INC = libft.h
 LIBFT_INC_DIR = ../libft/includes/
 
@@ -27,12 +30,13 @@ FRACT_DEF_INC = 	fract_defines.h\
 					fract_structs.h
 
 FRACT_DEF_INC_DIR = ../includes/
-FRACT_DEF_INCS = $(addprefix $(FRACT_DEF_INC_DIR), $(FRACT_DEF_INC))
 
+FRACT_DEF_INCS = $(addprefix $(FRACT_DEF_INC_DIR), $(FRACT_DEF_INC))
 LIB_INCS = $(addprefix $(LIBFT_INC_DIR), $(LIB_INC))
+COMPLEX_INCS = $(addprefix $(COMPLEX_INC_DIR), $(COMPLEX_INC))
 INCS = $(addprefix $(INC_DIR), $(INC))
 
-FLAGS = -g -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_INC_DIR) -I$(FRACT_DEF_INC_DIR)
+FLAGS = -g -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_INC_DIR) -I$(FRACT_DEF_INC_DIR) -I$(COMPLEX_INC_DIR)
 
 all: $(NAME)
 
@@ -40,7 +44,7 @@ $(NAME): $(OBJS)
 		@ar rc $(NAME) $(OBJS)
 		ranlib $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) $(FRACT_DEF_INCS)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCS) $(FRACT_DEF_INCS) $(COMPLEX_INCS)
 		clang $(FLAGS) -o $@ -c $<
 
 clean:

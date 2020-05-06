@@ -39,7 +39,6 @@ typedef struct		s_cl
 	t_cl_context		*context;
 	t_cl_dev_info		*dev_info;
 	t_cl_kernel_src		*kernel_src;
-	//Include links to the working structures below
 	t_cl_items			*items;
 }					t_cl;
 

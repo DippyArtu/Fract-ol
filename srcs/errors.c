@@ -11,5 +11,7 @@ void		error(int type)
 		ft_putstr(INVALID);
 	else if (type == 3)
 		ft_putstr(MALLOC_ERR);
-	exit(1);
+	else if (type == 4)
+		ft_putstr(THREAD_ERR);
+	exit(-1);
 }

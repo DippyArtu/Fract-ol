@@ -40,25 +40,13 @@ void 		create_context_coms_queue(t_cl *cl)
 	}
 }
 
-void 		general_buffs(t_cl *cl, t_elems *elems)
+void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 {
 	t_cl_items			*its;
 
 	its = cl->items;
-	its->iter_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
-			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
-	its->mu_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
-			(WIDTH * HEIGHT) * sizeof(cl_float), NULL, &cl->dev_info->ret);
 	its->color_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
-			(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
-	its->color_struct_mem_obj = clCreateBuffer(cl->context->context,\
-			CL_MEM_COPY_HOST_PTR, sizeof(t_color),\
-			elems->color, &cl->dev_info->ret);
-}
-
-void 		create_buffs(t_cl *cl, t_elems *elems, int type)
-{
-	general_buffs(cl, elems);
+						(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
 	if (type == MANDEL)
 		mandel_buffs(cl, elems);
 	else if (type == JULIA)

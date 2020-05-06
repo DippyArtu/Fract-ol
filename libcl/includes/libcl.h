@@ -10,6 +10,10 @@
 # include "cl_structs.h"
 # include "cl_errors.h"
 # include "fract_defines.h"
+# include "libcomplex.h"
+
+//TODO remove stdio
+#include <stdio.h>
 
 # define MAX_SOURCE_SIZE (0x100000)
 
@@ -33,7 +37,6 @@ void 		cl_clean_structs(t_cl *cl, t_elems *elems);
 void 		print_log(t_cl *cl, int type);
 void 		*exec_kernel_color_multi(void *struc);
 void 		exec_kernel_color(t_cl *cl);
-void 		general_buffs(t_cl *cl, t_elems *elems);
 void 		mandel_buffs(t_cl *cl, t_elems *elems);
 void 		mandel_args(t_cl *cl);
 void 		mandel_color_args(t_cl *cl);
@@ -43,6 +46,8 @@ void 		julia_color_args(t_cl *cl);
 void 		buddha_buffs(t_cl *cl, t_elems *elems);
 void 		buddha_args(t_cl *cl);
 void 		malloc_fail(void);
+void 		exec_kernel_buddha(t_cl *cl, size_t range);
+float 		*read_buff_buddha(t_cl *cl, size_t NDRANGE);
 
 
 #endif

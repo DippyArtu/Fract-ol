@@ -50,15 +50,20 @@ static void 		init_rest(t_fract *fract, int type)
 	fract->iter_c = 0;
 	fract->pos = NULL;
 	fract->color = NULL;
+	fract->mouse = init_mouse();
+	fract->mlx_ptr = mlx_init();
 	if (type != BUDDHA)
 	{
 		fract->pos = init_position(type);
 		fract->color = init_color();
+		fract->win_ptr = mlx_new_window(fract->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
+		fract->image = mlx_new_image(fract->mlx_ptr, WIDTH, HEIGHT);
 	}
-	fract->mouse = init_mouse();
-	fract->mlx_ptr = mlx_init();
-	fract->win_ptr = mlx_new_window(fract->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
-	fract->image = mlx_new_image(fract->mlx_ptr, WIDTH, HEIGHT);
+	else if (type == BUDDHA)
+	{
+		fract->win_ptr = mlx_new_window(fract->mlx_ptr, B_WIDTH, B_HEIGHT, "Fract'ol");
+		fract->image = mlx_new_image(fract->mlx_ptr, B_WIDTH, B_HEIGHT);
+	}
 	fract->data_addr = mlx_get_data_addr(fract->image, &fract->bpp, \
 			&fract->size_line, &fract->endian);
 	fract->cl_init = 0;
@@ -86,7 +91,7 @@ t_fract				*init_fractol_struct(int type)
 	}
 	else if (type == BUDDHA)
 	{
-		fractol->buddha = init_buddha();
+		fractol->buddha = init_buddha(fractol);
 		fractol->type = BUDDHA;
 	}
 	init_rest(fractol, type);

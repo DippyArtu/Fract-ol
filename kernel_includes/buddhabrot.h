@@ -3,22 +3,24 @@
 
 # include "cl_complex.h.cl"
 
-typedef unsigned int t_heatmap;
+typedef unsigned int 	t_heatmap;
 
-typedef struct 		s_buddhabrot
+typedef struct 			s_buddhabrot
 {
-	float 			c_re;
-	float  			c_im;
-	float 			re_min;
-	float 			re_max;
-	float 			im_min;
-	float 			im_max;
-	int 			min_iter;
-	int 			max_iter;
-	int 			red_iter;
-	int				green_iter;
-	int				blue_iter;
-	int				n_samples;
-}					t_buddha;
+	float2	 			**orbits;
+	t_heatmap			**res;
+	t_heatmap 			max_heatmap_val;
+	float2	 			*samples;
+	int					width;
+	int 				height;
+	float 				c_re;
+	float  				c_im;
+	float 				re_min;
+	float 				re_max;
+	float 				im_min;
+	float 				im_max;
+	int 				max_iter;
+	int					n_samples;
+}						t_buddha;
 
 #endif

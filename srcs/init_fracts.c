@@ -28,7 +28,8 @@ t_julia 		*init_julia(void)
 }
 
 //TODO look here
-t_buddha 		*init_buddha(void)
+//TODO gen samples in multithread
+t_buddha 		*init_buddha(t_fract *fract)
 {
 	t_buddha	*bud;
 
@@ -39,13 +40,13 @@ t_buddha 		*init_buddha(void)
 	bud->re_max = 2;
 	bud->re_min = -2;
 	bud->im_min = -2;
-	//bud->im_max = bud->im_min + (bud->re_max - bud->re_min) * HEIGHT / WIDTH;
+	//bud->im_max = bud->im_min + (bud->re_max - bud->re_min) * B_HEIGHT / B_WIDTH;
 	bud->im_max = 2;
-	bud->min_iter = 50;
+	bud->n_samples = 10000;
+	init_b_samples(fract, bud);
+	bud->max_heatmap_val = 0;
+	bud->width = B_WIDTH;
+	bud->height = B_HEIGHT;
 	bud->max_iter = 50;
-	bud->red_iter = 50;
-	bud->green_iter = 50;
-	bud->blue_iter = 50;
-	bud->n_samples = WIDTH * HEIGHT;
 	return(bud);
 }

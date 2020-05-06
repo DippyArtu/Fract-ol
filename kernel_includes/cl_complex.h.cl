@@ -36,6 +36,7 @@ cl_complex 		cl_csqrt(cl_complex n);
 cl_complex 		cl_cexp(cl_complex n);
 cl_complex 		cl_clog(cl_complex z);
 TYPE			cl_cdot(cl_complex a, cl_complex b);
+void			cl_bzero(cl_complex *s, unsigned int n);
 
 
 TYPE			cl_creal(const cl_complex n)
@@ -187,6 +188,16 @@ cl_complex 		cl_clog(const cl_complex z)
 	res.x = log((TYPE)cl_cmod(z));
 	res.y = cl_carg(z);
 	return(res);
+}
+
+void			cl_bzero(cl_complex *s, unsigned int n)
+{
+	while (n--)
+	{
+		s->x = 0;
+		s->y = 0;
+		s++;
+	}
 }
 
 #endif
