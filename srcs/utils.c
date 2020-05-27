@@ -2,8 +2,11 @@
 
 int			exit_prog(t_fract *fract)
 {
-	cl_clean_up_all(fract->cl);
-	cl_clean_structs(fract->cl, fract->cl->items->elems);
+	if (fract->type != BUDDHA)
+	{
+		cl_clean_up_all(fract->cl);
+		cl_clean_structs(fract->cl, fract->cl->items->elems);
+	}
 	fractol_clean_up(fract);
 	exit(0);
 }

@@ -51,8 +51,6 @@ void 		create_buffs(t_cl *cl, t_elems *elems, int type)
 		mandel_buffs(cl, elems);
 	else if (type == JULIA)
 		julia_buffs(cl, elems);
-	else if (type == BUDDHA)
-		buddha_buffs(cl, elems);
 	if (cl->dev_info->ret < 0)
 	{
 		ft_putstr(BUFF_CREAT_ERR);

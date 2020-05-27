@@ -68,13 +68,8 @@ void 			set_fractal(int key, t_fract *fract);
 void 			fracts_menu(t_fract *fract);
 void 			fill_background(t_fract *fract);
 void 			fractol_clean_up(t_fract *fract);
-t_buddha 		*init_buddha(t_fract *fract);
-void 			draw_buddha(t_fract *fract, t_cl *cl);
-void 			buddhabrot(t_fract *fract, t_cl *cl);
-void 			*gen_samples(void *struc);
-void 			init_b_samples(t_fract *fract, t_buddha *bud);
-void 			join_threads(t_fract *fract);
-int				test_samples(t_fract *fract);
+t_buddha 		*init_buddha(void);
+void 			buddhabrot(t_fract *fract);
 float 			get_rand(float min, float max);
 
 #endif

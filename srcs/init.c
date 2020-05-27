@@ -76,6 +76,7 @@ t_fract				*init_fractol_struct(int type)
 
 	if (!(fractol = (t_fract *)malloc(sizeof(t_fract))))
 		error(3);
+	fractol->cl = NULL;
 	fractol->mandel = NULL;
 	fractol->julia = NULL;
 	fractol->buddha = NULL;
@@ -91,7 +92,7 @@ t_fract				*init_fractol_struct(int type)
 	}
 	else if (type == BUDDHA)
 	{
-		fractol->buddha = init_buddha(fractol);
+		fractol->buddha = init_buddha();
 		fractol->type = BUDDHA;
 	}
 	init_rest(fractol, type);

@@ -42,34 +42,6 @@ static float		gradient(float start, float end, float iter)
 	return (iter * start + iter * end);
 }
 
-static void 		mode_5(int iter, global int *color, int i, cl_complex z, cl_complex dc, float ang)
-{
-	float			reflection = 0;
-	unsigned int	b;
-
-	float			h = (float)1.3; // height factor of the incoming light
-	float			angle = (float)(ang / 360.0); // incoming direction of light
-	cl_complex		v = 0; // = exp(1j*angle*2*pi/360)
-	cl_complex		u = 0;
-	cl_complex		u_tmp = 0;
-
-	v.y = (2 * angle * Pi_cl);
-	v = cl_cexp(v);
-
-	if (iter != -1) // outside of M set
-	{
-		u = cl_cdiv(z, dc);
-		u_tmp.x = cl_cmod(u);
-		u = cl_cdiv(u, u_tmp);
-		reflection = cl_cdot(u, v);
-		reflection = reflection + h;
-		reflection = (float)(reflection / (1.0 + h)); // rescale so that t does not get bigger than 1
-	}
-	b = (int)(255 * reflection);
-	color[i] = (reflection <= 0) ? ((12 << 16) | (5 << 8) | 555) :\
-			((b << 16) | (b << 8) | b);
-}
-
 static void 		mode_1(int iter, global int *color, int i, float max_iter)
 {
 	int				r;
@@ -138,4 +110,32 @@ static void 		mode_4(int iter, global int *color, int i, float mu)
 		b = (int)(255 * ((1 + cos((float)(2 * Pi_cl * mu))) / 2));
 	}
 	color[i] = (iter != -1) ? ((r << 16) | (g << 8) | b) : 0;
+}
+
+static void 		mode_5(int iter, global int *color, int i, cl_complex z, cl_complex dc, float ang)
+{
+	float			reflection = 0;
+	unsigned int	b;
+
+	float			h = (float)1.3; // height factor of the incoming light
+	float			angle = (float)(ang / 360.0); // incoming direction of light
+	cl_complex		v = 0; // = exp(1j*angle*2*pi/360)
+	cl_complex		u = 0;
+	cl_complex		u_tmp = 0;
+
+	v.y = (2 * angle * Pi_cl);
+	v = cl_cexp(v);
+
+	if (iter != -1) // outside of M set
+	{
+		u = cl_cdiv(z, dc);
+		u_tmp.x = cl_cmod(u);
+		u = cl_cdiv(u, u_tmp);
+		reflection = cl_cdot(u, v);
+		reflection = reflection + h;
+		reflection = (float)(reflection / (1.0 + h)); // rescale so that t does not get bigger than 1
+	}
+	b = (int)(255 * reflection);
+	color[i] = (reflection <= 0) ? ((12 << 16) | (5 << 8) | 555) :\
+			((b << 16) | (b << 8) | b);
 }

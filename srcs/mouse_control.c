@@ -22,7 +22,8 @@ int					mouse_press(int key, int x, int y, void *p)
 	}
 	else if (key == 1)
 		fract->mouse->press = 1;
-	draw(fract, fract->cl, fract->type);
+	if (fract->type != BUDDHA)
+		draw(fract, fract->cl, fract->type);
 	return (0);
 }
 

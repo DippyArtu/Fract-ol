@@ -1,22 +1,26 @@
 #include "fractol.h"
 
+//TODO include -O3 optimization flag to makefiles
+
 static int			key_press(int key, t_fract *fract)
 {
 
 	//printf("%d\n", key);
 
-	if (fract->type != BUDDHA && key >= 123 && key <= 126)
-		shift_control(key, fract);
-	else if (fract->type != BUDDHA &&\
-			((key >= 18 && key <= 25) || key == 24 || key == 27))
-		set_color(key, fract);
-	draw(fract, fract->cl, fract->type);
-	if (key == 4)
-		print_menu(fract, fract->type);
-	else if (key == 48)
-		fracts_menu(fract);
-	if (key == 38 || key == 46 || key == 11)
-		set_fractal(key, fract);
+	if (fract->type != BUDDHA)
+	{
+		if (key >= 123 && key <= 126)
+			shift_control(key, fract);
+		else if ((key >= 18 && key <= 25) || key == 24 || key == 27)
+			set_color(key, fract);
+		draw(fract, fract->cl, fract->type);
+		if (key == 4)
+			print_menu(fract, fract->type);
+		else if (key == 48)
+			fracts_menu(fract);
+		if (key == 38 || key == 46 || key == 11)
+			set_fractal(key, fract);
+	}
 	if (key == 53)
 		exit_prog(fract);
 	return (0);
@@ -41,12 +45,16 @@ t_fract 			*prep_fractal(int type)
 	t_fract		*fractol;
 	t_cl		*cl;
 
+	cl = NULL;
 	fractol = init_fractol_struct(type);
 	post_setup(fractol, type);
-	cl = init_opencl_structs();
-	fractol->cl = cl;
-	get_cl_info(cl);
-	create_context_coms_queue(cl);
+	if (type != BUDDHA)
+	{
+		cl = init_opencl_structs();
+		fractol->cl = cl;
+		get_cl_info(cl);
+		create_context_coms_queue(cl);
+	}
 	draw(fractol, cl, type);
 	return (fractol);
 }
@@ -77,10 +85,7 @@ int 				main(int argc, char **argv)
 	else if (!ft_strcmp(argv[1], "Julia"))
 		type = JULIA;
 	else if (!ft_strcmp(argv[1], "Buddhabrot"))
-	{
-		printf("hold ur horses we're not there yet cowboy\n");
-		exit(0);
-	}
+		type = BUDDHA;
 	if(!type)
 		error(2);
 	start(type);

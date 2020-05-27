@@ -1,7 +1,6 @@
 #ifndef _LIBCL_H_
 # define _LIBCL_H_
 
-
 # ifndef LIBFT_H
 #  include "libft.h"
 # endif
@@ -32,10 +31,9 @@ void 		set_kernel_args(t_cl *cl, int type);
 void 		exec_kernel(t_cl *cl);
 int 		*read_buff(t_cl *cl, size_t NDRANGE);
 void 		cl_clean_up_all(t_cl *cl);
-void 		cl_clean_mem_objs(t_cl *cl, int type);
+void 		cl_clean_mem_objs(t_cl *cl);
 void 		cl_clean_structs(t_cl *cl, t_elems *elems);
 void 		print_log(t_cl *cl, int type);
-void 		*exec_kernel_color_multi(void *struc);
 void 		exec_kernel_color(t_cl *cl);
 void 		mandel_buffs(t_cl *cl, t_elems *elems);
 void 		mandel_args(t_cl *cl);
@@ -43,11 +41,7 @@ void 		mandel_color_args(t_cl *cl);
 void 		julia_buffs(t_cl *cl, t_elems *elems);
 void 		julia_args(t_cl *cl);
 void 		julia_color_args(t_cl *cl);
-void 		buddha_buffs(t_cl *cl, t_elems *elems);
-void 		buddha_args(t_cl *cl);
 void 		malloc_fail(void);
-void 		exec_kernel_buddha(t_cl *cl, size_t range);
-float 		*read_buff_buddha(t_cl *cl, size_t NDRANGE);
 
 
 #endif

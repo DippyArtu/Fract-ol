@@ -14,7 +14,6 @@ typedef struct 		s_elements
 	char 			*include_flag;
 	t_mandel 		*mandel;
 	t_julia			*julia;
-	t_buddha		*buddha;
 	t_color			*color;
 }					t_elems;
 
@@ -29,10 +28,6 @@ typedef struct		s_cl_items
 	cl_mem 			fract_mem_obj;
 	cl_mem 			z_mem_obj;
 	cl_mem			dc_mem_obj;
-	cl_mem 			heatmap_mem_obj;
-	cl_mem 			samples_mem_obj;
-	cl_mem 			res_mem_obj;
-	cl_mem 			orbits_mem_obj;
 }					t_cl_items;
 
 #endif

@@ -30,7 +30,7 @@
 
 //maximum  & initial amount of iterations
 # define K_MAX 100000
-# define K_START 500
+# define K_START 300
 
 # define BLACK 0x000000
 # define BLACKISH 0x151515

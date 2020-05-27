@@ -1,6 +1,6 @@
 #include "libcl.h"
 
-void 		cl_clean_mem_objs(t_cl *cl, int type)
+void 		cl_clean_mem_objs(t_cl *cl)
 {
 	t_cl_items			*its;
 	t_cl_dev_info		*di;
@@ -9,15 +9,12 @@ void 		cl_clean_mem_objs(t_cl *cl, int type)
 	di = cl->dev_info;
 	di->ret = clReleaseMemObject(its->fract_mem_obj);
 	di->ret = clReleaseMemObject(its->color_mem_obj);
-	if (type != BUDDHA)
-	{
-		di->ret = clReleaseMemObject(its->iter_mem_obj);
-		di->ret = clReleaseMemObject(its->color_struct_mem_obj);
-		di->ret = clReleaseMemObject(its->pos_mem_obj);
-		di->ret = clReleaseMemObject(its->mu_mem_obj);
-		di->ret = clReleaseMemObject(its->z_mem_obj);
-		di->ret = clReleaseMemObject(its->dc_mem_obj);
-	}
+	di->ret = clReleaseMemObject(its->iter_mem_obj);
+	di->ret = clReleaseMemObject(its->color_struct_mem_obj);
+	di->ret = clReleaseMemObject(its->pos_mem_obj);
+	di->ret = clReleaseMemObject(its->mu_mem_obj);
+	di->ret = clReleaseMemObject(its->z_mem_obj);
+	di->ret = clReleaseMemObject(its->dc_mem_obj);
 }
 
 void 		cl_clean_structs(t_cl *cl, t_elems *elems)

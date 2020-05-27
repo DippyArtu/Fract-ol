@@ -18,6 +18,6 @@ void			julia(t_fract *fract, t_cl *cl)
 		i++;
 	}
 	mlx_do_sync(fract->mlx_ptr);
-	cl_clean_mem_objs(cl, fract->type);
+	cl_clean_mem_objs(cl);
 	free(color);
 }

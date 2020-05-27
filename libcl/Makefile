@@ -9,7 +9,6 @@ SRC =		assembly.c\
 			init_cl.c\
 			mandelbrot_buffs.c\
 			julia_buffs.c\
-			buddhabrot_buffs.c
 
 OBJ = $(SRC:.c=.o)
 OBJ_DIR = ./obj/
