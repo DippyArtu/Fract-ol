@@ -45,6 +45,8 @@ t_buddha 		*init_buddha(void)
 
 	if (!(bud = (t_buddha *)malloc(sizeof(t_buddha))))
 		error(3);
+	bud->map = NULL;
+	bud->max_heatmap_val = 0;
 	bud->c_im = 0;
 	bud->c_re = 0;
 	bud->re_max = 2;
@@ -52,7 +54,6 @@ t_buddha 		*init_buddha(void)
 	bud->im_min = -2;
 	bud->im_max = 2;
 	bud->n_samples = B_HEIGHT * B_WIDTH;
-	bud->max_heatmap_val = 0;
 	bud->width = B_WIDTH;
 	bud->height = B_HEIGHT;
 	bud->max_iter = 50;
