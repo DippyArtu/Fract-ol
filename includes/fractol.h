@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/28 15:31:47 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/28 15:35:12 by Artur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef _FRACTOL_H
 # define _FRACTOL_H
 
@@ -71,5 +83,10 @@ void 			fractol_clean_up(t_fract *fract);
 t_buddha 		*init_buddha(void);
 void 			buddhabrot(t_fract *fract);
 float 			get_rand(float min, float max);
+t_heatmap		**alloc_heatmap(void);
+void			free_heatmap(t_heatmap **map);
+int				row_from_real(float real, t_buddha *bud);
+int 			col_from_imag(float imag, t_buddha *bud);
+int				color_from_heatmap(t_heatmap val, t_heatmap max_val, float max_color);
 
 #endif

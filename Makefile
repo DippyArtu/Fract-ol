@@ -27,7 +27,8 @@ SRC = 	fractol.c\
 		julia_transform.c\
 		clean_up.c\
 		calculate_buddhabrot.c\
-		buddhabrot_tools.c
+		buddhabrot_tools.c\
+		buddhabrot_tools_p2.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 

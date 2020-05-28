@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mandel.cl                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/28 15:45:42 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/28 15:45:42 by Artur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mandelbrot.h"
 
 static cl_complex	position(int x, int y, local t_mandel *man, local t_pos *pos, float width, float height);

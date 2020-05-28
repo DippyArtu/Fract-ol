@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_julia.c                                  :+:      :+:    :+:   */
+/*   buddhabrot_tools_p2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/28 15:48:31 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:48:31 by Artur            ###   ########.fr       */
+/*   Created: 2020/05/28 15:36:50 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/28 15:36:50 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void			julia(t_fract *fract, t_cl *cl)
+int			color_from_heatmap(t_heatmap val, t_heatmap max_val, float max_color)
 {
-	t_elems		*elems;
-	int 		*color;
-	int 		i;
+	float	scale;
 
-	i = 0;
-	elems = cl->items->elems;
-	create_buffs(cl, elems, JULIA);
-	exec_kernel(cl);
-	exec_kernel_color(cl);
-	color = read_buff(cl, elems->NDRANGE);
-	while (i < (int)elems->NDRANGE)
-	{
-		put_pixel(fract, i, color[i]);
-		i++;
-	}
-	mlx_do_sync(fract->mlx_ptr);
-	cl_clean_mem_objs(cl);
-	free(color);
+	scale = (max_color / (float)max_val);
+	return((int)(val * scale));
 }

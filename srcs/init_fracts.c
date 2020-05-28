@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_fracts.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/28 15:49:45 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/28 15:49:45 by Artur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 t_mandel		*init_mandelbrot(void)
@@ -27,7 +39,6 @@ t_julia 		*init_julia(void)
 	return(jul);
 }
 
-//TODO look here
 t_buddha 		*init_buddha(void)
 {
 	t_buddha	*bud;

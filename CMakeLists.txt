@@ -18,12 +18,10 @@ add_executable(fract_ol
         kernels/mandel.cl
         kernels/color.cl
         kernels/julia.cl
-        kernels/buddha.cl
         kernel_includes/mandelbrot.h
         kernel_includes/color.h
         kernel_includes/cl_complex.h.cl
         kernel_includes/julia.h
-        kernel_includes/buddhabrot.h
         libcomplex/srcs/part_one.c
         libcomplex/srcs/part_two.c
         libcomplex/srcs/part_three.c
@@ -40,7 +38,6 @@ add_executable(fract_ol
         libcl/srcs/clean_up.c
         libcl/srcs/mandelbrot_buffs.c
         libcl/srcs/julia_buffs.c
-        libcl/srcs/buddhabrot_buffs.c
         libcl/Makefile
         libft/includes/get_next_line.h
         libft/includes/libft.h
@@ -140,4 +137,5 @@ add_executable(fract_ol
         srcs/clean_up.c
         srcs/calculate_buddhabrot.c
         srcs/buddhabrot_tools.c
+        srcs/buddhabrot_tools_p2.c
         Makefile)

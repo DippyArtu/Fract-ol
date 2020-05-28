@@ -1,10 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   buddhabrot_tools.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/28 15:32:00 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/28 15:32:00 by Artur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-float 						get_rand(float min, float max)
+float 			get_rand(float min, float max)
 {
-	float 					rand_n;
+	float 		rand_n;
 
 	sranddev();
 	rand_n = rand() / (float) RAND_MAX;
 	return(min + rand_n * (max - min));
+}
+
+t_heatmap		**alloc_heatmap(void) //heatmap = image size -- width * height
+{
+	t_heatmap 	**map;
+	int 		i;
+	int 		j;
+
+	i = 0;
+	if (!(map = (t_heatmap **)malloc(B_HEIGHT * sizeof(t_heatmap *))))
+		error(3);
+	while (i < B_HEIGHT)
+	{
+		if (!(map[i] = (t_heatmap *)malloc(B_WIDTH * sizeof(t_heatmap))))
+			error(3);
+		i++;
+	}
+	i = 0;
+	while (i < B_HEIGHT)
+	{
+		j = 0;
+		while (j < B_WIDTH)
+		{
+			map[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+	return(map);
+}
+
+void			free_heatmap(t_heatmap **map)
+{
+	int			i;
+
+	i = 0;
+	while (i < B_HEIGHT)
+	{
+		free(map[i]);
+		map[i] = NULL;
+		i++;
+	}
+	free(map);
+	map = NULL;
+}
+
+int				row_from_real(float real, t_buddha *bud)
+{
+	return((int)((real - bud->re_min) * (B_HEIGHT / (bud->re_max - bud->re_min))));
+}
+
+int 			col_from_imag(float imag, t_buddha *bud)
+{
+	return((int)((imag - bud->im_min) * (B_WIDTH / (bud->im_max - bud->im_min))));
 }

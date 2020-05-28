@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   menu.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/28 15:50:02 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/28 15:50:02 by Artur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void 		fracts_menu(t_fract *fract)
@@ -33,7 +45,8 @@ static void 			mandel_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x = (WIDTH / 2) - 150,\
 			y = (HEIGHT / 2) - 300, WHITE, "Press H to show this menu");
 	mlx_string_put(mlx, win, x += 15, y += 30, WHITE, "or any key to close it");
-	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE, "Press TAB for available fractals");
+	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE, "Press TAB for\
+												    available fractals");
 	mlx_string_put(mlx, win, x -= 100, y += 70, WHITE, "Zoom In or Out:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse wheel scroll");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Move:");
@@ -60,7 +73,8 @@ static void 			julia_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x = (WIDTH / 2) - 150,\
 			y = (HEIGHT / 2) - 300, WHITE, "Press H to show this menu");
 	mlx_string_put(mlx, win, x += 15, y += 30, WHITE, "or any key to close it");
-	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE, "Press TAB for available fractals");
+	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE, "Press TAB for\
+												    available fractals");
 	mlx_string_put(mlx, win, x -= 115, y += 70, WHITE, "Set transform:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse wheel scroll");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Generate new set:");
@@ -76,26 +90,10 @@ static void 			julia_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "esc key");
 }
 
-static void 			buddha_menu(t_fract *fract)
-{
-	int		y;
-	int		x;
-	void	*mlx;
-	void	*win;
-
-	mlx = fract->mlx_ptr;
-	win = fract->win_ptr;
-	fill_background(fract);
-	mlx_string_put(mlx, win, x = (B_WIDTH / 2) - 100,\
-			y = (B_HEIGHT / 2) - 90, WHITE, "Press ESC to exit");
-}
-
 void			print_menu(t_fract *fract, int type)
 {
 	if (type == MANDEL)
 		mandel_menu(fract);
 	else if (type == JULIA)
 		julia_menu(fract);
-	else if (type == BUDDHA)
-		buddha_menu(fract);
 }

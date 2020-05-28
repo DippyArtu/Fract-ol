@@ -1,64 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calculate_buddhabrot.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/28 15:32:52 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/28 15:35:12 by Artur            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
-
-static t_heatmap 			**alloc_heatmap(void) //heatmap = image size -- width * height
-{
-	t_heatmap 				**map;
-	int 					i;
-	int 					j;
-
-	i = 0;
-	if (!(map = (t_heatmap **)malloc(B_HEIGHT * sizeof(t_heatmap *))))
-		error(3);
-	while (i < B_HEIGHT)
-	{
-		if (!(map[i] = (t_heatmap *)malloc(B_WIDTH * sizeof(t_heatmap))))
-			error(3);
-		i++;
-	}
-	i = 0;
-	while (i < B_HEIGHT)
-	{
-		j = 0;
-		while (j < B_WIDTH)
-		{
-			map[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
-	return(map);
-}
-
-static void 				free_heatmap(t_heatmap **map)
-{
-	int 					i;
-
-	i = 0;
-	while (i < B_HEIGHT)
-	{
-		free(map[i]);
-		map[i] = NULL;
-		i++;
-	}
-	free(map);
-	map = NULL;
-}
-
-static int				row_from_real(float real, t_buddha *bud)
-{
-	return((int)((real - bud->re_min) * (B_HEIGHT / (bud->re_max - bud->re_min))));
-}
-
-static int 				col_from_imag(float imag, t_buddha *bud)
-{
-	return((int)((imag - bud->im_min) * (B_WIDTH / (bud->im_max - bud->im_min))));
-}
 
 static void 		buddhabrot_points(t_complex c, int max_iter, t_complex *orbit)
 {
 	int 			iter_c;
-	t_complex 		z = 0;
+	t_complex 		z;
 
+	z = 0;
 	cl_bzero(orbit, max_iter);
 	iter_c = 0;
 	while (iter_c < max_iter && cl_cmodsqr(z) < 4)
@@ -82,7 +41,7 @@ static void 		buddhabrot_points(t_complex c, int max_iter, t_complex *orbit)
  *
  *  Then, map the points to the heatmap
  */
-static void			gen_heatmap(t_heatmap **map, t_buddha *bud, t_heatmap *max_heatmap_val)
+static void			gen_heatmap(t_heatmap **map, t_buddha *bud, t_heatmap *max_val)
 {
 	int 			sample_i;
 	t_complex 		sample;
@@ -108,21 +67,13 @@ static void			gen_heatmap(t_heatmap **map, t_buddha *bud, t_heatmap *max_heatmap
 				row = row_from_real(cl_creal(orbit[i]), bud);
 				col = col_from_imag(cl_cimag(orbit[i]), bud);
 				map[row][col] += 1;
-				if (map[row][col] > *max_heatmap_val)
-					*max_heatmap_val = map[row][col];
+				if (map[row][col] > *max_val)
+					*max_val = map[row][col];
 			}
 			i++;
 		}
 		sample_i++;
 	}
-}
-
-static int			color_from_heatmap(t_heatmap heatmap_val, t_heatmap max_heatmap_val, float max_color)
-{
-	float 			scale;
-
-	scale = (max_color / (float)max_heatmap_val);
-	return((int)(heatmap_val * scale));
 }
 
 void 				buddhabrot(t_fract *fract)
