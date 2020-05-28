@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   utils_two.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/28 15:48:46 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 20:23:10 by Artur            ###   ########.fr       */
+/*   Created: 2020/05/28 22:11:12 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/28 22:11:12 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		error(int type)
+void 			set_fract_type(t_fract *fractol, int type)
 {
-	if (type == 1)
+	if (type == MANDEL)
 	{
-		ft_putstr(USAGE);
-		ft_putstr(TYPES);
+		fractol->mandel = init_mandelbrot();
+		fractol->type = MANDEL;
 	}
-	else if (type == 2)
-		ft_putstr(INVALID);
-	else if (type == 3)
-		ft_putstr(MALLOC_ERR);
-	else if (type == 4)
-		ft_putstr(THREAD_ERR);
-	exit(-1);
+	else if (type == JULIA)
+	{
+		fractol->julia = init_julia();
+		fractol->type = JULIA;
+	}
+	else if (type == BUDDHA)
+	{
+		fractol->buddha = init_buddha();
+		fractol->type = BUDDHA;
+	}
+	else if (type == BUDDHA_PRECALC)
+		fractol->type = BUDDHA_PRECALC;
 }

@@ -138,4 +138,4 @@ add_executable(fract_ol
         srcs/calculate_buddhabrot.c
         srcs/buddhabrot_tools.c
         srcs/buddhabrot_tools_p2.c
-        Makefile)
+        Makefile srcs/utils_two.c srcs/menu_two.c)

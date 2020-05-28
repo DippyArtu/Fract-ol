@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:44:26 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:44:26 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 21:42:54 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@
 # define Z_FACTOR 1.03
 
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
-# define TYPES "Available types:\n Mandelbrot\n Julia\n Buddhabrot\n"
+# define TYPES "Available types:\n Mandelbrot\n Julia\n\
+ Buddhabrot\n Buddhabrot_precalc\n"
 # define INVALID "Invalid type given as an argument\n" TYPES
 # define THREAD_ERR "Thread execution error\n"
 # define MALLOC_ERR "Memory allocation has failed\n"
@@ -53,5 +54,6 @@
 # define MANDEL 1
 # define JULIA 2
 # define BUDDHA 3
+# define BUDDHA_PRECALC 4
 
 #endif

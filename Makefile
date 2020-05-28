@@ -6,7 +6,7 @@
 #    By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 17:45:47 by jsalome           #+#    #+#              #
-#    Updated: 2020/05/28 19:23:08 by Artur            ###   ########.fr        #
+#    Updated: 2020/05/28 22:13:16 by Artur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ SRC = 	fractol.c\
 		clean_up.c\
 		calculate_buddhabrot.c\
 		buddhabrot_tools.c\
-		buddhabrot_tools_p2.c
+		buddhabrot_tools_p2.c\
+		utils_two.c\
+		menu_two.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 

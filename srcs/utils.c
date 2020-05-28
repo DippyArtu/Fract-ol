@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:51:49 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:51:49 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 22:27:24 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			exit_prog(t_fract *fract)
 {
-	if (fract->type != BUDDHA)
+	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC)
 	{
 		cl_clean_up_all(fract->cl);
 		cl_clean_structs(fract->cl, fract->cl->items->elems);
@@ -61,8 +61,11 @@ void 		set_color(int key, t_fract *fract)
 
 void 		set_fractal(int key, t_fract *fract)
 {
-	cl_clean_up_all(fract->cl);
-	cl_clean_structs(fract->cl, fract->cl->items->elems);
+	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC)
+	{
+		cl_clean_up_all(fract->cl);
+		cl_clean_structs(fract->cl, fract->cl->items->elems);
+	}
 	mlx_destroy_window(fract->mlx_ptr, fract->win_ptr);
 	fractol_clean_up(fract);
 	if (key == 38)
@@ -71,6 +74,8 @@ void 		set_fractal(int key, t_fract *fract)
 		start(MANDEL);
 	else if (key == 11)
 		start(BUDDHA);
+	else if (key == 8)
+		start(BUDDHA_PRECALC);
 }
 
 void 		fill_background(t_fract *fract)
@@ -80,9 +85,18 @@ void 		fill_background(t_fract *fract)
 
 	i = 0;
 	pixel = (int *)(fract->data_addr);
-	while (i++ < HEIGHT * WIDTH)
-		pixel[i] = BLACK;
+	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC)
+	{
+		while (i++ < HEIGHT * WIDTH)
+			pixel[i] = BLACK;
+	}
+	else if (fract->type == BUDDHA || fract->type == BUDDHA_PRECALC)
+	{
+		while (i++ < B_HEIGHT * B_WIDTH)
+			pixel[i] = BLACK;
+	}
 	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
+	mlx_do_sync(fract->mlx_ptr);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:48:56 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:48:56 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 22:09:45 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ static void 		init_rest(t_fract *fract, int type)
 	fract->color = NULL;
 	fract->mouse = init_mouse();
 	fract->mlx_ptr = mlx_init();
-	if (type != BUDDHA)
+	if (type != BUDDHA && type != BUDDHA_PRECALC)
 	{
 		fract->pos = init_position(type);
 		fract->color = init_color();
 		fract->win_ptr = mlx_new_window(fract->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
 		fract->image = mlx_new_image(fract->mlx_ptr, WIDTH, HEIGHT);
 	}
-	else if (type == BUDDHA)
+	if (type == BUDDHA || type == BUDDHA_PRECALC)
 	{
 		fract->win_ptr = mlx_new_window(fract->mlx_ptr, B_WIDTH, B_HEIGHT, "Fract'ol");
 		fract->image = mlx_new_image(fract->mlx_ptr, B_WIDTH, B_HEIGHT);
@@ -93,21 +93,7 @@ t_fract				*init_fractol_struct(int type)
 	fractol->mandel = NULL;
 	fractol->julia = NULL;
 	fractol->buddha = NULL;
-	if (type == MANDEL)
-	{
-		fractol->mandel = init_mandelbrot();
-		fractol->type = MANDEL;
-	}
-	else if (type == JULIA)
-	{
-		fractol->julia = init_julia();
-		fractol->type = JULIA;
-	}
-	else if (type == BUDDHA)
-	{
-		fractol->buddha = init_buddha();
-		fractol->type = BUDDHA;
-	}
+	set_fract_type(fractol, type);
 	init_rest(fractol, type);
 	return(fractol);
 }

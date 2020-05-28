@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:06 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:32:06 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 22:20:09 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ static int			key_press(int key, t_fract *fract)
 
 	//printf("%d\n", key);
 
-	if (fract->type != BUDDHA)
+	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC)
 	{
 		if (key >= 123 && key <= 126)
 			shift_control(key, fract);
-		else if ((key >= 18 && key <= 25) || key == 24 || key == 27)
+		if ((key >= 18 && key <= 25) || key == 24 || key == 27)
 			set_color(key, fract);
 		draw(fract, fract->cl, fract->type);
-		if (key == 4)
-			print_menu(fract, fract->type);
-		else if (key == 48)
+		if (key == 48)
 			fracts_menu(fract);
-		if (key == 38 || key == 46 || key == 11)
-			set_fractal(key, fract);
 	}
+	if (key == 4)
+		print_menu(fract, fract->type);
+	if (key == 38 || key == 46 || key == 11 || key == 8)
+		set_fractal(key, fract);
 	if (key == 53)
 		exit_prog(fract);
 	return (0);
@@ -60,7 +60,7 @@ t_fract 			*prep_fractal(int type)
 	cl = NULL;
 	fractol = init_fractol_struct(type);
 	post_setup(fractol, type);
-	if (type != BUDDHA)
+	if (type != BUDDHA && type != BUDDHA_PRECALC)
 	{
 		cl = init_opencl_structs();
 		fractol->cl = cl;
@@ -98,6 +98,8 @@ int 				main(int argc, char **argv)
 		type = JULIA;
 	else if (!ft_strcmp(argv[1], "Buddhabrot"))
 		type = BUDDHA;
+	else if (!ft_strcmp(argv[1], "Buddhabrot_precalc"))
+		type = BUDDHA_PRECALC;
 	if(!type)
 		error(2);
 	start(type);

@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:33 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:32:33 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 22:25:46 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			draw(t_fract *fract, t_cl *cl, int type)
 {
-	if (fract->menu_init || type == BUDDHA)
+	if (fract->menu_init)
 	{
 		if (type == MANDEL)
 			draw_mandel(fract, cl);
@@ -22,6 +22,8 @@ void			draw(t_fract *fract, t_cl *cl, int type)
 			draw_julia(fract, cl);
 		else if (type == BUDDHA)
 			buddhabrot(fract);
+		else if (type == BUDDHA_PRECALC)
+			read_buddhabrot(fract);
 		mlx_clear_window(fract->mlx_ptr, fract->win_ptr);
 		mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
 	}

@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:50:02 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:50:02 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 22:20:09 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void 		fracts_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "M");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Julia set:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "J");
-	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Buddhabrot set:");
+	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Calculate Buddhabrot set:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "B");
+	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Precalculated Buddhabrot set:");
+	mlx_string_put(mlx, win, x += 350, y, WHITE, "C");
 }
 
 static void 			mandel_menu(t_fract *fract)
@@ -96,4 +98,6 @@ void			print_menu(t_fract *fract, int type)
 		mandel_menu(fract);
 	else if (type == JULIA)
 		julia_menu(fract);
+	else
+		print_menu_two(fract, type);
 }
