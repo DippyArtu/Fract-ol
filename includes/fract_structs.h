@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:44:39 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 18:25:07 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 19:10:37 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ typedef struct 			s_julia
 
 typedef struct 			s_buddhabrot
 {
-	t_heatmap 			**map;
-	t_heatmap 			max_heatmap_val;
 	int					width;
 	int 				height;
 	float 				c_re;

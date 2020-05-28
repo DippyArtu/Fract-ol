@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:49:45 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:49:45 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 19:23:08 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ t_buddha 		*init_buddha(void)
 
 	if (!(bud = (t_buddha *)malloc(sizeof(t_buddha))))
 		error(3);
-	bud->map = NULL;
-	bud->max_heatmap_val = 0;
 	bud->c_im = 0;
 	bud->c_re = 0;
 	bud->re_max = 2;

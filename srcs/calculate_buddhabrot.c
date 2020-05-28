@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:52 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 18:44:46 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 19:21:12 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void 		buddhabrot_points(t_complex c, int max_iter, t_complex *orbit)
  *
  *  Then, map the points to the heatmap
  */
-void				gen_heatmap(t_buddha *bud)
+void				gen_heatmap(t_buddha *bud, t_heatmap **map, t_heatmap *max_val)
 {
 	int 			sample_i;
 	t_complex 		sample;
@@ -54,7 +54,7 @@ void				gen_heatmap(t_buddha *bud)
 		sample.x = get_rand(bud->re_min, bud->re_max);
 		sample.y = get_rand(bud->im_min, bud->im_max);
 		buddhabrot_points(sample, bud->max_iter, orbit);
-		write_map(bud, orbit, bud->map, &bud->max_heatmap_val);
+		write_map(bud, orbit, map, max_val);
 		sample_i++;
 	}
 }
@@ -84,13 +84,13 @@ void 				write_map(t_buddha *bud, t_complex *orb, t_heatmap **map, t_heatmap *ma
 
 void 				buddhabrot(t_fract *fract)
 {
-	t_buddha 		*bud;
+	t_heatmap 		**map;
+	t_heatmap 		max_heatmap_val;
 
-	bud = fract->buddha;
-	bud->max_heatmap_val = 0;
-	bud->map = alloc_heatmap();
-	gen_heatmap(bud);
-	get_color_buddha(fract, bud->map, &bud->max_heatmap_val);
+	max_heatmap_val = 0;
+	map = alloc_heatmap();
+	gen_heatmap(fract->buddha, map, &max_heatmap_val);
+	get_color_buddha(fract, map, &max_heatmap_val);
 	mlx_do_sync(fract->mlx_ptr);
 }
 
