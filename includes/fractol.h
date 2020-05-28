@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:31:47 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:35:12 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 17:18:29 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,8 @@ void			free_heatmap(t_heatmap **map);
 int				row_from_real(float real, t_buddha *bud);
 int 			col_from_imag(float imag, t_buddha *bud);
 int				color_from_heatmap(t_heatmap val, t_heatmap max_val, float max_color);
+void 			write_map(t_buddha *bud, t_complex *orb, t_heatmap **map, t_heatmap *max);
+void 			get_color_buddha(t_fract  *fract, t_heatmap **map, t_heatmap *max_val);
+void 			draw_buddha(t_fract *fract, int *color);
 
 #endif

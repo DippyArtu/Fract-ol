@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:52 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:35:12 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 17:24:50 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ static void			gen_heatmap(t_heatmap **map, t_buddha *bud, t_heatmap *max_val)
 	int 			sample_i;
 	t_complex 		sample;
 	t_complex 		orbit[bud->max_iter];
-	int 			i;
-	int 			row;
-	int 			col;
 
 	sample_i = 0;
 	sample = 0;
@@ -57,22 +54,31 @@ static void			gen_heatmap(t_heatmap **map, t_buddha *bud, t_heatmap *max_val)
 		sample.x = get_rand(bud->re_min, bud->re_max);
 		sample.y = get_rand(bud->im_min, bud->im_max);
 		buddhabrot_points(sample, bud->max_iter, orbit);
-		i = 0;
-		while (i < bud->max_iter)
-		{
-			if ((cl_creal(orbit[i]) != 0 && cl_cimag(orbit[i]) != 0) &&\
-			(cl_creal(orbit[i]) <= bud->re_max && cl_creal(orbit[i]) >= bud->re_min &&\
-			cl_cimag(orbit[i]) <= bud->im_max && cl_cimag(orbit[i]) >= bud->im_min))
-			{
-				row = row_from_real(cl_creal(orbit[i]), bud);
-				col = col_from_imag(cl_cimag(orbit[i]), bud);
-				map[row][col] += 1;
-				if (map[row][col] > *max_val)
-					*max_val = map[row][col];
-			}
-			i++;
-		}
+		write_map(bud, orbit, map, max_val);
 		sample_i++;
+	}
+}
+
+void 				write_map(t_buddha *bud, t_complex *orb, t_heatmap **map, t_heatmap *max)
+{
+	int 			i;
+	int 			row;
+	int 			col;
+
+	i = 0;
+	while (i < bud->max_iter)
+	{
+		if ((cl_creal(orb[i]) != 0 && cl_cimag(orb[i]) != 0) &&\
+			(cl_creal(orb[i]) <= bud->re_max && cl_creal(orb[i]) >= bud->re_min &&\
+			cl_cimag(orb[i]) <= bud->im_max && cl_cimag(orb[i]) >= bud->im_min))
+		{
+			row = row_from_real(cl_creal(orb[i]), bud);
+			col = col_from_imag(cl_cimag(orb[i]), bud);
+			map[row][col] += 1;
+			if (map[row][col] > *max)
+				*max = map[row][col];
+		}
+		i++;
 	}
 }
 
@@ -80,43 +86,37 @@ void 				buddhabrot(t_fract *fract)
 {
 	t_heatmap		**map;
 	t_heatmap 		max_heatmap_val;
-	int 			*color;
-
-	int 			row;
-	int 			col;
-	int 			i;
-	int 			size;
-
-	size = B_HEIGHT * B_WIDTH;
-	if (!(color = (int *)malloc(sizeof(int) * size)))
-		error(3);
 
 	max_heatmap_val = 0;
 	map = alloc_heatmap();
-
 	gen_heatmap(map, fract->buddha, &max_heatmap_val);
+	get_color_buddha(fract, map, &max_heatmap_val);
+	mlx_do_sync(fract->mlx_ptr);
+}
+
+void 				get_color_buddha(t_fract  *fract, t_heatmap **map, t_heatmap *max_val)
+{
+	int 			row;
+	int 			col;
+	int 			i;
+	int 			*color;
 
 	i = 0;
 	row = 0;
+	if (!(color = (int *)malloc(sizeof(int) * (B_HEIGHT * B_WIDTH))))
+		error(3);
 	while (row < B_HEIGHT)
 	{
 		col = 0;
 		while (col < B_WIDTH)
 		{
-			map[row][col] = color_from_heatmap(map[row][col], max_heatmap_val, 255);
+			map[row][col] = color_from_heatmap(map[row][col], *max_val, 255);
 			color[i] = ((map[row][col] << 16) | (map[row][col] << 8) | map[row][col]);
 			i++;
 			col++;
 		}
 		row++;
 	}
-	i = 0;
-	while (i < size)
-	{
-		put_pixel(fract, i, color[i]);
-		i++;
-	}
-	free(color);
+	draw_buddha(fract, color);
 	free_heatmap(map);
-	mlx_do_sync(fract->mlx_ptr);
 }

@@ -19,3 +19,18 @@ int			color_from_heatmap(t_heatmap val, t_heatmap max_val, float max_color)
 	scale = (max_color / (float)max_val);
 	return((int)(val * scale));
 }
+
+void 				draw_buddha(t_fract *fract, int *color)
+{
+	int 			i;
+	int 			size;
+
+	i = 0;
+	size = B_HEIGHT * B_WIDTH;
+	while (i < size)
+	{
+		put_pixel(fract, i, color[i]);
+		i++;
+	}
+	free(color);
+}
