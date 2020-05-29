@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:44:26 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 21:42:54 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/29 00:03:44 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # define WIDTH 1400
 # define HEIGHT 1000
-# define B_WIDTH 500
-# define B_HEIGHT 500
+# define B_WIDTH 900
+# define B_HEIGHT 900
 
 # define MANDEL_KERNEL_FILE "./kernels/mandel.cl"
 # define MANDEL_KERNEL_FT "vector_mandel"

@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:49:45 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 19:23:08 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/29 03:51:12 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ t_buddha 		*init_buddha(void)
 	bud->re_min = -2;
 	bud->im_min = -2;
 	bud->im_max = 2;
-	bud->n_samples = B_HEIGHT * B_WIDTH;
+	bud->n_samples = B_WIDTH * B_HEIGHT;
 	bud->width = B_WIDTH;
 	bud->height = B_HEIGHT;
-	bud->max_iter = 50;
+	bud->max_iter = 10;
 	return(bud);
 }

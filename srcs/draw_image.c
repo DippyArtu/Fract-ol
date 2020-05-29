@@ -6,15 +6,16 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:33 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 22:25:46 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 22:27:24 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+//TODO print buddha menu
 void			draw(t_fract *fract, t_cl *cl, int type)
 {
-	if (fract->menu_init)
+	if (fract->menu_init || fract->type == BUDDHA)
 	{
 		if (type == MANDEL)
 			draw_mandel(fract, cl);

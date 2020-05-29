@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:31:47 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 22:12:54 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 22:24:44 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void			gen_heatmap(t_buddha *bud, t_heatmap **map, t_heatmap *max_val);
 void 			read_buddhabrot(t_fract *fract);
 void 			set_fract_type(t_fract *fractol, int type);
 void			print_menu_two(t_fract *fract, int type);
+void 			write_map_to_file(int *color, int size);
 
 #endif
