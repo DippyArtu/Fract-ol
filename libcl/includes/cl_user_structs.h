@@ -27,6 +27,7 @@ typedef struct 		s_elements
 	t_mandel 		*mandel;
 	t_julia			*julia;
 	t_color			*color;
+	t_ship 			*ship;
 }					t_elems;
 
 typedef struct		s_cl_items

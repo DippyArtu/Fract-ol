@@ -95,4 +95,6 @@ void 		set_kernel_args(t_cl *cl, int type)
 		mandel_args(cl);
 	else if (type == JULIA)
 		julia_args(cl);
+	else if (type == SHIP)
+		ship_args(cl);
 }

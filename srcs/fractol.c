@@ -6,19 +6,14 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:06 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 22:46:01 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 01:12:04 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-//TODO include -O3 optimization flag to makefiles
-
 static int			key_press(int key, t_fract *fract)
 {
-
-	//printf("%d\n", key);
-
 	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC)
 	{
 		if (key >= 123 && key <= 126)
@@ -31,7 +26,7 @@ static int			key_press(int key, t_fract *fract)
 	}
 	if (key == 4)
 		print_menu(fract, fract->type);
-	if (key == 38 || key == 46 || key == 11 || key == 8)
+	if (key == 38 || key == 46 || key == 11 || key == 8 || key == 1)
 		set_fractal(key, fract);
 	if (key == 53)
 		exit_prog(fract);
@@ -86,6 +81,8 @@ void 				start(int type)
 	mlx_hook(fractol->win_ptr, 5, 0, mouse_release, fractol);
 	if (type == MANDEL)
 		mlx_hook(fractol->win_ptr, 6, 0, mandel_mouse_pos, fractol);
+	else if (type == SHIP)
+		mlx_hook(fractol->win_ptr, 6, 0, ship_mouse_pos, fractol);
 	mlx_hook(fractol->win_ptr, 17, 1L << 17, exit_prog, fractol);
 	mlx_loop(fractol->mlx_ptr);
 }

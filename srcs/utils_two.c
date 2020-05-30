@@ -37,3 +37,19 @@ void 			set_fract_type(t_fract *fractol, int type)
 		fractol->type = SHIP;
 	}
 }
+
+void		apply_zoom_ship(t_ship *ship, float m_re, float m_im, float interp)
+{
+	ship->re_max = interpolate(m_re, ship->re_max, interp);
+	if (ship->re_max > 2)
+		ship->re_max = 2;
+	ship->re_min = interpolate(m_re, ship->re_min, interp);
+	if (ship->re_min < -2)
+		ship->re_min = -2;
+	ship->im_max = interpolate(m_im, ship->im_max, interp);
+	if (ship->im_max > ship->im_max_start)
+		ship->im_max = ship->im_max_start;
+	ship->im_min = interpolate(m_im, ship->im_min, interp);
+	if (ship->im_min < -2)
+		ship->im_min = -2;
+}

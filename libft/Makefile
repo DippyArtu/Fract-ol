@@ -91,7 +91,7 @@ INC = libft.h get_next_line.h
 INC_DIR = ./includes/
 INCS = $(addprefix $(INC_DIR), $(INC))
 
-FLAGS = -g -Wall -Werror -Wextra -I$(INC_DIR)
+FLAGS = -g -Wall -Werror -Wextra -O3 -I$(INC_DIR)
 
 all: $(NAME)
 

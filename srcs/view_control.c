@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:52:09 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:52:09 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 00:14:27 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,16 @@ void		apply_zoom(t_mandel *man, float m_re, float m_im, float interp)
 
 void		zoom_in(t_fract *fract)
 {
-	float	*zoom;
-	float 	interp;
+	float		*zoom;
+	float 		interp;
 
 	zoom = &fract->pos->zoom;
 	*zoom /= (float)Z_FACTOR;
 	interp = (float)(1 / Z_FACTOR);
-	apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
+	if (fract->type == MANDEL)
+		apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
+	else if (fract->type == SHIP)
+		apply_zoom_ship(fract->ship, fract->mouse->Re, fract->mouse->Im, interp);
 	if (fract->iter_c++ == 3)
 	{
 		if (fract->pos->max_iter == K_MAX)
@@ -60,7 +63,10 @@ void		zoom_out(t_fract *fract)
 	zoom = &fract->pos->zoom;
 	*zoom *= (float)Z_FACTOR;
 	interp = (float)(1 * Z_FACTOR);
-	apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
+	if (fract->type == MANDEL)
+		apply_zoom(fract->mandel, fract->mouse->Re, fract->mouse->Im, interp);
+	else if (fract->type == SHIP)
+		apply_zoom_ship(fract->ship, fract->mouse->Re, fract->mouse->Im, interp);
 	if (fract->iter_c++ == 3)
 	{
 		if (fract->pos->max_iter == K_START)

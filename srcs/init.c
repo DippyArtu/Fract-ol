@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:48:56 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 22:09:45 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 01:03:56 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,13 @@ static	t_pos		*init_position(int type)
 
 	if (!(pos = (t_pos *)malloc(sizeof(t_pos))))
 		error(3);
-	if (type == MANDEL)
+	if (type == MANDEL || type == SHIP)
 	{
 		pos->shift_x = (float)-0.496;
-		pos->shift_y = (float)0.496;
+		if (type == MANDEL)
+			pos->shift_y = (float)0.496;
+		else if (type == SHIP)
+			pos->shift_y = (float)0.9;
 	}
 	else
 	{

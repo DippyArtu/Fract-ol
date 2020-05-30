@@ -6,7 +6,7 @@
 #    By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/06 17:45:47 by jsalome           #+#    #+#              #
-#    Updated: 2020/05/28 22:54:00 by Artur            ###   ########.fr        #
+#    Updated: 2020/05/30 23:51:33 by Artur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC = 	fractol.c\
 		buddhabrot_tools.c\
 		buddhabrot_tools_p2.c\
 		utils_two.c\
-		menu_two.c
+		menu_two.c\
+		calculate_burning_ship.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
@@ -78,7 +79,7 @@ CL_INCS = $(addprefix $(CL_INC_DIR), $(CL_INC))
 
 LIBRARIES = -framework OpenGL -framework AppKit -framework OpenCL -lpthread
 
-FLAGS = -g -Wall -Wextra -Werror -I$(COMPLEX_INC_DIR) -I$(INC_DIR) -I$(LIB_INC_DIR) -I$(MLX_LIB_DIR) -I$(CL_INC_DIR)
+FLAGS = -g -Wall -Wextra -Werror -O3 -I$(COMPLEX_INC_DIR) -I$(INC_DIR) -I$(LIB_INC_DIR) -I$(MLX_LIB_DIR) -I$(CL_INC_DIR)
 
 all: $(NAME)
 

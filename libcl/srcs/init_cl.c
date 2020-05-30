@@ -56,6 +56,7 @@ t_elems		*init_opencl_elems(char *k_name, char *ft_name, char *inc)
 	elems->include_flag = inc;
 	elems->mandel = NULL;
 	elems->julia = NULL;
+	elems->ship = NULL;
 	elems->color = NULL;
 	return (elems);
 }

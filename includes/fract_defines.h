@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:44:26 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/29 00:11:56 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 00:37:47 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 # define JULIA_KERNEL_FILE "./kernels/julia.cl"
 # define JULIA_KERNEL_FT "vector_julia"
 
-# define BUDDHA_KERNEL_FILE "./kernels/buddha.cl"
-# define BUDDHA_KERNEL_FT "vector_buddha"
-
 # define COLOR_KERNEL_FILE "./kernels/color.cl"
 # define COLOR_KERNEL_FT "vector_color"
+
+# define SHIPL_KERNEL_FILE "./kernels/ship.cl"
+# define SHIP_KERNEL_FT "vector_ship"
 
 # define INC_PATH "-I ./kernel_includes"
 
@@ -36,7 +36,7 @@
 
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
 # define TYPES "Available types:\n Mandelbrot\n Julia\n\
- Buddhabrot\n Buddhabrot_precalc\n"
+ Buddhabrot\n Buddhabrot_precalc\n Burning_ship\n"
 # define INVALID "Invalid type given as an argument\n" TYPES
 # define THREAD_ERR "Thread execution error\n"
 # define MALLOC_ERR "Memory allocation has failed\n"

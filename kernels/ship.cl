@@ -18,24 +18,16 @@ static float 		find_mu(int iter_c, cl_complex z);
 //-------------------------------------------------------------------
 /*
  * This function finds a value of P_k
- * to check if it lies within the Mandlebrot set.
+ * to check if it lies within the Burning ship set.
  *
- * P_k+1 = Z(^2) + C -> where C is a complex number
+ * P_k+1 = (|Re(Z)| + |Im(Z)|)^2 + C -> where C is a complex number
  *
- *           __                             __
- *          | X_k+1 = X(^2)_k - Y(^2)_k + X_0 |
- * P_k+1 =  |                                 |
- *          | Y_k+1 = 2(X_k * Y_k) + Y_0      |
- *           --                             --
- *
- *           where X & Y are all real numbers
  */
 kernel void			vector_ship(global int *iter,\
 									global t_ship *ship,\
 									constant t_pos *pos,\
 									global float *mu,\
-									global cl_complex *Z,\
-									global cl_complex *dC)
+									global cl_complex *Z)
 {
 	int 			tx;
 	int 			ty;
@@ -46,9 +38,9 @@ kernel void			vector_ship(global int *iter,\
 	float 			max_iter;
 	float 			width;
 	float 			height;
+	float 			x_tmp;
 	cl_complex		c = 0;
-	cl_complex		z = 0; // value for iteration Z -> Z = Z * Z + C;
-	cl_complex		dc = 0; // derivative with respect to c -> dC = 2.0 * dC * Z + 1.0;
+	cl_complex		z = 0; // value for iteration Z = (|Re(Z)| + |Im(Z)|)^2;
 	cl_complex		two = 0;
 	cl_complex		one = 0;
 
@@ -74,16 +66,13 @@ kernel void			vector_ship(global int *iter,\
 
 	while (cl_cmodsqr(z) <= 100 && iter_c < (int)max_iter)
 	{
-		dc = cl_cmult(two, dc);
-		dc = cl_cmult(dc, z);
-		dc = cl_cadd(dc, one);
-		z.x = (z.x * z.x) - (z.y * z.y) + c.x;
-		z.y = -2.0 * fabs(z.x * z.y) + c.y;
+		x_tmp = (cl_creal(z) * cl_creal(z) - cl_cimag(z) * cl_cimag(z)) + cl_creal(c);
+		z.y = fabs(2 * cl_creal(z) * cl_cimag(z) + cl_cimag(c)) * -1;
+		z.x = fabs(x_tmp);
 		iter_c++;
 	}
 	mu[index] = find_mu(iter_c, z);
 	iter[index] = (iter_c < max_iter) ? iter_c : -1;
-	dC[index] = dc;
 	Z[index] = z;
 }
 

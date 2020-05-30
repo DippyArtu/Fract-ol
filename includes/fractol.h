@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:31:47 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/29 04:37:05 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 00:14:27 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@
 
 # include "libcl.h"
 # include "mlx.h"
+# include <stdio.h>
 
 # include "fract_defines.h"
 # include "fract_structs.h"
-
-# include <stdio.h>
 
 typedef struct		s_fract
 {
@@ -98,5 +97,9 @@ void 			set_fract_type(t_fract *fractol, int type);
 void			print_menu_two(t_fract *fract, int type);
 void 			write_map_to_file(int *color, int size);
 t_ship 			*init_ship(void);
+void 			draw_ship(t_fract *fract, t_cl *cl);
+void			burning_ship(t_fract *fract, t_cl *cl);
+int 			ship_mouse_pos(int x, int y, void *p);
+void			apply_zoom_ship(t_ship *ship, float m_re, float m_im, float interp);
 
 #endif

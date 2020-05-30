@@ -6,7 +6,7 @@
 #    By: Artur <Artur@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/28 15:47:14 by Artur             #+#    #+#              #
-#    Updated: 2020/05/28 22:53:41 by Artur            ###   ########.fr        #
+#    Updated: 2020/05/30 23:55:34 by Artur            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC =		assembly.c\
 			init_cl.c\
 			mandelbrot_buffs.c\
 			julia_buffs.c\
+			burning_ship_buffs.c
 
 OBJ = $(SRC:.c=.o)
 OBJ_DIR = ./obj/
@@ -47,7 +48,7 @@ LIB_INCS = $(addprefix $(LIBFT_INC_DIR), $(LIB_INC))
 COMPLEX_INCS = $(addprefix $(COMPLEX_INC_DIR), $(COMPLEX_INC))
 INCS = $(addprefix $(INC_DIR), $(INC))
 
-FLAGS = -g -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_INC_DIR) -I$(FRACT_DEF_INC_DIR) -I$(COMPLEX_INC_DIR)
+FLAGS = -g -Wall -Werror -Wextra -O3 -I$(INC_DIR) -I$(LIBFT_INC_DIR) -I$(FRACT_DEF_INC_DIR) -I$(COMPLEX_INC_DIR)
 
 all: $(NAME)
 

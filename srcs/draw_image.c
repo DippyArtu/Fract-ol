@@ -6,13 +6,12 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:33 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 22:52:14 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/30 23:49:35 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-//TODO Do the ship, starting at "draw"
 void			draw(t_fract *fract, t_cl *cl, int type)
 {
 	if (fract->menu_init || fract->type == BUDDHA)
@@ -25,6 +24,8 @@ void			draw(t_fract *fract, t_cl *cl, int type)
 			buddhabrot(fract);
 		else if (type == BUDDHA_PRECALC)
 			read_buddhabrot(fract);
+		else if (type == SHIP)
+			draw_ship(fract, cl);
 		mlx_clear_window(fract->mlx_ptr, fract->win_ptr);
 		mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
 	}
@@ -72,4 +73,24 @@ void 			draw_mandel(t_fract *fract, t_cl *cl)
 	}
 	else
 		mandelbrot(fract, cl);
+}
+
+void 			draw_ship(t_fract *fract, t_cl *cl)
+{
+	t_elems 	*elems;
+
+	if (!fract->cl_init)
+	{
+		fract->cl_init = 1;
+		elems = init_opencl_elems(SHIPL_KERNEL_FILE,\
+				SHIP_KERNEL_FT, INC_PATH);
+		elems->ship = fract->ship;
+		elems->color = fract->ship->color;
+		elems->ship->pos = fract->pos;
+		load_kernel_src_code(elems->fract_kernel_name, cl);
+		cl->items->elems = elems;
+		prep_kernel(cl, elems->fract_ft_name, elems->include_flag);
+	}
+	else
+		burning_ship(fract, cl);
 }

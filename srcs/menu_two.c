@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 22:20:12 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 22:32:29 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 00:02:35 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void 			buddha_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "B");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Precalculated Buddhabrot set:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "C");
+	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Burning ship set:");
+	mlx_string_put(mlx, win, x += 350, y, WHITE, "S");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Exit:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "esc key");
 }

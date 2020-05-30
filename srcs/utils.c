@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:51:49 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 22:27:24 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 01:18:14 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void 		set_color(int key, t_fract *fract)
 		fract->color->mode = 3;
 	else if (key == 21)
 		fract->color->mode = 4;
-	else if (key == 23)
+	else if (fract->type != SHIP && key == 23)
 		fract->color->mode = 5;
 	if (fract->color->mode == 5 && key == 24)
 	{
@@ -76,27 +76,24 @@ void 		set_fractal(int key, t_fract *fract)
 		start(BUDDHA);
 	else if (key == 8)
 		start(BUDDHA_PRECALC);
+	else if (key == 1)
+		start(SHIP);
 }
 
 void 		fill_background(t_fract *fract)
 {
-	int 	*pixel;
-	int 	i;
+	int *pixel;
+	int i;
 
 	i = 0;
-	pixel = (int *)(fract->data_addr);
-	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC)
-	{
+	pixel = (int *) (fract->data_addr);
+	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC) {
 		while (i++ < HEIGHT * WIDTH)
 			pixel[i] = BLACK;
-	}
-	else if (fract->type == BUDDHA || fract->type == BUDDHA_PRECALC)
-	{
+	} else if (fract->type == BUDDHA || fract->type == BUDDHA_PRECALC) {
 		while (i++ < B_HEIGHT * B_WIDTH)
 			pixel[i] = BLACK;
 	}
 	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->image, 0, 0);
 	mlx_do_sync(fract->mlx_ptr);
 }
-
-

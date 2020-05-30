@@ -20,10 +20,10 @@
  */
 t_complex 		cl_csqrt(const t_complex n)
 {
-	float sm;
-	float a2;
-	float ca2;
-	float sa2;
+	float 		sm;
+	float 		a2;
+	float 		ca2;
+	float 		sa2;
 	t_complex	res;
 
 	sm = sqrt((float)(cl_cmod(n)));
@@ -42,7 +42,7 @@ t_complex 		cl_csqrt(const t_complex n)
 */
 t_complex 		cl_cexp(const t_complex n)
 {
-	float e;
+	float 		e;
 	t_complex	res;
 
 	e = exp((float)n.x);

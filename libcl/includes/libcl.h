@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:46:19 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:46:19 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/30 23:55:33 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@
 # include "cl_errors.h"
 # include "fract_defines.h"
 # include "libcomplex.h"
-
-//TODO remove stdio
-#include <stdio.h>
 
 # define MAX_SOURCE_SIZE (0x100000)
 
@@ -54,6 +51,9 @@ void 		julia_buffs(t_cl *cl, t_elems *elems);
 void 		julia_args(t_cl *cl);
 void 		julia_color_args(t_cl *cl);
 void 		malloc_fail(void);
+void 		ship_buffs(t_cl *cl, t_elems *elems);
+void 		ship_args(t_cl *cl);
+void 		ship_color_args(t_cl *cl);
 
 
 #endif

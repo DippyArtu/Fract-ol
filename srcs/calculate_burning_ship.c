@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   burning_ship.h                                     :+:      :+:    :+:   */
+/*   calculate_burning_ship.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/30 23:22:02 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/30 23:22:02 by Artur            ###   ########.fr       */
+/*   Created: 2020/05/30 23:49:39 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/30 23:51:33 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _BURNING_SHIP_H
-#define _BURNING_SHIP_H
+#include "fractol.h"
 
-# include "cl_complex.h.cl"
-
-typedef struct 		s_position
+void			burning_ship(t_fract *fract, t_cl *cl)
 {
-	float  			shift_x;
-	float  			shift_y;
-	float 			zoom;
-	float 			max_iter;
-}					t_pos;
+	t_elems		*elems;
+	int 		*color;
+	int 		i;
 
-typedef struct 		s_burning_ship
-{
-	float 			c_re;
-	float  			c_im;
-	float 			re_min;
-	float 			re_max;
-	float 			im_min;
-	float 			im_max;
-	float 			im_max_start;
-	t_pos			*pos;
-}					t_ship;
-
-#endif
+	i = 0;
+	elems = cl->items->elems;
+	create_buffs(cl, elems, SHIP);
+	exec_kernel(cl);
+	exec_kernel_color(cl);
+	color = read_buff(cl, elems->NDRANGE);
+	while (i < (int)elems->NDRANGE)
+	{
+		put_pixel(fract, i, color[i]);
+		i++;
+	}
+	mlx_do_sync(fract->mlx_ptr);
+	cl_clean_mem_objs(cl);
+	free(color);
+}

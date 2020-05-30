@@ -19,9 +19,9 @@ int					mouse_press(int key, int x, int y, void *p)
 	(void)x;
 	(void)y;
 	fract = (t_fract *)p;
-	if (fract->type == MANDEL && key == 5)
+	if ((fract->type == MANDEL || fract->type == SHIP) && key == 5)
 		zoom_in(fract);
-	else if (fract->type == MANDEL && key == 4)
+	else if ((fract->type == MANDEL || fract->type == SHIP) && key == 4)
 		zoom_out(fract);
 	else if (fract->type == JULIA && key == 5)
 		julia_forward(fract);
@@ -73,5 +73,21 @@ int 					julia_mouse_move(int x, int y, void *p)
 	fract = (t_fract *)p;
 	fract->julia->k_re = (float)(4 * ((float)x / WIDTH - 0.5));
 	fract->julia->k_im = (float)(4 * ((float)(HEIGHT - y) / HEIGHT - 0.5));
+	return(0);
+}
+
+int 					ship_mouse_pos(int x, int y, void *p)
+{
+	t_fract			*fract;
+	t_ship 			*ship;
+	float 			re_factor;
+	float 			im_factor;
+
+	fract = (t_fract *)p;
+	ship = fract->ship;
+	re_factor = (ship->re_max - ship->re_min) / (WIDTH - 1);
+	im_factor = (ship->im_max - ship->im_min) / (HEIGHT - 1);
+	fract->mouse->Re = ship->re_min + (float)x * re_factor;
+	fract->mouse->Im = ship->im_max - (float)y * im_factor;
 	return(0);
 }

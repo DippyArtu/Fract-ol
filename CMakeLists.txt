@@ -141,4 +141,4 @@ add_executable(fract_ol
         srcs/buddhabrot_tools_p2.c
         srcs/menu_two.c
         srcs/utils_two.c
-        Makefile kernel_includes/burning_ship.h)
+        Makefile kernel_includes/burning_ship.h srcs/calculate_burning_ship.c libcl/srcs/burning_ship_buffs.c)

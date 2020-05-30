@@ -22,7 +22,6 @@ void 		exec_kernel(t_cl *cl)
 			cl->items->elems->local_ws, 0, NULL, NULL);
 	if (cl->dev_info->ret < 0)
 	{
-		printf("%i\n", cl->dev_info->ret);
 		ft_putstr(EXEC_ERR);
 		exit(1);
 	}
