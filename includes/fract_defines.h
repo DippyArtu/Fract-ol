@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:44:26 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/29 00:03:44 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/29 00:11:56 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@
 # define JULIA 2
 # define BUDDHA 3
 # define BUDDHA_PRECALC 4
+# define SHIP 5
 
 #endif

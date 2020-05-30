@@ -75,4 +75,17 @@ typedef struct 			s_buddhabrot
 	int					n_samples;
 }						t_buddha;
 
+typedef struct 		s_burning_ship
+{
+	float 			c_re;
+	float  			c_im;
+	float 			re_min;
+	float 			re_max;
+	float 			im_min;
+	float 			im_max;
+	float 			im_max_start;
+	t_pos			*pos;
+	t_color 		*color;
+}					t_ship;
+
 #endif

@@ -18,6 +18,7 @@ add_executable(fract_ol
         kernels/mandel.cl
         kernels/color.cl
         kernels/julia.cl
+        kernels/ship.cl
         kernel_includes/mandelbrot.h
         kernel_includes/color.h
         kernel_includes/cl_complex.h.cl
@@ -138,4 +139,6 @@ add_executable(fract_ol
         srcs/calculate_buddhabrot.c
         srcs/buddhabrot_tools.c
         srcs/buddhabrot_tools_p2.c
-        Makefile srcs/utils_two.c srcs/menu_two.c)
+        srcs/menu_two.c
+        srcs/utils_two.c
+        Makefile kernel_includes/burning_ship.h)

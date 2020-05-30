@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 22:11:12 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 22:11:12 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 22:12:54 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,9 @@ void 			set_fract_type(t_fract *fractol, int type)
 	}
 	else if (type == BUDDHA_PRECALC)
 		fractol->type = BUDDHA_PRECALC;
+	else if (type == SHIP)
+	{
+		fractol->ship = init_ship();
+		fractol->type = SHIP;
+	}
 }

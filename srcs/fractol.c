@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:06 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 22:20:09 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/28 22:46:01 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ static void 		post_setup(t_fract *fractol, int type)
 	{
 		fractol->julia->color = fractol->color;
 		fractol->julia->color->max_iter = fractol->pos->max_iter;
+	}
+	else if (type == SHIP)
+	{
+		fractol->ship->color = fractol->color;
+		fractol->ship->color->max_iter = fractol->pos->max_iter;
 	}
 }
 
@@ -100,6 +105,8 @@ int 				main(int argc, char **argv)
 		type = BUDDHA;
 	else if (!ft_strcmp(argv[1], "Buddhabrot_precalc"))
 		type = BUDDHA_PRECALC;
+	else if (!ft_strcmp(argv[1], "Burning_ship"))
+		type = SHIP;
 	if(!type)
 		error(2);
 	start(type);

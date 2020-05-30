@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:49:45 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/29 03:51:12 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/29 17:39:08 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,20 @@ t_buddha 		*init_buddha(void)
 	bud->height = B_HEIGHT;
 	bud->max_iter = 10;
 	return(bud);
+}
+
+t_ship			*init_ship(void)
+{
+	t_ship		*ship;
+
+	if (!(ship = (t_ship *)malloc(sizeof(t_ship))))
+		error(3);
+	ship->c_im = 0;
+	ship->c_re = 0;
+	ship->re_max = 2;
+	ship->re_min = -2;
+	ship->im_min = -2;
+	ship->im_max = ship->im_min + (ship->re_max - ship->re_min) * HEIGHT / WIDTH;
+	ship->im_max_start = ship->im_max;
+	return(ship);
 }

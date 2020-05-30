@@ -93,6 +93,7 @@ t_fract				*init_fractol_struct(int type)
 	fractol->mandel = NULL;
 	fractol->julia = NULL;
 	fractol->buddha = NULL;
+	fractol->ship = NULL;
 	set_fract_type(fractol, type);
 	init_rest(fractol, type);
 	return(fractol);
