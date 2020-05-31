@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsubptr.c               		                :+:      :+:    :+:   */
+/*   ft_strsubptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsalome <jsalome@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Artur <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 14:35:50 by jsalome           #+#    #+#             */
-/*   Updated: 2020/03/19 19:11:30 by Artur            ###   ########.fr       */
+/*   Created: 2020/05/31 18:42:03 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/31 18:47:01 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static char		*copy_str(size_t copy_c, char *tmp, char const *str)
+{
+	while (copy_c)
+	{
+		*tmp++ = *str++;
+		copy_c--;
+	}
+	*tmp = '\0';
+	return (tmp);
+}
 
 char			*ft_strsubptr(char const *str, char const *ptr)
 {
@@ -18,7 +29,7 @@ char			*ft_strsubptr(char const *str, char const *ptr)
 	char		*tmp;
 	size_t		str_c;
 	size_t		ptr_c;
-	size_t 		copy_c;
+	size_t		copy_c;
 
 	str_c = 0;
 	ptr_c = 0;
@@ -34,11 +45,6 @@ char			*ft_strsubptr(char const *str, char const *ptr)
 	if (!(str3 = (char *)malloc(sizeof(char) * ((copy_c) + 1))))
 		return (NULL);
 	tmp = str3;
-	while (copy_c)
-	{
-		*tmp++ = *str++;
-		copy_c--;
-	}
-	*tmp = '\0';
+	tmp = copy_str(copy_c, tmp, str);
 	return (str3);
 }
