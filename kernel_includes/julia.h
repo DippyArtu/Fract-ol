@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:45:06 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:45:06 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 16:52:55 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 
 # include "cl_complex.h.cl"
 
-typedef struct 		s_position
+typedef struct		s_position
 {
-	float  			shift_x;
-	float  			shift_y;
-	float 			zoom;
-	float 			max_iter;
+	float			shift_x;
+	float			shift_y;
+	float			zoom;
+	float			max_iter;
 }					t_pos;
 
-typedef struct 		s_julia
+typedef struct		s_julia
 {
-	float 			k_re;
-	float  			k_im;
+	float			k_re;
+	float			k_im;
 	t_pos			*pos;
 }					t_julia;
 
