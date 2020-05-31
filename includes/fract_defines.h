@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:44:26 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 13:26:44 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 14:48:29 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,16 @@
 # define Z_FACTOR 1.03
 
 # define USAGE "Usage: ./fractol *type_of_fractal*\n"
-# define TYPES "Available types:\n Mandelbrot\n Julia\n\
- Buddhabrot\n Buddhabrot_precalc\n Burning_ship\n"
-# define INVALID "Invalid type given as an argument\n" TYPES
+# define TYPES "Available types:\n Mandelbrot\n Julia\n"
+# define TYPES_T " Buddhabrot\n Buddhabrot_precalc\n Burning_ship\n"
+# define INVALID "Invalid type given as an argument\n" TYPES TYPES_T
 # define THREAD_ERR "Thread execution error\n"
 # define MALLOC_ERR "Memory allocation has failed\n"
 
-//maximum  & initial amount of iterations
+/*
+** Maximum and initial ammount of iterations
+*/
+
 # define K_MAX 100000
 # define K_START 300
 

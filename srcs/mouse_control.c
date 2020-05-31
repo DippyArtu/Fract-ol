@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:51:26 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:51:26 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 14:48:29 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int 					mandel_mouse_pos(int x, int y, void *p)
 	man = fract->mandel;
 	re_factor = (man->re_max - man->re_min) / (WIDTH - 1);
 	im_factor = (man->im_max - man->im_min) / (HEIGHT - 1);
-	fract->mouse->Re = man->re_min + (float)x * re_factor;
-	fract->mouse->Im = man->im_max - (float)y * im_factor;
+	fract->mouse->re = man->re_min + (float)x * re_factor;
+	fract->mouse->im = man->im_max - (float)y * im_factor;
 	return(0);
 }
 
@@ -87,7 +87,7 @@ int 					ship_mouse_pos(int x, int y, void *p)
 	ship = fract->ship;
 	re_factor = (ship->re_max - ship->re_min) / (WIDTH - 1);
 	im_factor = (ship->im_max - ship->im_min) / (HEIGHT - 1);
-	fract->mouse->Re = ship->re_min + (float)x * re_factor;
-	fract->mouse->Im = ship->im_max - (float)y * im_factor;
+	fract->mouse->re = ship->re_min + (float)x * re_factor;
+	fract->mouse->im = ship->im_max - (float)y * im_factor;
 	return(0);
 }

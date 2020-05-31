@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:48:56 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 13:26:02 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 14:48:29 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_mouse		*init_mouse(void)
 	mouse->press = 0;
 	mouse->x = 0;
 	mouse->y = 0;
-	mouse->Re = 0;
-	mouse->Im = 0;
+	mouse->re = 0;
+	mouse->im = 0;
 	return(mouse);
 }
 

@@ -12,11 +12,14 @@
 
 #include "fractol.h"
 
-int			color_from_heatmap(t_heatmap val, t_heatmap max_val, float max_color)
+/*
+** Gets a value for color from the heatmap
+*/
+int			clr_htmp(t_heatmap val, t_heatmap m_val, float m_clr)
 {
 	float	scale;
 
-	scale = (max_color / (float)max_val);
+	scale = (m_clr / (float)m_val);
 	return((int)(val * scale));
 }
 

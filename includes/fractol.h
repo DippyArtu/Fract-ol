@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:31:47 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 00:14:27 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 15:22:16 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,33 @@
 # include "fract_defines.h"
 # include "fract_structs.h"
 
-typedef struct		s_fract
+typedef struct	s_fract
 {
-	pthread_t 		*tid;
-	void			*mlx_ptr;
-	void			*win_ptr;
-	void			*image;
-	char			*data_addr;
-	int				bpp;
-	int				size_line;
-	int				endian;
-	int 			type;
-	int 			iter_c;
-	int 			cl_init;
-	int 			menu_init;
-	t_pos			*pos;
-	t_color			*color;
-	t_mandel		*mandel;
-	t_julia			*julia;
-	t_buddha		*buddha;
-	t_ship 			*ship;
-	t_mouse			*mouse;
-	t_cl 			*cl;
-}					t_fract;
+	pthread_t	*tid;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*image;
+	char		*data_addr;
+	int			bpp;
+	int			size_line;
+	int			endian;
+	int			type;
+	int			iter_c;
+	int			cl_init;
+	int			menu_init;
+	t_pos		*pos;
+	t_color		*color;
+	t_mandel	*mandel;
+	t_julia		*julia;
+	t_buddha	*buddha;
+	t_ship		*ship;
+	t_mouse		*mouse;
+	t_cl		*cl;
+}				t_fract;
 
 t_fract			*init_fractol_struct(int type);
-t_color 		*init_color(void);
-t_fract 		*prep_fractal(int type);
+t_color			*init_color(void);
+t_fract			*prep_fractal(int type);
 void			draw(t_fract *fract, t_cl *cl, int type);
 void			mandelbrot(t_fract *fract, t_cl *cl);
 void			put_pixel(t_fract *fractal, int i, int color);
@@ -60,46 +60,46 @@ void			shift_control(int key, t_fract *fract);
 t_mouse			*init_mouse(void);
 int				mouse_press(int key, int x, int y, void *p);
 int				mouse_release(int key, int x, int y, void *p);
-int 			mandel_mouse_pos(int x, int y, void *p);
+int				mandel_mouse_pos(int x, int y, void *p);
 float			interpolate(float start, float end, float interp);
 void			apply_zoom(t_mandel *man, float m_re, float m_im, float interp);
 void			zoom_in(t_fract *fract);
 void			zoom_out(t_fract *fract);
-void 			set_color(int key, t_fract *fract);
-t_julia 		*init_julia(void);
+void			set_color(int key, t_fract *fract);
+t_julia			*init_julia(void);
 t_mandel		*init_mandelbrot(void);
-void 			draw_mandel(t_fract *fract, t_cl *cl);
-void 			draw_julia(t_fract *fract, t_cl *cl);
+void			draw_mandel(t_fract *fract, t_cl *cl);
+void			draw_julia(t_fract *fract, t_cl *cl);
 void			julia(t_fract *fract, t_cl *cl);
-int 			julia_mouse_move(int x, int y, void *p);
-void 			julia_forward(t_fract *fract);
-void 			julia_backward(t_fract *fract);
+int				julia_mouse_move(int x, int y, void *p);
+void			julia_forward(t_fract *fract);
+void			julia_backward(t_fract *fract);
 int				exit_prog(t_fract *fract);
-void 			start(int type);
-void 			set_fractal(int key, t_fract *fract);
-void 			fracts_menu(t_fract *fract);
-void 			fill_background(t_fract *fract);
-void 			fractol_clean_up(t_fract *fract);
-t_buddha 		*init_buddha(void);
-void 			buddhabrot(t_fract *fract);
-float 			get_rand(float min, float max);
+void			start(int type);
+void			set_fractal(int key, t_fract *fract);
+void			fracts_menu(t_fract *fract);
+void			fill_background(t_fract *fract);
+void			fractol_clean_up(t_fract *fract);
+t_buddha		*init_buddha(void);
+void			buddhabrot(t_fract *fract);
+float			get_rand(float min, float max);
 t_heatmap		**alloc_heatmap(void);
 void			free_heatmap(t_heatmap **map);
 int				row_from_real(float real, t_buddha *bud);
-int 			col_from_imag(float imag, t_buddha *bud);
-int				color_from_heatmap(t_heatmap val, t_heatmap max_val, float max_color);
-void 			write_map(t_buddha *bud, t_complex *orb, t_heatmap **map, t_heatmap *max);
-void 			get_color_buddha(t_fract  *fract, t_heatmap **map, t_heatmap *max_val);
-void 			draw_buddha(t_fract *fract, int *color);
+int				col_from_imag(float imag, t_buddha *bud);
+int				clr_htmp(t_heatmap val, t_heatmap m_val, float m_clr);
+void			w_m(t_buddha *b, t_complex *o, t_heatmap **mp, t_heatmap *max);
+void			get_col_bud(t_fract *fract, t_heatmap **map, t_heatmap *m_val);
+void			draw_buddha(t_fract *fract, int *color);
 void			gen_heatmap(t_buddha *bud, t_heatmap **map, t_heatmap *max_val);
-void 			read_buddhabrot(t_fract *fract);
-void 			set_fract_type(t_fract *fractol, int type);
+void			read_buddhabrot(t_fract *fract);
+void			set_fract_type(t_fract *fractol, int type);
 void			print_menu_two(t_fract *fract, int type);
-void 			write_map_to_file(int *color, int size);
-t_ship 			*init_ship(void);
-void 			draw_ship(t_fract *fract, t_cl *cl);
+void			write_map_to_file(int *color, int size);
+t_ship			*init_ship(void);
+void			draw_ship(t_fract *fract, t_cl *cl);
 void			burning_ship(t_fract *fract, t_cl *cl);
-int 			ship_mouse_pos(int x, int y, void *p);
-void			apply_zoom_ship(t_ship *ship, float m_re, float m_im, float interp);
+int				ship_mouse_pos(int x, int y, void *p);
+void			apply_z_s(t_ship *ship, float m_re, float m_im, float intp);
 
 #endif

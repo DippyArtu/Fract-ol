@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:48:46 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 20:23:10 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 14:48:29 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		error(int type)
 	{
 		ft_putstr(USAGE);
 		ft_putstr(TYPES);
+		ft_putstr(TYPES_T);
 	}
 	else if (type == 2)
 		ft_putstr(INVALID);

@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 22:11:12 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 22:12:54 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 15:06:35 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@ void 			set_fract_type(t_fract *fractol, int type)
 	}
 }
 
-void		apply_zoom_ship(t_ship *ship, float m_re, float m_im, float interp)
+void		apply_z_s(t_ship *ship, float m_re, float m_im, float intp)
 {
-	ship->re_max = interpolate(m_re, ship->re_max, interp);
+	ship->re_max = interpolate(m_re, ship->re_max, intp);
 	if (ship->re_max > 2)
 		ship->re_max = 2;
-	ship->re_min = interpolate(m_re, ship->re_min, interp);
+	ship->re_min = interpolate(m_re, ship->re_min, intp);
 	if (ship->re_min < -2)
 		ship->re_min = -2;
-	ship->im_max = interpolate(m_im, ship->im_max, interp);
+	ship->im_max = interpolate(m_im, ship->im_max, intp);
 	if (ship->im_max > ship->im_max_start)
 		ship->im_max = ship->im_max_start;
-	ship->im_min = interpolate(m_im, ship->im_min, interp);
+	ship->im_min = interpolate(m_im, ship->im_min, intp);
 	if (ship->im_min < -2)
 		ship->im_min = -2;
 }
