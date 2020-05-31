@@ -6,13 +6,13 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:46:36 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:46:36 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 18:09:37 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libcl.h"
 
-void 		load_kernel_src_code(char *kernel, t_cl *cl)
+void		load_kernel_src_code(char *kernel, t_cl *cl)
 {
 	cl->kernel_src->fd_fract = open(kernel, O_RDONLY);
 	cl->kernel_src->fd_color = open(COLOR_KERNEL_FILE, O_RDONLY);
@@ -31,12 +31,13 @@ void 		load_kernel_src_code(char *kernel, t_cl *cl)
 	close(cl->kernel_src->fd_color);
 }
 
-void 		create_context_coms_queue(t_cl *cl)
+void		create_context_coms_queue(t_cl *cl)
 {
 	t_cl_context		*cntx;
 
 	cntx = cl->context;
-	cntx->context = clCreateContext(NULL, 1, &cl->dev_info->device_id,\
+	cntx->context = clCreateContext(NULL, 1,\
+			&cl->dev_info->device_id,\
 			NULL, NULL, &cl->dev_info->ret);
 	if (cl->dev_info->ret < 0)
 	{
@@ -52,13 +53,15 @@ void 		create_context_coms_queue(t_cl *cl)
 	}
 }
 
-void 		create_buffs(t_cl *cl, t_elems *elems, int type)
+void		create_buffs(t_cl *cl, t_elems *elems, int type)
 {
 	t_cl_items			*its;
 
 	its = cl->items;
-	its->color_mem_obj = clCreateBuffer(cl->context->context, CL_MEM_READ_WRITE,\
-						(WIDTH * HEIGHT) * sizeof(cl_int), NULL, &cl->dev_info->ret);
+	its->color_mem_obj = clCreateBuffer(cl->context->context,\
+			CL_MEM_READ_WRITE,\
+						(WIDTH * HEIGHT) * sizeof(cl_int),\
+						NULL, &cl->dev_info->ret);
 	if (type == MANDEL)
 		mandel_buffs(cl, elems);
 	else if (type == JULIA)

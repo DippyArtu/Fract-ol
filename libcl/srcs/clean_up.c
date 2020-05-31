@@ -6,13 +6,13 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:46:42 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:46:42 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 18:11:52 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libcl.h"
 
-void 		cl_clean_mem_objs(t_cl *cl)
+void		cl_clean_mem_objs(t_cl *cl)
 {
 	t_cl_items			*its;
 	t_cl_dev_info		*di;
@@ -29,7 +29,7 @@ void 		cl_clean_mem_objs(t_cl *cl)
 	di->ret = clReleaseMemObject(its->dc_mem_obj);
 }
 
-void 		cl_clean_structs(t_cl *cl, t_elems *elems)
+void		cl_clean_structs(t_cl *cl, t_elems *elems)
 {
 	free(cl->kernel_src->fract_src_str);
 	free(cl->kernel_src->color_src_str);
@@ -41,7 +41,7 @@ void 		cl_clean_structs(t_cl *cl, t_elems *elems)
 	free(cl);
 }
 
-void 		cl_clean_up_all(t_cl *cl)
+void		cl_clean_up_all(t_cl *cl)
 {
 	t_cl_dev_info		*di;
 

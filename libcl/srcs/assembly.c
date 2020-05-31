@@ -6,17 +6,17 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:46:31 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:46:31 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 18:08:33 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libcl.h"
 
-void 		print_log(t_cl *cl, int type)
+void		print_log(t_cl *cl, int type)
 {
-	char 				*prog_log;
-	size_t 				log_size;
-	cl_program 			*prog;
+	char				*prog_log;
+	size_t				log_size;
+	cl_program			*prog;
 
 	prog = NULL;
 	if (type == 1)
@@ -36,7 +36,7 @@ void 		print_log(t_cl *cl, int type)
 	exit(1);
 }
 
-void 		create_program(t_cl *cl)
+void		create_program(t_cl *cl)
 {
 	t_cl_context		*cntx;
 
@@ -56,7 +56,7 @@ void 		create_program(t_cl *cl)
 	}
 }
 
-void 		build_program(t_cl *cl, char *include)
+void		build_program(t_cl *cl, char *include)
 {
 	t_cl_context		*cntx;
 
@@ -71,7 +71,7 @@ void 		build_program(t_cl *cl, char *include)
 		print_log(cl, 2);
 }
 
-void 		prep_kernel(t_cl *cl, char *kernel_ft, char *include)
+void		prep_kernel(t_cl *cl, char *kernel_ft, char *include)
 {
 	t_cl_context		*cntx;
 
@@ -89,7 +89,7 @@ void 		prep_kernel(t_cl *cl, char *kernel_ft, char *include)
 	}
 }
 
-void 		set_kernel_args(t_cl *cl, int type)
+void		set_kernel_args(t_cl *cl, int type)
 {
 	if (type == MANDEL)
 		mandel_args(cl);

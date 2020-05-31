@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:46:57 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:46:57 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 18:14:05 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_cl		*init_opencl_structs(void)
 	return (cl);
 }
 
-void 		init_user_cl_structs(t_cl *cl)
+void		init_user_cl_structs(t_cl *cl)
 {
 	if (!(cl->items = (t_cl_items *)malloc(sizeof(t_cl_items))))
 		malloc_fail();
@@ -45,7 +45,7 @@ t_elems		*init_opencl_elems(char *k_name, char *ft_name, char *inc)
 
 	if (!(elems = (t_elems *)malloc(sizeof(t_elems))))
 		malloc_fail();
-	elems->NDRANGE = WIDTH * HEIGHT;
+	elems->ndrange = WIDTH * HEIGHT;
 	elems->global_ws[0] = WIDTH;
 	elems->global_ws[1] = HEIGHT;
 	elems->local_ws[0] = 10;

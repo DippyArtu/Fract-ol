@@ -6,13 +6,13 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:46:52 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:46:52 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 18:13:18 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libcl.h"
 
-void 		get_cl_info(t_cl *cl)
+void		get_cl_info(t_cl *cl)
 {
 	t_cl_dev_info		*inf;
 
@@ -34,7 +34,7 @@ void 		get_cl_info(t_cl *cl)
 	}
 }
 
-void 		malloc_fail(void)
+void		malloc_fail(void)
 {
 	ft_putstr("Memory allocation failed");
 	exit(-1);

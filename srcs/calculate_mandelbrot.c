@@ -66,8 +66,8 @@ void			mandelbrot(t_fract *fract, t_cl *cl)
 	create_buffs(cl, elems, MANDEL);
 	exec_kernel(cl);
 	exec_kernel_color(cl);
-	color = read_buff(cl, elems->NDRANGE);
-	while (i < (int)elems->NDRANGE)
+	color = read_buff(cl, elems->ndrange);
+	while (i < (int)elems->ndrange)
 	{
 		put_pixel(fract, i, color[i]);
 		i++;
