@@ -6,22 +6,21 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 22:20:12 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 00:02:35 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 20:02:46 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void 			buddha_menu(t_fract *fract)
+static void				buddha_menu(t_fract *fract)
 {
-	int		y;
-	int		x;
-	void	*mlx;
-	void	*win;
+	int					y;
+	int					x;
+	void				*mlx;
+	void				*win;
 
 	mlx = fract->mlx_ptr;
 	win = fract->win_ptr;
-	fill_background(fract);
 	mlx_string_put(mlx, win, x = (B_WIDTH / 2) - 130,\
 			y = (B_HEIGHT / 2) - 200, WHITE, "Press H to show this menu");
 	mlx_string_put(mlx, win, x += 15, y += 30, WHITE, "or any key to close it");
@@ -30,9 +29,11 @@ static void 			buddha_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "M");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Julia set:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "J");
-	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Calculate Buddhabrot set:");
+	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE,\
+			"Calculate Buddhabrot set:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "B");
-	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Precalculated Buddhabrot set:");
+	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE,\
+			"Precalculated Buddhabrot set:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "C");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Burning ship set:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "S");
@@ -40,8 +41,11 @@ static void 			buddha_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "esc key");
 }
 
-void			print_menu_two(t_fract *fract, int type)
+void					print_menu_two(t_fract *fract, int type)
 {
 	if (type == BUDDHA || type == BUDDHA_PRECALC)
+	{
+		fill_background(fract);
 		buddha_menu(fract);
+	}
 }

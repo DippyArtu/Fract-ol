@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:06 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 01:12:04 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 19:43:34 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int			key_press(int key, t_fract *fract)
 	return (0);
 }
 
-static void 		post_setup(t_fract *fractol, int type)
+static void			post_setup(t_fract *fractol, int type)
 {
 	if (type == MANDEL)
 	{
@@ -52,7 +52,7 @@ static void 		post_setup(t_fract *fractol, int type)
 	}
 }
 
-t_fract 			*prep_fractal(int type)
+t_fract				*prep_fractal(int type)
 {
 	t_fract		*fractol;
 	t_cl		*cl;
@@ -71,7 +71,7 @@ t_fract 			*prep_fractal(int type)
 	return (fractol);
 }
 
-void 				start(int type)
+void				start(int type)
 {
 	t_fract		*fractol;
 
@@ -87,9 +87,9 @@ void 				start(int type)
 	mlx_loop(fractol->mlx_ptr);
 }
 
-int 				main(int argc, char **argv)
+int					main(int argc, char **argv)
 {
-	int 		type;
+	int			type;
 
 	type = 0;
 	if (argc != 2)
@@ -104,7 +104,7 @@ int 				main(int argc, char **argv)
 		type = BUDDHA_PRECALC;
 	else if (!ft_strcmp(argv[1], "Burning_ship"))
 		type = SHIP;
-	if(!type)
+	if (!type)
 		error(2);
 	start(type);
 	return (0);

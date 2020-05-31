@@ -6,13 +6,13 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:48:41 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 01:00:03 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 19:35:37 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void 		fractol_clean_up(t_fract *fract)
+void		fractol_clean_up(t_fract *fract)
 {
 	if (fract->mandel)
 		free((void *)fract->mandel);

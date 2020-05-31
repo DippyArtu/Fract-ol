@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:37:25 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 18:36:02 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 18:56:20 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ float			cl_carg(const t_complex a)
 	if (a.x > 0)
 		return (atan((float)(a.y / a.x)));
 	else if (a.x < 0 && a.y >= 0)
-		return (atan((float)(a.y / a.x)) + Pi_cl);
+		return (atan((float)(a.y / a.x)) + PI_CL);
 	else if (a.x < 0 && a.y < 0)
-		return (atan((float)(a.y / a.x)) - Pi_cl);
+		return (atan((float)(a.y / a.x)) - PI_CL);
 	else if (a.x == 0 && a.y > 0)
-		return ((float)(Pi_cl / 2));
+		return ((float)(PI_CL / 2));
 	else if (a.x == 0 && a.y < 0)
-		return ((float)(Pi_cl * -1) / 2);
+		return ((float)(PI_CL * -1) / 2);
 	else
 		return (0);
 }

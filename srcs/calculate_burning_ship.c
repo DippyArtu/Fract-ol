@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 23:49:39 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/30 23:51:33 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 19:31:29 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void			burning_ship(t_fract *fract, t_cl *cl)
 {
 	t_elems		*elems;
-	int 		*color;
-	int 		i;
+	int			*color;
+	int			i;
 
 	i = 0;
 	elems = cl->items->elems;

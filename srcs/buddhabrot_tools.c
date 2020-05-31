@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   buddhabrot_tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Artur <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/28 15:32:00 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/28 15:32:00 by Artur            ###   ########.fr       */
+/*   Created: 2020/05/31 18:52:44 by Artur             #+#    #+#             */
+/*   Updated: 2020/05/31 20:17:11 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-float 			get_rand(float min, float max)
+float			get_rand(float min, float max)
 {
-	float 		rand_n;
+	float		rand_n;
 
 	sranddev();
-	rand_n = rand() / (float) RAND_MAX;
-	return(min + rand_n * (max - min));
+	rand_n = rand() / (float)RAND_MAX;
+	return (min + rand_n * (max - min));
 }
 
-t_heatmap		**alloc_heatmap(void) //heatmap = image size -- width * height
+t_heatmap		**alloc_heatmap(void)
 {
-	t_heatmap 	**map;
-	int 		i;
-	int 		j;
+	t_heatmap	**map;
+	int			i;
+	int			j;
 
 	i = 0;
-	if (!(map = (t_heatmap **)malloc(B_HEIGHT * sizeof(t_heatmap *))))
+	if (!(map = (t_heatmap **)malloc(sizeof(t_heatmap *) * B_HEIGHT)))
 		error(3);
 	while (i < B_HEIGHT)
 	{
-		if (!(map[i] = (t_heatmap *)malloc(B_WIDTH * sizeof(t_heatmap))))
+		if (!(map[i] = (t_heatmap *)malloc(sizeof(t_heatmap) * B_WIDTH)))
 			error(3);
 		i++;
 	}
@@ -47,7 +47,7 @@ t_heatmap		**alloc_heatmap(void) //heatmap = image size -- width * height
 		}
 		i++;
 	}
-	return(map);
+	return (map);
 }
 
 void			free_heatmap(t_heatmap **map)
@@ -67,10 +67,12 @@ void			free_heatmap(t_heatmap **map)
 
 int				row_from_real(float real, t_buddha *bud)
 {
-	return((int)((real - bud->re_min) * (B_HEIGHT / (bud->re_max - bud->re_min))));
+	return ((int)((real - bud->re_min)\
+				* (B_HEIGHT / (bud->re_max - bud->re_min))));
 }
 
-int 			col_from_imag(float imag, t_buddha *bud)
+int				col_from_imag(float imag, t_buddha *bud)
 {
-	return((int)((imag - bud->im_min) * (B_WIDTH / (bud->im_max - bud->im_min))));
+	return ((int)((imag - bud->im_min)\
+				* (B_WIDTH / (bud->im_max - bud->im_min))));
 }

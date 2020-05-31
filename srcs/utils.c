@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:51:49 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 01:19:00 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 20:05:30 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			exit_prog(t_fract *fract)
 	exit(0);
 }
 
-void			put_pixel(t_fract *fractal, int i, int color)
+void		put_pixel(t_fract *fractal, int i, int color)
 {
 	int		*pixel;
 
@@ -31,7 +31,7 @@ void			put_pixel(t_fract *fractal, int i, int color)
 	pixel[i] = color;
 }
 
-void 		set_color(int key, t_fract *fract)
+void		set_color(int key, t_fract *fract)
 {
 	if (key == 18)
 		fract->color->mode = 1;
@@ -59,7 +59,7 @@ void 		set_color(int key, t_fract *fract)
 	}
 }
 
-void 		set_fractal(int key, t_fract *fract)
+void		set_fractal(int key, t_fract *fract)
 {
 	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC)
 	{
@@ -80,18 +80,19 @@ void 		set_fractal(int key, t_fract *fract)
 		start(SHIP);
 }
 
-void 		fill_background(t_fract *fract)
+void		fill_background(t_fract *fract)
 {
-	int *pixel;
-	int i;
+	int		*pixel;
+	int		i;
 
 	i = 0;
-	pixel = (int *) (fract->data_addr);
+	pixel = (int *)(fract->data_addr);
 	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC)
 	{
 		while (i++ < HEIGHT * WIDTH)
 			pixel[i] = BLACK;
-	} else if (fract->type == BUDDHA || fract->type == BUDDHA_PRECALC)
+	}
+	else if (fract->type == BUDDHA || fract->type == BUDDHA_PRECALC)
 	{
 		while (i++ < B_HEIGHT * B_WIDTH)
 			pixel[i] = BLACK;

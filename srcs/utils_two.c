@@ -6,13 +6,13 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 22:11:12 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 15:06:35 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 20:06:03 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void 			set_fract_type(t_fract *fractol, int type)
+void		set_fract_type(t_fract *fractol, int type)
 {
 	if (type == MANDEL)
 	{

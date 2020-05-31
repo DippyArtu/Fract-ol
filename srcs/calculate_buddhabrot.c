@@ -6,16 +6,17 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:52 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 15:20:27 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 19:29:30 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void 		buddhabrot_points(t_complex c, int max_iter, t_complex *orbit)
+static void			buddhabrot_points(t_complex c,\
+										int max_iter, t_complex *orbit)
 {
-	int 			iter_c;
-	t_complex 		z;
+	int				iter_c;
+	t_complex		z;
 
 	z = 0;
 	cl_bzero(orbit, max_iter);
@@ -33,19 +34,21 @@ static void 		buddhabrot_points(t_complex c, int max_iter, t_complex *orbit)
 }
 
 /*
- *  This function will collect a number of samples
- *  (random numbers for C)
- *
- *  For each sample, calculate a list of points for which the function
- *  escapes to infinity (if it does)
- *
- *  Then, map the points to the heatmap
- */
-void				gen_heatmap(t_buddha *bud, t_heatmap **map, t_heatmap *max_val)
+**  This function will collect a number of samples
+**  (random numbers for C)
+**
+**  For each sample, calculate a list of points for which the function
+**  escapes to infinity (if it does)
+**
+**  Then, map the points to the heatmap
+*/
+
+void				gen_heatmap(t_buddha *bud,\
+								t_heatmap **map, t_heatmap *max_val)
 {
-	int 			sample_i;
-	t_complex 		sample;
-	t_complex 		orbit[bud->max_iter];
+	int				sample_i;
+	t_complex		sample;
+	t_complex		orbit[bud->max_iter];
 
 	sample_i = 0;
 	sample = 0;
@@ -66,11 +69,13 @@ void				gen_heatmap(t_buddha *bud, t_heatmap **map, t_heatmap *max_val)
 ** o - orbit
 ** mp - map
 */
-void 				w_m(t_buddha *b, t_complex *o, t_heatmap **mp, t_heatmap *max)
+
+void				w_m(t_buddha *b, t_complex *o,\
+						t_heatmap **mp, t_heatmap *max)
 {
-	int 			i;
-	int 			row;
-	int 			col;
+	int			i;
+	int			row;
+	int			col;
 
 	i = 0;
 	while (i < b->max_iter)
@@ -89,10 +94,10 @@ void 				w_m(t_buddha *b, t_complex *o, t_heatmap **mp, t_heatmap *max)
 	}
 }
 
-void 				buddhabrot(t_fract *fract)
+void				buddhabrot(t_fract *fract)
 {
-	t_heatmap 		**map;
-	t_heatmap 		max_heatmap_val;
+	t_heatmap		**map;
+	t_heatmap		max_heatmap_val;
 
 	max_heatmap_val = 0;
 	map = alloc_heatmap();
@@ -101,12 +106,13 @@ void 				buddhabrot(t_fract *fract)
 	mlx_do_sync(fract->mlx_ptr);
 }
 
-void 				get_col_bud(t_fract  *fract, t_heatmap **map, t_heatmap *m_val)
+void				get_col_bud(t_fract *fract,\
+								t_heatmap **map, t_heatmap *m_val)
 {
-	int 			row;
-	int 			col;
-	int 			i;
-	int 			*color;
+	int				row;
+	int				col;
+	int				i;
+	int				*color;
 
 	i = 0;
 	row = 0;
@@ -118,7 +124,8 @@ void 				get_col_bud(t_fract  *fract, t_heatmap **map, t_heatmap *m_val)
 		while (col < B_WIDTH)
 		{
 			map[row][col] = clr_htmp(map[row][col], *m_val, 255);
-			color[i] = ((map[row][col] << 16) | (map[row][col] << 8) | map[row][col]);
+			color[i] = ((map[row][col] << 16) | (map[row][col] << 8)\
+					| map[row][col]);
 			i++;
 			col++;
 		}

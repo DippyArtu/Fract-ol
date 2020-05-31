@@ -6,15 +6,15 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:51:26 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 14:48:29 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 20:04:05 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int					mouse_press(int key, int x, int y, void *p)
+int						mouse_press(int key, int x, int y, void *p)
 {
-	t_fract			*fract;
+	t_fract				*fract;
 
 	(void)x;
 	(void)y;
@@ -38,9 +38,9 @@ int					mouse_press(int key, int x, int y, void *p)
 	return (0);
 }
 
-int					mouse_release(int key, int x, int y, void *p)
+int						mouse_release(int key, int x, int y, void *p)
 {
-	t_fract			*fract;
+	t_fract				*fract;
 
 	(void)x;
 	(void)y;
@@ -50,12 +50,12 @@ int					mouse_release(int key, int x, int y, void *p)
 	return (0);
 }
 
-int 					mandel_mouse_pos(int x, int y, void *p)
+int						mandel_mouse_pos(int x, int y, void *p)
 {
-	t_fract			*fract;
-	t_mandel		*man;
-	float 			re_factor;
-	float 			im_factor;
+	t_fract				*fract;
+	t_mandel			*man;
+	float				re_factor;
+	float				im_factor;
 
 	fract = (t_fract *)p;
 	man = fract->mandel;
@@ -63,25 +63,25 @@ int 					mandel_mouse_pos(int x, int y, void *p)
 	im_factor = (man->im_max - man->im_min) / (HEIGHT - 1);
 	fract->mouse->re = man->re_min + (float)x * re_factor;
 	fract->mouse->im = man->im_max - (float)y * im_factor;
-	return(0);
+	return (0);
 }
 
-int 					julia_mouse_move(int x, int y, void *p)
+int						julia_mouse_move(int x, int y, void *p)
 {
-	t_fract			*fract;
+	t_fract				*fract;
 
 	fract = (t_fract *)p;
 	fract->julia->k_re = (float)(4 * ((float)x / WIDTH - 0.5));
 	fract->julia->k_im = (float)(4 * ((float)(HEIGHT - y) / HEIGHT - 0.5));
-	return(0);
+	return (0);
 }
 
-int 					ship_mouse_pos(int x, int y, void *p)
+int						ship_mouse_pos(int x, int y, void *p)
 {
-	t_fract			*fract;
-	t_ship 			*ship;
-	float 			re_factor;
-	float 			im_factor;
+	t_fract				*fract;
+	t_ship				*ship;
+	float				re_factor;
+	float				im_factor;
 
 	fract = (t_fract *)p;
 	ship = fract->ship;
@@ -89,5 +89,5 @@ int 					ship_mouse_pos(int x, int y, void *p)
 	im_factor = (ship->im_max - ship->im_min) / (HEIGHT - 1);
 	fract->mouse->re = ship->re_min + (float)x * re_factor;
 	fract->mouse->im = ship->im_max - (float)y * im_factor;
-	return(0);
+	return (0);
 }

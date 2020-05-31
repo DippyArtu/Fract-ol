@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:52:09 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 15:07:08 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 20:06:58 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void		apply_zoom(t_mandel *man, float m_re, float m_im, float interp)
 
 void		zoom_in(t_fract *fract)
 {
-	float		*zoom;
-	float 		interp;
+	float	*zoom;
+	float	interp;
 
 	zoom = &fract->pos->zoom;
 	*zoom /= (float)Z_FACTOR;
@@ -58,7 +58,7 @@ void		zoom_in(t_fract *fract)
 void		zoom_out(t_fract *fract)
 {
 	float	*zoom;
-	float 	interp;
+	float	interp;
 
 	zoom = &fract->pos->zoom;
 	*zoom *= (float)Z_FACTOR;

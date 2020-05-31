@@ -6,26 +6,26 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:48:56 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 14:48:29 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 19:46:36 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_color 	*init_color(void)
+t_color				*init_color(void)
 {
-	t_color		*color;
+	t_color			*color;
 
 	if (!(color = (t_color *)malloc(sizeof(t_color))))
 		error(3);
 	color->mode = 1;
 	color->angle = 45;
-	return(color);
+	return (color);
 }
 
-t_mouse		*init_mouse(void)
+t_mouse				*init_mouse(void)
 {
-	t_mouse		*mouse;
+	t_mouse			*mouse;
 
 	if (!(mouse = (t_mouse *)malloc(sizeof(t_mouse))))
 		error(3);
@@ -34,12 +34,12 @@ t_mouse		*init_mouse(void)
 	mouse->y = 0;
 	mouse->re = 0;
 	mouse->im = 0;
-	return(mouse);
+	return (mouse);
 }
 
-static	t_pos		*init_position(int type)
+static t_pos		*init_position(int type)
 {
-	t_pos	*pos;
+	t_pos			*pos;
 
 	if (!(pos = (t_pos *)malloc(sizeof(t_pos))))
 		error(3);
@@ -58,10 +58,10 @@ static	t_pos		*init_position(int type)
 	}
 	pos->zoom = 1;
 	pos->max_iter = K_START;
-	return(pos);
+	return (pos);
 }
 
-static void 		init_rest(t_fract *fract, int type)
+static void			init_rest(t_fract *fract, int type)
 {
 	fract->iter_c = 0;
 	fract->pos = NULL;
@@ -72,12 +72,14 @@ static void 		init_rest(t_fract *fract, int type)
 	{
 		fract->pos = init_position(type);
 		fract->color = init_color();
-		fract->win_ptr = mlx_new_window(fract->mlx_ptr, WIDTH, HEIGHT, "Fract'ol");
+		fract->win_ptr = mlx_new_window(fract->mlx_ptr,\
+				WIDTH, HEIGHT, "Fract'ol");
 		fract->image = mlx_new_image(fract->mlx_ptr, WIDTH, HEIGHT);
 	}
 	if (type == BUDDHA || type == BUDDHA_PRECALC)
 	{
-		fract->win_ptr = mlx_new_window(fract->mlx_ptr, B_WIDTH, B_HEIGHT, "Fract'ol");
+		fract->win_ptr = mlx_new_window(fract->mlx_ptr,\
+				B_WIDTH, B_HEIGHT, "Fract'ol");
 		fract->image = mlx_new_image(fract->mlx_ptr, B_WIDTH, B_HEIGHT);
 	}
 	fract->data_addr = mlx_get_data_addr(fract->image, &fract->bpp, \
@@ -88,7 +90,7 @@ static void 		init_rest(t_fract *fract, int type)
 
 t_fract				*init_fractol_struct(int type)
 {
-	t_fract 	*fractol;
+	t_fract			*fractol;
 
 	if (!(fractol = (t_fract *)malloc(sizeof(t_fract))))
 		error(3);
@@ -99,5 +101,5 @@ t_fract				*init_fractol_struct(int type)
 	fractol->ship = NULL;
 	set_fract_type(fractol, type);
 	init_rest(fractol, type);
-	return(fractol);
+	return (fractol);
 }
