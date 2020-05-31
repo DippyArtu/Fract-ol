@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:44:26 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 00:37:47 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 13:26:44 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@
 # define K_START 300
 
 # define BLACK 0x000000
-# define BLACKISH 0x151515
 # define WHITE 0xFFFFFF
-# define GREY 0x5A5A5A
-# define PEACH 0xEEC1B0
 
 # define MANDEL 1
 # define JULIA 2

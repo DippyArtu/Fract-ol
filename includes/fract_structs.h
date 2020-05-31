@@ -14,7 +14,6 @@
 # define _FRACT_STRUCTS_H
 
 typedef unsigned int 	t_heatmap;
-typedef int 			t_atomic_int;
 
 typedef struct 			s_color
 {

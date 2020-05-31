@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:51:49 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 01:18:14 by Artur            ###   ########.fr       */
+/*   Updated: 2020/05/31 01:19:00 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,12 @@ void 		fill_background(t_fract *fract)
 
 	i = 0;
 	pixel = (int *) (fract->data_addr);
-	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC) {
+	if (fract->type != BUDDHA && fract->type != BUDDHA_PRECALC)
+	{
 		while (i++ < HEIGHT * WIDTH)
 			pixel[i] = BLACK;
-	} else if (fract->type == BUDDHA || fract->type == BUDDHA_PRECALC) {
+	} else if (fract->type == BUDDHA || fract->type == BUDDHA_PRECALC)
+	{
 		while (i++ < B_HEIGHT * B_WIDTH)
 			pixel[i] = BLACK;
 	}
