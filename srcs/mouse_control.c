@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:51:26 by Artur             #+#    #+#             */
-/*   Updated: 2020/06/02 16:39:24 by Artur            ###   ########.fr       */
+/*   Updated: 2020/06/02 18:30:23 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int						mouse_press(int key, int x, int y, void *p)
 	(void)x;
 	(void)y;
 	fract = (t_fract *)p;
-	if ((fract->type == MANDEL || fract->type == SHIP || fract->type == JULIA) && key == 5)
+	if ((fract->type == MANDEL || fract->type == SHIP\
+				|| fract->type == JULIA) && key == 5)
 		zoom_in(fract);
-	else if ((fract->type == MANDEL || fract->type == SHIP || fract->type == JULIA) && key == 4)
+	else if ((fract->type == MANDEL || fract->type == SHIP\
+				|| fract->type == JULIA) && key == 4)
 		zoom_out(fract);
 	else if (key == 1)
 		fract->mouse->press = 1;
