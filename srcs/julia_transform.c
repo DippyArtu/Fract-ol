@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:49:57 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 19:50:23 by Artur            ###   ########.fr       */
+/*   Updated: 2020/06/02 16:39:24 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ void		julia_forward(t_fract *fract)
 	else if (fract->julia->k_re > 1 && re_state)
 		re_state = 0;
 	if (!re_state)
-		fract->julia->k_re -= (float)0.01;
+		fract->julia->k_re -= (float)0.05;
 	else if (re_state)
-		fract->julia->k_re += (float)0.01;
+		fract->julia->k_re += (float)0.05;
 	if (fract->julia->k_im > 1 && !im_state)
 		im_state = 1;
 	else if (fract->julia->k_im < -1 && im_state)
 		im_state = 0;
 	if (!im_state)
-		fract->julia->k_im += (float)0.01;
+		fract->julia->k_im += (float)0.05;
 	else if (im_state)
-		fract->julia->k_im -= (float)0.01;
+		fract->julia->k_im -= (float)0.05;
 }
 
 void		julia_backward(t_fract *fract)
@@ -45,15 +45,15 @@ void		julia_backward(t_fract *fract)
 	else if (fract->julia->k_re > 1 && re_state)
 		re_state = 0;
 	if (!re_state)
-		fract->julia->k_re -= (float)0.01;
+		fract->julia->k_re -= (float)0.05;
 	else if (re_state)
-		fract->julia->k_re += (float)0.01;
+		fract->julia->k_re += (float)0.05;
 	if (fract->julia->k_im < -1 && !im_state)
 		im_state = 1;
 	else if (fract->julia->k_im > 1 && im_state)
 		im_state = 0;
 	if (!im_state)
-		fract->julia->k_im -= (float)0.01;
+		fract->julia->k_im -= (float)0.05;
 	else if (im_state)
-		fract->julia->k_im += (float)0.01;
+		fract->julia->k_im += (float)0.05;
 }

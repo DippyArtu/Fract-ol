@@ -57,6 +57,7 @@ kernel void			vector_julia(global int *iter,\
 	x = (float)tx;
 	y = (float)ty;
 	iter_c = 0;
+
 	z = position(x, y, &jul_l, &pos_l, width, height);
 
 	while (cl_cmodsqr(z) <= 100 && iter_c < (int)max_iter)
@@ -115,11 +116,12 @@ static float 		find_mu(int iter_c, cl_complex z)
  *  "position" function is used, which outputs given
  *  coordinates relative to (0,0).
  */
+
 static cl_complex	position(int x, int y, local t_julia *jul, local t_pos *pos, float width, float height)
 {
 	cl_complex	k;
 	int 		l = (width < height) ? width : height;
-	float 		scale_fact = 1.5;
+	float 		scale_fact = pos->zoom * 1.35;
 
 	k.x = 2 * scale_fact * (x - width / 2) / l + pos->shift_x;
 	k.y = 2 * scale_fact * (y - height / 2) / l + pos->shift_y;

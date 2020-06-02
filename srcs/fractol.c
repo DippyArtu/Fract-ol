@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:32:06 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 19:43:34 by Artur            ###   ########.fr       */
+/*   Updated: 2020/06/02 16:39:24 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ static int			key_press(int key, t_fract *fract)
 			shift_control(key, fract);
 		if ((key >= 18 && key <= 25) || key == 24 || key == 27)
 			set_color(key, fract);
+		if (fract->type == JULIA && key == 47)
+			julia_forward(fract);
+		else if (fract->type == JULIA && key == 43)
+			julia_backward(fract);
 		draw(fract, fract->cl, fract->type);
 		if (key == 48)
 			fracts_menu(fract);
@@ -81,6 +85,8 @@ void				start(int type)
 	mlx_hook(fractol->win_ptr, 5, 0, mouse_release, fractol);
 	if (type == MANDEL)
 		mlx_hook(fractol->win_ptr, 6, 0, mandel_mouse_pos, fractol);
+	if (type == JULIA)
+		mlx_hook(fractol->win_ptr, 6, 0, julia_mouse_move, fractol);
 	else if (type == SHIP)
 		mlx_hook(fractol->win_ptr, 6, 0, ship_mouse_pos, fractol);
 	mlx_hook(fractol->win_ptr, 17, 1L << 17, exit_prog, fractol);

@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:50:02 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 20:00:05 by Artur            ###   ########.fr       */
+/*   Updated: 2020/06/02 16:39:24 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void			julia_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE,\
 			"Press TAB for available fractals");
 	mlx_string_put(mlx, win, x -= 115, y += 70, WHITE, "Set transform:");
-	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse wheel scroll");
+	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse move or < >");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Move image:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "Arrow keys");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Change color mode:");

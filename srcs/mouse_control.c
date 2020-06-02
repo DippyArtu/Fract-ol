@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:51:26 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 20:04:05 by Artur            ###   ########.fr       */
+/*   Updated: 2020/06/02 16:39:24 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,10 @@ int						mouse_press(int key, int x, int y, void *p)
 	(void)x;
 	(void)y;
 	fract = (t_fract *)p;
-	if ((fract->type == MANDEL || fract->type == SHIP) && key == 5)
+	if ((fract->type == MANDEL || fract->type == SHIP || fract->type == JULIA) && key == 5)
 		zoom_in(fract);
-	else if ((fract->type == MANDEL || fract->type == SHIP) && key == 4)
+	else if ((fract->type == MANDEL || fract->type == SHIP || fract->type == JULIA) && key == 4)
 		zoom_out(fract);
-	else if (fract->type == JULIA && key == 5)
-		julia_forward(fract);
-	else if (fract->type == JULIA && key == 4)
-		julia_backward(fract);
-	if (fract->type == JULIA && key == 1)
-	{
-		fract->mouse->press = 1;
-		mlx_hook(fract->win_ptr, 6, 0, julia_mouse_move, fract);
-	}
 	else if (key == 1)
 		fract->mouse->press = 1;
 	draw(fract, fract->cl, fract->type);
@@ -73,6 +64,7 @@ int						julia_mouse_move(int x, int y, void *p)
 	fract = (t_fract *)p;
 	fract->julia->k_re = (float)(4 * ((float)x / WIDTH - 0.5));
 	fract->julia->k_im = (float)(4 * ((float)(HEIGHT - y) / HEIGHT - 0.5));
+	draw(fract, fract->cl, fract->type);
 	return (0);
 }
 

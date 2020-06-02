@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:52:09 by Artur             #+#    #+#             */
-/*   Updated: 2020/05/31 20:06:58 by Artur            ###   ########.fr       */
+/*   Updated: 2020/06/02 16:39:24 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void		zoom_out(t_fract *fract)
 
 	zoom = &fract->pos->zoom;
 	*zoom *= (float)Z_FACTOR;
+	if (*zoom > 1)
+		*zoom = 1;
 	interp = (float)(1 * Z_FACTOR);
 	if (fract->type == MANDEL)
 		apply_zoom(fract->mandel, fract->mouse->re, fract->mouse->im, interp);
