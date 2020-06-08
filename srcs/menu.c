@@ -6,7 +6,7 @@
 /*   By: Artur <Artur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/28 15:50:02 by Artur             #+#    #+#             */
-/*   Updated: 2020/06/02 16:39:24 by Artur            ###   ########.fr       */
+/*   Updated: 2020/06/08 17:32:06 by Artur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void			mandel_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x = (WIDTH / 2) - 150,\
 			y = (HEIGHT / 2) - 300, WHITE, "Press H to show this menu");
 	mlx_string_put(mlx, win, x += 15, y += 30, WHITE, "or any key to close it");
-	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE, "Press TAB for\
-												available fractals");
+	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE,\
+				"Press TAB for available fractals");
 	mlx_string_put(mlx, win, x -= 100, y += 70, WHITE, "Zoom In or Out:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse wheel scroll");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Move:");
@@ -62,7 +62,7 @@ static void			mandel_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Rotate light source");
 	mlx_string_put(mlx, win, x, y += 20, WHITE, "in color mode 5:");
 	mlx_string_put(mlx, win, x += 350, y -= 10, WHITE, "Keys +/-");
-	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Exiit:");
+	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Exit:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "esc key");
 }
 
@@ -83,6 +83,8 @@ static void			julia_menu(t_fract *fract)
 			"Press TAB for available fractals");
 	mlx_string_put(mlx, win, x -= 115, y += 70, WHITE, "Set transform:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse move or < >");
+	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Zoom In or Out:");
+	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse wheel scroll");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Move image:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "Arrow keys");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Change color mode:");
@@ -107,8 +109,8 @@ static void			ship_menu(t_fract *fract)
 	mlx_string_put(mlx, win, x = (WIDTH / 2) - 150,\
 			y = (HEIGHT / 2) - 300, WHITE, "Press H to show this menu");
 	mlx_string_put(mlx, win, x += 15, y += 30, WHITE, "or any key to close it");
-	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE, "Press TAB for\
-												available fractals");
+	mlx_string_put(mlx, win, x -= 40, y += 50, WHITE,\
+				"Press TAB for available fractals");
 	mlx_string_put(mlx, win, x -= 100, y += 70, WHITE, "Zoom In or Out:");
 	mlx_string_put(mlx, win, x += 350, y, WHITE, "Mouse wheel scroll");
 	mlx_string_put(mlx, win, x -= 350, y += 50, WHITE, "Move:");
