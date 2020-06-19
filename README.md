@@ -48,4 +48,4 @@
 <li>Buddhabrot_precalc</li>
 </ul>
 <p>There are 2 types of Buddhabrot fractals available – normal one, and precalculated one. Because Buddhabrot set is a very computationally intensive task, calculating the set can take a while. For this reason, the precalculated version is available. It will read the data from the map “save” file, <code>buddha_map</code>, and display it on screen.</p>
-
+ii
