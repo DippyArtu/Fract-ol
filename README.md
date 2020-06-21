@@ -116,8 +116,7 @@ Where `*type_of_fractal*` can be one of the following:
  - Buddhabrot
  - Buddhabrot_precalc
 
-There are 2 types of Buddhabrot fractals available â€“ normal one, and precalculated one. Because Buddhabrot set is a very computationally intensive task, calculating the set can take a while. For this reason, the precalculated version is available. It will read the data from the map "save" file, `buddha_map`, and display it on the screen.
+There are 2 types of Buddhabrot fractals available Ð normal one, and precalculated one. Because Buddhabrot set is a very computationally intensive task, calculating the set can take a while. For this reason, the precalculated version is available. It will read the data from the map "save" file, `buddha_map`, and display it on the screen.
 
 Apart from all the normal functionale, it is also possible to change the direction of light falling onto the set in the *color mode 5*.
 *This mode is available for Mandelbrot and Julia fractals only.*
-
