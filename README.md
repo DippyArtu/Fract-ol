@@ -16,7 +16,7 @@ This project makes use of my [libcl](https://github.com/DippyArtu/libcl) library
 ### Mandelbrot Set
 ![iterpow](https://github.com/DippyArtu/Fract-ol/blob/master/pics/iterpow.png)
 
-<img src="https://render.githubusercontent.com/render/math?math=Z_\{n + 1} = Z_\{n}^2 + c">
+<img src="https://render.githubusercontent.com/render/math?math=Z_\{n + 1\} = Z_\{n\}^2 + c">
 
 $$
 Z_\{n + 1\} = Z_\{n\}^2 + c
