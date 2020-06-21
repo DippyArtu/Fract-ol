@@ -13,8 +13,10 @@
 <h2 id="fractals">Fractals</h2>
 <h3 id="mandelbrot-set">Mandelbrot Set</h3>
 <p><img src="https://github.com/DippyArtu/Fract-ol/blob/master/pics/iterpow.png" alt="iterpow"></p>
-<p><img src="https://github.com/DippyArtu/Fract-ol/blob/master/pics/mand.jpg" alt="mand equ"></p>
-<h3 id="julia-sets">Julia sets</h3>
+<div align="center">
+<img src="https://github.com/DippyArtu/Fract-ol/blob/master/pics/mand.jpg&quot;">
+&lt;\div&gt;
+</div><h3 id="julia-sets">Julia sets</h3>
 <p><img src="https://github.com/DippyArtu/Fract-ol/blob/master/pics/julia.jpg" alt="julia"></p>
 <p><span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>Z</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msubsup><mi>Z</mi><mi>n</mi><mn>2</mn></msubsup><mo>+</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">
 Z_{n + 1} = Z_n^2 + k
