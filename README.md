@@ -5,8 +5,10 @@
 
 <h1 id="fract-ol">Fract-ol</h1>
 <p><img src="https://github.com/DippyArtu/Fract-ol/blob/master/pics/fractol-01.jpg" alt="fractol"></p>
-<p>Fract-ol is a graphic fractal exploration program, supporting deep-zooms.</p>
-<p><strong>MacOs support only</strong></p>
+<div align="center">
+<p></p><h3>Fract-ol is a graphic fractal exploration program, supporting deep-zooms.
+<p></p></h3><h5>MacOs support only
+</h5><p></p><p></p></div>
 <h2 id="general">General</h2>
 <p>Fract-ol runs it’s calculations on <strong>OpenCL</strong>, which allows for a high iteration count renders and smooth deep-zoom experience.</p>
 <p>This project makes use of my <a href="https://github.com/DippyArtu/libcl">libcl</a> library, to make it easier to work with OpenCL and a <a href="https://github.com/DippyArtu/complex_opencl">complex_opencl</a> library, which allows to perform arythmetics on complex numbers inside the cl kernel.</p>
